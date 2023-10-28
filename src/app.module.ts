@@ -5,6 +5,7 @@ import {DatabaseModule} from './database/database.module';
 import {AuthModule} from './modules/auth/auth.module';
 import {TrainingsModule} from './modules/trainings/trainings.module';
 import {ExerciseExampleModule} from "./modules/exercise-examples/exercise-example.module";
+import {MusclesModule} from "./modules/muscles/muscles.module";
 
 @Module({
     imports: [
@@ -17,6 +18,7 @@ import {ExerciseExampleModule} from "./modules/exercise-examples/exercise-exampl
         UsersModule,
         TrainingsModule,
         ExerciseExampleModule,
+        MusclesModule,
     ],
     controllers: [],
     providers: [],

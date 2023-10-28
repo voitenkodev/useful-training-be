@@ -1,16 +1,10 @@
 import {ApiProperty} from '@nestjs/swagger';
 
-export class MuscleExerciseBundleMuscleRequestDto {
-    id?: string;
-
-    @ApiProperty({type: 'string', example: 'biceps'})
-    name: string;
-}
-
 export class ExerciseExampleMuscleExerciseBundleRequestDto {
     id?: string;
 
-    muscle?: MuscleExerciseBundleMuscleRequestDto;
+    @ApiProperty({type: 'string', example: ''})
+    muscleId: string;
 
     @ApiProperty({type: 'int', example: '20', description: 'percentage'})
     value: string;
