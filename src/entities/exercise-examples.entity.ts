@@ -2,38 +2,47 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  JoinColumn,
+  ManyToOne,
   OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { MuscleExerciseBundlesEntity } from './muscle-exercise-bundles.entity';
+import {MuscleExerciseBundlesEntity} from './muscle-exercise-bundles.entity';
+import {UsersEntity} from "./users.entity";
 
-@Entity({ name: 'exercise_examples' })
+@Entity({name: 'exercise_examples'})
 export class ExerciseExamplesEntity {
-  @PrimaryGeneratedColumn('uuid')
-  id: string;
+    @PrimaryGeneratedColumn('uuid')
+    id: string;
 
-  @Column({ default: null })
-  name: string;
+    @Column({default: null})
+    name: string;
 
-  @CreateDateColumn({
-    type: 'timestamp without time zone',
-    name: 'created_at',
-  })
-  createdAt: Date;
+    @Column({default: null})
+    userId: string;
 
-  @UpdateDateColumn({
-    type: 'timestamp without time zone',
-    name: 'updated_at',
-  })
-  updatedAt: Date;
+    @CreateDateColumn({
+        type: 'timestamp without time zone',
+        name: 'created_at',
+    })
+    createdAt: Date;
 
-  @OneToMany(
-    () => MuscleExerciseBundlesEntity,
-    (musclesBundle) => musclesBundle.exerciseExample,
-    {
-      cascade: ['remove'],
-    },
-  )
-  muscleExerciseBundle: MuscleExerciseBundlesEntity[];
+    @UpdateDateColumn({
+        type: 'timestamp without time zone',
+        name: 'updated_at',
+    })
+    updatedAt: Date;
+
+    @OneToMany(() => MuscleExerciseBundlesEntity, (muscleExerciseBundle) => muscleExerciseBundle.exerciseExample, {
+        cascade: ['remove'],
+    })
+    muscleExerciseBundles: MuscleExerciseBundlesEntity[];
+
+    @ManyToOne(() => UsersEntity, (user) => user.exerciseExamples, {
+        onDelete: 'CASCADE',
+        orphanedRowAction: 'delete',
+    })
+    @JoinColumn({name: 'user_id'})
+    user: UsersEntity;
 }
