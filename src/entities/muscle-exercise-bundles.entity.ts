@@ -1,12 +1,11 @@
 import {
-  Column,
-  CreateDateColumn,
-  Entity,
-  JoinColumn,
-  ManyToOne,
-  OneToOne,
-  PrimaryGeneratedColumn,
-  UpdateDateColumn,
+    Column,
+    CreateDateColumn,
+    Entity,
+    JoinColumn,
+    ManyToOne,
+    PrimaryGeneratedColumn,
+    UpdateDateColumn,
 } from 'typeorm';
 import {ExerciseExamplesEntity} from './exercise-examples.entity';
 import {MusclesEntity} from './muscles.entity';
@@ -45,7 +44,7 @@ export class MuscleExerciseBundlesEntity {
     @JoinColumn({name: 'exercise_example_id'})
     exerciseExample: ExerciseExamplesEntity;
 
-    @OneToOne(() => MusclesEntity, (muscle) => muscle.muscleExerciseBundle, {
+    @ManyToOne(() => MusclesEntity, (muscle) => muscle.muscleExerciseBundles, {
         onDelete: 'CASCADE',
         orphanedRowAction: 'delete',
     })

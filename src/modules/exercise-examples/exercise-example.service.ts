@@ -28,7 +28,7 @@ export class ExerciseExampleService {
             .leftJoinAndSelect('exercise_examples.muscleExerciseBundles', 'muscleExerciseBundles')
             .leftJoinAndSelect('muscleExerciseBundles.muscle', 'muscle')
             .addOrderBy('exercise_examples.createdAt', 'DESC')
-            .getOne();
+            .getMany();
     }
 
     async getExerciseExamplesById(id: string, user) {
@@ -39,7 +39,7 @@ export class ExerciseExampleService {
             .leftJoinAndSelect('exercise_examples.muscleExerciseBundles', 'muscleExerciseBundles')
             .leftJoinAndSelect('muscleExerciseBundles.muscle', 'muscle')
             .addOrderBy('exercise_examples.createdAt', 'DESC')
-            .getMany();
+            .getOne();
     }
 
     async setOrUpdateExerciseExample(body: ExerciseExampleRequestDto, user) {
@@ -57,6 +57,7 @@ export class ExerciseExampleService {
             Object.assign(muscleExerciseExampleBundles, el);
             muscleExerciseExampleBundles.id = !muscleExerciseExampleBundles.id ? v4() : muscleExerciseExampleBundles.id;
             muscleExerciseExampleBundles.muscleId = el.muscleId;
+            muscleExerciseExampleBundles.exerciseExampleId = exerciseExample.id;
             muscleExerciseExampleBundlesEntities.push(muscleExerciseExampleBundles);
         });
 
