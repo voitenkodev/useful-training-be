@@ -1,0 +1,39 @@
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  OneToMany,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from 'typeorm';
+import { MusclePackExercisesEntity } from './muscle-pack-exercises.entity';
+
+@Entity({ name: 'exercise_examples' })
+export class ExerciseExamplesEntity {
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
+
+  @Column({ default: null })
+  name: string;
+
+  @CreateDateColumn({
+    type: 'timestamp without time zone',
+    name: 'created_at',
+  })
+  createdAt: Date;
+
+  @UpdateDateColumn({
+    type: 'timestamp without time zone',
+    name: 'updated_at',
+  })
+  updatedAt: Date;
+
+  @OneToMany(
+    () => MusclePackExercisesEntity,
+    (musclesPack) => musclesPack.exerciseExample,
+    {
+      cascade: ['remove'],
+    },
+  )
+  musclesPack: MusclePackExercisesEntity[];
+}
