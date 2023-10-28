@@ -26,7 +26,7 @@ export class TrainingsService {
       .where('trainings.userId = :userId', { userId: user.id })
       .leftJoinAndSelect('trainings.exercises', 'exercises')
       .leftJoinAndSelect('exercises.iterations', 'iterations')
-      .addOrderBy('trainings.date', 'DESC')
+      .addOrderBy('trainings.createdAt', 'DESC')
       .getMany();
   }
 
@@ -37,7 +37,7 @@ export class TrainingsService {
       .andWhere('trainings.userId = :userId', { userId: user.id })
       .leftJoinAndSelect('trainings.exercises', 'exercises')
       .leftJoinAndSelect('exercises.iterations', 'iterations')
-      .addOrderBy('trainings.date', 'DESC')
+      .addOrderBy('trainings.createdAt', 'DESC')
       .getOne();
   }
 

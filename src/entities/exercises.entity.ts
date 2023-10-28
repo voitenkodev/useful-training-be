@@ -19,13 +19,13 @@ export class ExercisesEntity {
   @Column({ default: null })
   name: string;
 
-  @Column({ type: 'float', default: null })
+  @Column({ type: 'double precision', default: null })
   tonnage: number;
 
   @Column({ default: null })
   countOfLifting: number;
 
-  @Column({ type: 'float', default: null })
+  @Column({ type: 'double precision', default: null })
   intensity: number;
 
   @Column({ default: null })

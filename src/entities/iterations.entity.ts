@@ -14,7 +14,7 @@ export class IterationsEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column({ type: 'float', default: null })
+  @Column({ type: 'double precision', default: null })
   weight: number;
 
   @Column({ default: null })

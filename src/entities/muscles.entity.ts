@@ -6,7 +6,7 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { MusclePackExercisesEntity } from './muscle-pack-exercises.entity';
+import { MuscleExerciseBundlesEntity } from './muscle-exercise-bundles.entity';
 
 @Entity({ name: 'muscles' })
 export class MusclesEntity {
@@ -28,6 +28,6 @@ export class MusclesEntity {
   })
   updatedAt: Date;
 
-  @OneToOne(() => MusclePackExercisesEntity, (musclePack) => musclePack.muscle)
-  musclePack: MusclePackExercisesEntity;
+  @OneToOne(() => MuscleExerciseBundlesEntity, (muscleExerciseBundle) => muscleExerciseBundle.muscle)
+  muscleExerciseBundle: MuscleExerciseBundlesEntity;
 }

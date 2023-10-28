@@ -10,7 +10,7 @@ export function setupSwagger(app: INestApplication) {
     ignoreGlobalPrefix: false,
   };
   const config = new DocumentBuilder()
-    .setTitle('BE API')
+    .setTitle('Useful Training API')
     .setDescription(`Desc`)
     .setVersion('1.0')
     .addBearerAuth();

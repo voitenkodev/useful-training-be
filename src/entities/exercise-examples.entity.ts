@@ -6,7 +6,7 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { MusclePackExercisesEntity } from './muscle-pack-exercises.entity';
+import { MuscleExerciseBundlesEntity } from './muscle-exercise-bundles.entity';
 
 @Entity({ name: 'exercise_examples' })
 export class ExerciseExamplesEntity {
@@ -29,11 +29,11 @@ export class ExerciseExamplesEntity {
   updatedAt: Date;
 
   @OneToMany(
-    () => MusclePackExercisesEntity,
-    (musclesPack) => musclesPack.exerciseExample,
+    () => MuscleExerciseBundlesEntity,
+    (musclesBundle) => musclesBundle.exerciseExample,
     {
       cascade: ['remove'],
     },
   )
-  musclesPack: MusclePackExercisesEntity[];
+  muscleExerciseBundle: MuscleExerciseBundlesEntity[];
 }

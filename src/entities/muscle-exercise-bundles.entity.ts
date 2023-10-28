@@ -11,8 +11,8 @@ import {
 import { ExerciseExamplesEntity } from './exercise-examples.entity';
 import { MusclesEntity } from './muscles.entity';
 
-@Entity({ name: 'muscle_pack_exercises' })
-export class MusclePackExercisesEntity {
+@Entity({ name: 'muscle_exercise_bundles' })
+export class MuscleExerciseBundlesEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
@@ -39,7 +39,7 @@ export class MusclePackExercisesEntity {
 
   @ManyToOne(
     () => ExerciseExamplesEntity,
-    (exerciseExample) => exerciseExample.musclesPack,
+    (exerciseExample) => exerciseExample.muscleExerciseBundle,
     {
       onDelete: 'CASCADE',
       orphanedRowAction: 'delete',
@@ -48,7 +48,7 @@ export class MusclePackExercisesEntity {
   @JoinColumn({ name: 'exercise_example_id' })
   exerciseExample: ExerciseExamplesEntity;
 
-  @OneToOne(() => MusclesEntity, (muscle) => muscle.musclePack, {
+  @OneToOne(() => MusclesEntity, (muscle) => muscle.muscleExerciseBundle, {
     onDelete: 'CASCADE',
     orphanedRowAction: 'delete',
   })
