@@ -17,7 +17,7 @@ export class TrainingsEntity {
   id: string;
 
   @Column({ default: null })
-  durations: number;
+  duration: number;
 
   @Column({ type: 'double precision', default: null })
   tonnage: number;

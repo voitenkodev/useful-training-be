@@ -16,7 +16,7 @@ export class TrainingExerciseRequestDto {
     @ApiProperty({type: 'string', example: 'bench press'})
     name: string;
 
-    @ApiProperty({type: 'double', example: 2000.0, description: 'kg'})
+    @ApiProperty({type: 'double', example: 2000.5, description: 'kg'})
     tonnage: number;
 
     @ApiProperty({type: 'number', example: 50})
@@ -33,9 +33,9 @@ export class TrainingsRequestDto {
     id?: string;
 
     @ApiProperty({type: 'number', example: 25, description: 'minutes'})
-    durations: number;
+    duration: number;
 
-    @ApiProperty({type: 'double', example: 20000.0, description: 'kg'})
+    @ApiProperty({type: 'double', example: 20000.5, description: 'kg'})
     tonnage: number;
 
     @ApiProperty({type: 'number', example: 150})
