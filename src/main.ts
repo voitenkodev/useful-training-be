@@ -6,6 +6,7 @@ import {
 import { AppModule } from './app.module';
 import { ConfigService } from '@nestjs/config';
 import { Logger, ValidationPipe } from '@nestjs/common';
+import * as morgan from 'morgan';
 import { setupSwagger } from './swagger';
 
 async function bootstrap() {
@@ -21,6 +22,18 @@ async function bootstrap() {
     new ValidationPipe({
       transform: true,
     }),
+  );
+
+  morgan.token('id', (req: any) => (req.user ? req.user.id : 'null'));
+  morgan.token('body', (req: any, res: any) =>
+      req.method === 'POST' && res.statusCode >= 400
+          ? JSON.stringify(req.body)
+          : 'null',
+  );
+  app.use(
+      morgan(
+          ':date[clf] :id :method :url :status body - :body :response-time',
+      ),
   );
 
   setupSwagger(app);

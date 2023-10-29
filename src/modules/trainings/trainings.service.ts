@@ -1,4 +1,4 @@
-import { Inject, Injectable, NotFoundException } from '@nestjs/common';
+import {BadRequestException, Inject, Injectable } from '@nestjs/common';
 import { UsersEntity } from '../../entities/users.entity';
 import { v4 } from 'uuid';
 import { Repository } from 'typeorm';
@@ -6,6 +6,7 @@ import { TrainingsRequestDto } from './dto/trainings-request.dto';
 import { TrainingsEntity } from '../../entities/trainings.entity';
 import { ExercisesEntity } from '../../entities/exercises.entity';
 import { IterationsEntity } from '../../entities/iterations.entity';
+import * as moment from 'moment'
 
 @Injectable()
 export class TrainingsService {
@@ -20,10 +21,15 @@ export class TrainingsService {
     private readonly iterationsRepository: Repository<IterationsEntity>,
   ) {}
 
-  async getAllTrainings(user) {
+  async getAllTrainings(user, start, end) {
+    if(!moment(start).isValid() || !moment(end).isValid()) {
+      throw new BadRequestException('Wrong date format')
+    }
+
     return this.trainingsRepository
       .createQueryBuilder('trainings')
       .where('trainings.userId = :userId', { userId: user.id })
+      .andWhere('date(:start) <= date(trainings.createdAt) and date(:end) >= date(trainings.createdAt)', {start, end})
       .leftJoinAndSelect('trainings.exercises', 'exercises')
       .leftJoinAndSelect('exercises.iterations', 'iterations')
       .addOrderBy('trainings.createdAt', 'DESC')

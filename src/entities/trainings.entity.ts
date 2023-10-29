@@ -1,7 +1,7 @@
 import {
   Column,
   CreateDateColumn,
-  Entity,
+  Entity, Index,
   JoinColumn,
   ManyToOne,
   OneToMany,
@@ -31,6 +31,7 @@ export class TrainingsEntity {
   @Column({ default: null })
   userId: string;
 
+  @Index()
   @CreateDateColumn({
     type: 'timestamp without time zone',
     name: 'created_at',
