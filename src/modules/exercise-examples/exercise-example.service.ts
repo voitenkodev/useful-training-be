@@ -61,6 +61,7 @@ export class ExerciseExampleService {
             muscleExerciseExampleBundlesEntities.push(muscleExerciseExampleBundles);
         });
 
+        await this.muscleExerciseBundlesRepository.delete({ exerciseExampleId: exerciseExample.id });
         await this.exerciseExamplesRepository.save(exerciseExample);
         await this.muscleExerciseBundlesRepository.save(muscleExerciseExampleBundlesEntities);
 

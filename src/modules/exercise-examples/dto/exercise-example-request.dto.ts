@@ -7,7 +7,7 @@ export class ExerciseExampleMuscleExerciseBundleRequestDto {
     muscleId: string;
 
     @ApiProperty({type: 'int', example: '20', description: 'percentage'})
-    value: string;
+    percentage: string;
 }
 
 export class ExerciseExampleRequestDto {

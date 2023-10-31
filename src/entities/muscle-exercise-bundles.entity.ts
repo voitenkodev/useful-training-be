@@ -16,7 +16,7 @@ export class MuscleExerciseBundlesEntity {
     id: string;
 
     @Column({default: null})
-    value: number;
+    percentage: number;
 
     @Column({default: null})
     exerciseExampleId: string;
