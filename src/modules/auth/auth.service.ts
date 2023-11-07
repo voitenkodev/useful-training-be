@@ -49,7 +49,7 @@ export class AuthService {
 
     async register(body: RegisterRequest): Promise<LoginResponse> {
         const existUser = await this.usersRepository.findOne({
-            where: {email: body.email},
+            where: {email: body.email}
         });
 
         if (existUser) {
@@ -78,7 +78,7 @@ export class AuthService {
             where: {id: userId},
         });
         const payload = {
-            id: findUser.id,
+            id: findUser.id
         };
 
         return this.jwtService.sign(payload, this.jwtOptions);

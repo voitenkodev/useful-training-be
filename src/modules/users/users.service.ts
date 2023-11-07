@@ -6,7 +6,7 @@ import {Repository} from 'typeorm';
 export class UsersService {
     constructor(
         @Inject('USERS_REPOSITORY')
-        private readonly usersRepository: Repository<UsersEntity>,
+        private readonly usersRepository: Repository<UsersEntity>
     ) {
     }
 
@@ -16,5 +16,13 @@ export class UsersService {
             .select(['users.id', 'users.email', 'users.name', 'users.weight', 'users.height', 'users.createdAt', 'users.updatedAt'])
             .addOrderBy('users.createdAt', 'DESC')
             .getMany();
+    }
+
+    async getUser(id: string) {
+        return this.usersRepository
+            .createQueryBuilder('users')
+            .where('users.id = :id', {id})
+            .select(['users.id', 'users.email', 'users.name', 'users.weight', 'users.height', 'users.createdAt', 'users.updatedAt'])
+            .getOne();
     }
 }

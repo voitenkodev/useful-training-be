@@ -10,7 +10,7 @@ export class UsersController {
     constructor(private readonly usersService: UsersService) {
     }
 
-    @Get()
+    @Get("/all")
     @UseGuards(JwtAuthGuard)
     @ApiOperation({summary: ``})
     @ApiResponse({status: HttpStatus.UNAUTHORIZED, description: 'Unauthorized'})
@@ -18,6 +18,18 @@ export class UsersController {
     getAllUsers(@Req() req, @Res() res) {
         return this.usersService
             .getAllUsers()
+            .then((data) => res.json(data))
+            .catch((err) => res.status(400).send(err.message));
+    }
+
+    @Get("/profile")
+    @UseGuards(JwtAuthGuard)
+    @ApiOperation({summary: ``})
+    @ApiResponse({status: HttpStatus.UNAUTHORIZED, description: 'Unauthorized'})
+    @ApiResponse({status: HttpStatus.FORBIDDEN, description: 'Forbidden'})
+    getUser(@Req() req, @Res() res) {
+        return this.usersService
+            .getUser(req.user.id)
             .then((data) => res.json(data))
             .catch((err) => res.status(400).send(err.message));
     }
