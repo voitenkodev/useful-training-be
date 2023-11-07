@@ -14,6 +14,6 @@ export class RegisterRequest {
     @ApiProperty({example: 850, type: 'number', description: '850 = 85g'})
     weight: number;
 
-    @ApiProperty({example: 1750, type: 'number', description: '1750 = 175cm'})
+    @ApiProperty({example: 175, type: 'number', description: '175 = 175cm'})
     height: number;
 }

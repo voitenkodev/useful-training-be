@@ -3,6 +3,7 @@ import { AuthService } from './auth.service';
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
 import { LoginRequest } from './dto/login.request';
 import { LoginResponse } from './dto/login.response';
+import {RegisterRequest} from "./dto/register.request";
 
 @Controller('auth')
 @ApiTags('auth')
@@ -29,7 +30,7 @@ export class AuthController {
   register(
     @Res() res,
     @Req() req,
-    @Body() body: LoginRequest,
+    @Body() body: RegisterRequest,
   ): Promise<LoginResponse> {
     return this.authService
       .register(body)
