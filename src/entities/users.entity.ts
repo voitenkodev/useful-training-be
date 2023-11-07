@@ -13,6 +13,15 @@ export class UsersEntity {
     @Column({select: false})
     password: string;
 
+    @Column()
+    name: string;
+
+    @Column()
+    weight: number;
+
+    @Column()
+    height: number;
+
     @CreateDateColumn({
         type: 'timestamp without time zone',
         name: 'created_at',
