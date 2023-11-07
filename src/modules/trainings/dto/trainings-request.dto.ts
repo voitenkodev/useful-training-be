@@ -7,7 +7,7 @@ export class ExerciseIterationRequestDto {
     weight: number;
 
     @ApiProperty({type: 'number', example: 10})
-    repeat: number;
+    repetitions: number;
 }
 
 export class TrainingExerciseRequestDto {
@@ -17,10 +17,10 @@ export class TrainingExerciseRequestDto {
     name: string;
 
     @ApiProperty({type: 'double', example: 2000.5, description: 'kg'})
-    tonnage: number;
+    volume: number;
 
     @ApiProperty({type: 'number', example: 50})
-    countOfLifting: number;
+    repetitions: number;
 
     @ApiProperty({type: 'double', example: 60, description: 'percentage'})
     intensity: number;
@@ -36,10 +36,10 @@ export class TrainingsRequestDto {
     duration: number;
 
     @ApiProperty({type: 'double', example: 20000.5, description: 'kg'})
-    tonnage: number;
+    volume: number;
 
     @ApiProperty({type: 'number', example: 150})
-    countOfLifting: number;
+    repetitions: number;
 
     @ApiProperty({type: 'number', example: 60, description: 'percentage'})
     intensity: number;

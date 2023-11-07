@@ -20,10 +20,10 @@ export class ExercisesEntity {
   name: string;
 
   @Column({ type: 'double precision', default: null })
-  tonnage: number;
+  volume: number;
 
   @Column({ default: null })
-  countOfLifting: number;
+  repetitions: number;
 
   @Column({ type: 'double precision', default: null })
   intensity: number;

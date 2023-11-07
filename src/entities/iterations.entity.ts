@@ -18,7 +18,7 @@ export class IterationsEntity {
   weight: number;
 
   @Column({ default: null })
-  repeat: number;
+  repetitions: number;
 
   @Column({ default: null })
   exerciseId: string;
