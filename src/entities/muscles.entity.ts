@@ -1,26 +1,15 @@
 import {
     Column,
     CreateDateColumn,
-    Entity, JoinColumn,
+    Entity,
+    JoinColumn,
     ManyToOne,
     OneToMany,
     PrimaryGeneratedColumn,
     UpdateDateColumn,
 } from 'typeorm';
 import {MuscleExerciseBundlesEntity} from './muscle-exercise-bundles.entity';
-import {UsersEntity} from "./users.entity";
 import {MuscleTypesEntity} from "./muscle-types.entity";
-
-enum MuscleType {
-    Chest = 'chest',
-    Back = 'back',
-    Shoulders = 'shoulders',
-    Biceps = 'biceps',
-    Triceps = 'triceps',
-    Abdominal = 'abdominal',
-    Legs = 'legs',
-    Other = 'other'
-}
 
 @Entity({name: 'muscles'})
 export class MusclesEntity {
@@ -34,10 +23,10 @@ export class MusclesEntity {
     muscleTypeId: string;
 
     @Column({default: null})
-    name_ua: string;
+    nameUa: string;
 
     @Column({default: null})
-    name_ru: string;
+    nameRu: string;
 
     @CreateDateColumn({
         type: 'timestamp without time zone',
@@ -63,5 +52,4 @@ export class MusclesEntity {
 
     @JoinColumn({name: 'muscle_type_id'})
     muscleType: MuscleTypesEntity;
-
 }

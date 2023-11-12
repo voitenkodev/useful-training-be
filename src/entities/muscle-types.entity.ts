@@ -11,10 +11,10 @@ export class MuscleTypesEntity {
     name: string;
 
     @Column({default: null})
-    name_ua: string;
+    nameUa: string;
 
     @Column({default: null})
-    name_ru: string;
+    nameRu: string;
 
     @CreateDateColumn({
         type: 'timestamp without time zone',
@@ -29,7 +29,7 @@ export class MuscleTypesEntity {
     updatedAt: Date;
 
     @OneToMany(() => MusclesEntity, (muscles) => muscles.muscleType, {
-        cascade: ['remove'],
+        cascade: ['remove']
     })
     muscles: MusclesEntity[];
 }
