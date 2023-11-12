@@ -18,7 +18,7 @@ import {MusclesModule} from "./modules/muscles/muscles.module";
         UsersModule,
         TrainingsModule,
         ExerciseExampleModule,
-        MusclesModule,
+        MusclesModule
     ],
     controllers: [],
     providers: [],
