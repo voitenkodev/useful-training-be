@@ -10,6 +10,7 @@ import {
 } from 'typeorm';
 import {MuscleExerciseBundlesEntity} from './muscle-exercise-bundles.entity';
 import {MuscleTypesEntity} from "./muscle-types.entity";
+import {MuscleEnum} from "../lib/muscle.enum";
 
 @Entity({name: 'muscles'})
 export class MusclesEntity {
@@ -24,6 +25,9 @@ export class MusclesEntity {
 
     @Column({default: null})
     nameUa: string;
+
+    @Column({type: 'enum', enum: MuscleEnum, nullable: true})
+    type: MuscleEnum;
 
     @Column({default: null})
     nameRu: string;

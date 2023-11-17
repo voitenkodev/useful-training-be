@@ -1,5 +1,7 @@
 import {Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn,} from 'typeorm';
 import {MusclesEntity} from "./muscles.entity";
+import {MuscleEnum} from "../lib/muscle.enum";
+import {MuscleTypeEnum} from "../lib/muscle-type.enum";
 
 @Entity({name: 'muscle_types'})
 export class MuscleTypesEntity {
@@ -15,6 +17,9 @@ export class MuscleTypesEntity {
 
     @Column({default: null})
     nameRu: string;
+
+    @Column({type: 'enum', enum: MuscleTypeEnum, nullable: true})
+    type: MuscleTypeEnum;
 
     @CreateDateColumn({
         type: 'timestamp without time zone',
