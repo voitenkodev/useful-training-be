@@ -20,6 +20,9 @@ export class ExerciseExamplesEntity {
     name: string;
 
     @Column({default: null})
+    imageUrl: string;
+
+    @Column({default: null})
     userId: string;
 
     @CreateDateColumn({
