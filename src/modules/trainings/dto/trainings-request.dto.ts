@@ -1,4 +1,5 @@
 import {ApiProperty} from '@nestjs/swagger';
+import {ExerciseExampleRequestDto} from "../../exercise-examples/dto/exercise-example-request.dto";
 
 export class ExerciseIterationRequestDto {
     id?: string;
@@ -27,6 +28,9 @@ export class TrainingExerciseRequestDto {
 
     @ApiProperty({type: [ExerciseIterationRequestDto]})
     iterations: ExerciseIterationRequestDto[];
+
+    @ApiProperty({type: [ExerciseExampleRequestDto]})
+    exerciseExample: ExerciseExampleRequestDto[];
 }
 
 export class TrainingsRequestDto {
