@@ -8,50 +8,60 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { TrainingsEntity } from './trainings.entity';
-import { IterationsEntity } from './iterations.entity';
+import {TrainingsEntity} from './trainings.entity';
+import {IterationsEntity} from './iterations.entity';
+import {ExerciseExamplesEntity} from "./exercise-examples.entity";
 
-@Entity({ name: 'exercises' })
+@Entity({name: 'exercises'})
 export class ExercisesEntity {
-  @PrimaryGeneratedColumn('uuid')
-  id: string;
+    @PrimaryGeneratedColumn('uuid')
+    id: string;
 
-  @Column({ default: null })
-  name: string;
+    @Column({default: null})
+    name: string;
 
-  @Column({ type: 'double precision', default: null })
-  volume: number;
+    @Column({type: 'double precision', default: null})
+    volume: number;
 
-  @Column({ default: null })
-  repetitions: number;
+    @Column({default: null})
+    repetitions: number;
 
-  @Column({ type: 'double precision', default: null })
-  intensity: number;
+    @Column({type: 'double precision', default: null})
+    intensity: number;
 
-  @Column({ default: null })
-  trainingId: string;
+    @Column({default: null})
+    trainingId: string;
 
-  @CreateDateColumn({
-    type: 'timestamp without time zone',
-    name: 'created_at',
-  })
-  createdAt: Date;
+    @Column({default: null})
+    exerciseExampleId: string;
 
-  @UpdateDateColumn({
-    type: 'timestamp without time zone',
-    name: 'updated_at',
-  })
-  updatedAt: Date;
+    @CreateDateColumn({
+        type: 'timestamp without time zone',
+        name: 'created_at',
+    })
+    createdAt: Date;
 
-  @ManyToOne(() => TrainingsEntity, (training) => training.exercises, {
-    onDelete: 'CASCADE',
-    orphanedRowAction: 'delete',
-  })
-  @JoinColumn({ name: 'training_id' })
-  training: TrainingsEntity;
+    @UpdateDateColumn({
+        type: 'timestamp without time zone',
+        name: 'updated_at',
+    })
+    updatedAt: Date;
 
-  @OneToMany(() => IterationsEntity, (iterations) => iterations.exercise, {
-    cascade: ['remove'],
-  })
-  iterations: IterationsEntity[];
+    @ManyToOne(() => TrainingsEntity, (training) => training.exercises, {
+        onDelete: 'CASCADE',
+        orphanedRowAction: 'delete',
+    })
+    @JoinColumn({name: 'training_id'})
+    training: TrainingsEntity;
+
+    @ManyToOne(() => ExerciseExamplesEntity, (exerciseExample) => exerciseExample.exercises, {
+        orphanedRowAction: 'delete'
+    })
+    @JoinColumn({name: 'exercise_example_id'})
+    exerciseExample: ExerciseExamplesEntity;
+
+    @OneToMany(() => IterationsEntity, (iterations) => iterations.exercise, {
+        cascade: ['remove']
+    })
+    iterations: IterationsEntity[];
 }

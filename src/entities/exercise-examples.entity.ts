@@ -1,15 +1,16 @@
 import {
-  Column,
-  CreateDateColumn,
-  Entity,
-  JoinColumn,
-  ManyToOne,
-  OneToMany,
-  PrimaryGeneratedColumn,
-  UpdateDateColumn,
+    Column,
+    CreateDateColumn,
+    Entity,
+    JoinColumn,
+    ManyToOne,
+    OneToMany,
+    PrimaryGeneratedColumn,
+    UpdateDateColumn,
 } from 'typeorm';
 import {MuscleExerciseBundlesEntity} from './muscle-exercise-bundles.entity';
 import {UsersEntity} from "./users.entity";
+import {ExercisesEntity} from "./exercises.entity";
 
 @Entity({name: 'exercise_examples'})
 export class ExerciseExamplesEntity {
@@ -44,8 +45,13 @@ export class ExerciseExamplesEntity {
 
     @ManyToOne(() => UsersEntity, (user) => user.exerciseExamples, {
         onDelete: 'CASCADE',
-        orphanedRowAction: 'delete',
+        orphanedRowAction: 'delete'
     })
     @JoinColumn({name: 'user_id'})
     user: UsersEntity;
+
+    @OneToMany(() => ExercisesEntity, (exercises) => exercises.exerciseExample, {
+        cascade: ['remove']
+    })
+    exercises: ExercisesEntity[];
 }
