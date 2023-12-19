@@ -16,10 +16,10 @@ export class UsersEntity {
     @Column()
     name: string;
 
-    @Column()
+    @Column({type: 'double precision'})
     weight: number;
 
-    @Column()
+    @Column({type: 'double precision'})
     height: number;
 
     @CreateDateColumn({

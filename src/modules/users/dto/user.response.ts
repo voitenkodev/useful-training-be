@@ -5,15 +5,15 @@ export class UserResponse {
     @ApiProperty({type: 'string', example: "userId"})
     id?: string;
 
-    @ApiProperty({type: 'string', example: "user@mail.com", description: 'cm'})
+    @ApiProperty({type: 'string', example: "user@mail.com", description: 'email'})
     email: string;
 
     @ApiProperty({type: 'string', example: "Max", description: 'minutes'})
     name: string;
 
-    @ApiProperty({type: 'number', example: 850, description: 'kg'})
+    @ApiProperty({type: 'double', example: 85.0, description: 'kg'})
     weight: number;
 
-    @ApiProperty({type: 'number', example: 1750, description: 'cm'})
+    @ApiProperty({type: 'double', example: 175.0, description: 'meter'})
     height: number;
 }
