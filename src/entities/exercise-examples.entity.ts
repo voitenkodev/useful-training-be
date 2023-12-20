@@ -11,6 +11,8 @@ import {
 import {MuscleExerciseBundlesEntity} from './muscle-exercise-bundles.entity';
 import {UsersEntity} from "./users.entity";
 import {ExercisesEntity} from "./exercises.entity";
+import {ExerciseCategoryEnum} from "../lib/exercise-category.enum";
+import {WeightTypeEnum} from "../lib/weight-type.enum";
 
 @Entity({name: 'exercise_examples'})
 export class ExerciseExamplesEntity {
@@ -28,6 +30,12 @@ export class ExerciseExamplesEntity {
 
     @Column({default: null})
     userId: string;
+
+    @Column({type: 'enum', enum: ExerciseCategoryEnum, nullable: true})
+    category: ExerciseCategoryEnum;
+
+    @Column({type: 'enum', enum: WeightTypeEnum, nullable: true})
+    weightType: WeightTypeEnum;
 
     @CreateDateColumn({
         type: 'timestamp without time zone',

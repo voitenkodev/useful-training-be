@@ -1,4 +1,5 @@
 import {ApiProperty} from '@nestjs/swagger';
+import {ExerciseCategoryEnum} from "../../../lib/exercise-category.enum";
 
 export class ExerciseExampleMuscleExerciseBundleRequestDto {
     id?: string;
@@ -18,6 +19,9 @@ export class ExerciseExampleRequestDto {
 
     @ApiProperty({type: 'string', example: 'The bench press is a compound strength-training...'})
     description: string;
+
+    @ApiProperty({type: 'string', example: 'compound'})
+    category: ExerciseCategoryEnum;
 
     @ApiProperty({
         type: 'string',
