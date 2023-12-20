@@ -21,6 +21,9 @@ export class ExerciseExamplesEntity {
     name: string;
 
     @Column({default: null})
+    description: string;
+
+    @Column({default: null})
     imageUrl: string;
 
     @Column({default: null})

@@ -16,6 +16,9 @@ export class ExerciseExampleRequestDto {
     @ApiProperty({type: 'string', example: 'bench press'})
     name: string;
 
+    @ApiProperty({type: 'string', example: 'The bench press is a compound strength-training...'})
+    description: string;
+
     @ApiProperty({
         type: 'string',
         example: 'https://static.vecteezy.com/system/resources/thumbnails/022/653/711/small/treadmill-in-modern-gym-toned-image-3d-rendering-generative-ai-free-photo.jpg'
