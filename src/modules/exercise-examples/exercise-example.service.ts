@@ -31,6 +31,16 @@ export class ExerciseExampleService {
             .getMany();
     }
 
+     async getRecommendedExerciseExamples(user) {
+        return this.exerciseExamplesRepository
+            .createQueryBuilder('exercise_examples')
+            .where('exercise_examples.userId = :userId', {userId: user.id})
+            .leftJoinAndSelect('exercise_examples.muscleExerciseBundles', 'muscleExerciseBundles')
+            .leftJoinAndSelect('muscleExerciseBundles.muscle', 'muscle')
+            .addOrderBy('exercise_examples.createdAt', 'DESC')
+            .getMany();
+    }
+
     async getExerciseExamplesById(id: string, user) {
         return this.exerciseExamplesRepository
             .createQueryBuilder('exercise_examples')

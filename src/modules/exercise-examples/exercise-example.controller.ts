@@ -23,6 +23,18 @@ export class ExerciseExampleController {
             .catch((err) => res.status(400).send(err.message));
     }
 
+    @Get('recommended')
+    @UseGuards(JwtAuthGuard)
+    @ApiResponse({status: HttpStatus.UNAUTHORIZED, description: 'Unauthorized'})
+    @ApiResponse({status: HttpStatus.FORBIDDEN, description: 'Forbidden'})
+    getRecommendedExerciseExamples(@Req() req, @Res() res) {
+        const user = req.user;
+        return this.exerciseExamplesService
+            .getRecommendedExerciseExamples(user)
+            .then((data) => res.json(data))
+            .catch((err) => res.status(400).send(err.message));
+    }
+
     @Get(':id')
     @UseGuards(JwtAuthGuard)
     @ApiResponse({status: HttpStatus.UNAUTHORIZED, description: 'Unauthorized'})
