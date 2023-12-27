@@ -7,12 +7,19 @@ import {MuscleExerciseBundlesEntity} from '../entities/muscle-exercise-bundles.e
 import {MusclesEntity} from '../entities/muscles.entity';
 import {ExerciseExamplesEntity} from '../entities/exercise-examples.entity';
 import {MuscleTypesEntity} from "../entities/muscle-types.entity";
+import {UserWeightsEntity} from "../entities/user-weights.entity";
 
 export const repositoryProviders = [
     {
         provide: 'USERS_REPOSITORY',
         useFactory: (dataSource: DataSource) =>
             dataSource.getRepository(UsersEntity),
+        inject: ['DATA_SOURCE'],
+    },
+    {
+        provide: 'USER_WEIGHTS_REPOSITORY',
+        useFactory: (dataSource: DataSource) =>
+            dataSource.getRepository(UserWeightsEntity),
         inject: ['DATA_SOURCE'],
     },
     {
@@ -56,5 +63,5 @@ export const repositoryProviders = [
         useFactory: (dataSource: DataSource) =>
             dataSource.getRepository(ExerciseExamplesEntity),
         inject: ['DATA_SOURCE'],
-    },
+    }
 ];

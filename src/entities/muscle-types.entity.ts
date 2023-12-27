@@ -1,6 +1,5 @@
 import {Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn,} from 'typeorm';
 import {MusclesEntity} from "./muscles.entity";
-import {MuscleEnum} from "../lib/muscle.enum";
 import {MuscleTypeEnum} from "../lib/muscle-type.enum";
 
 @Entity({name: 'muscle_types'})

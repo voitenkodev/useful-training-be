@@ -20,6 +20,9 @@ export class ExerciseExampleRequestDto {
     @ApiProperty({type: 'string', example: 'The bench press is a compound strength-training...'})
     description: string;
 
+    @ApiProperty({type: 'string', example: 'fixed'})
+    weightType: string;
+
     @ApiProperty({type: 'string', example: 'compound'})
     category: ExerciseCategoryEnum;
 

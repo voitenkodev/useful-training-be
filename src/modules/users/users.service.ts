@@ -1,12 +1,15 @@
 import {Inject, Injectable} from '@nestjs/common';
 import {UsersEntity} from '../../entities/users.entity';
 import {Repository} from 'typeorm';
+import {UserWeightsEntity} from "../../entities/user-weights.entity";
 
 @Injectable()
 export class UsersService {
     constructor(
         @Inject('USERS_REPOSITORY')
-        private readonly usersRepository: Repository<UsersEntity>
+        private readonly usersRepository: Repository<UsersEntity>,
+        @Inject('USER_WEIGHTS_REPOSITORY')
+        private readonly userWeightsRepository: Repository<UserWeightsEntity>
     ) {
     }
 
@@ -22,7 +25,7 @@ export class UsersService {
         return this.usersRepository
             .createQueryBuilder('users')
             .where('users.id = :id', {id})
-            .select(['users.id', 'users.email', 'users.name', 'users.weight', 'users.height', 'users.createdAt', 'users.updatedAt'])
+            .select(['users.id', 'users.email', 'users.name', 'users.height', 'users.createdAt', 'users.updatedAt'])
             .getOne();
     }
 }

@@ -1,6 +1,7 @@
 import {Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn,} from 'typeorm';
 import {TrainingsEntity} from './trainings.entity';
 import {ExerciseExamplesEntity} from "./exercise-examples.entity";
+import {UserWeightsEntity} from "./user-weights.entity";
 
 @Entity({name: 'users'})
 export class UsersEntity {
@@ -15,9 +16,6 @@ export class UsersEntity {
 
     @Column()
     name: string;
-
-    @Column({type: 'double precision'})
-    weight: number;
 
     @Column({type: 'double precision'})
     height: number;
@@ -43,4 +41,9 @@ export class UsersEntity {
         cascade: ['remove'],
     })
     exerciseExamples: ExerciseExamplesEntity[];
+
+    @OneToMany(() => UserWeightsEntity, (weights) => weights.user, {
+        cascade: ['remove'],
+    })
+    weights: UserWeightsEntity[];
 }
