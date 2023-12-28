@@ -59,6 +59,8 @@ export class MusclesService {
         muscleResponse.type = muscle.type
         muscleResponse.muscleTypeId = muscle.muscleTypeId
         muscleResponse.status = MuscleStatusEnum.MEDIUM
+        muscleResponse.createdAt = muscle.createdAt
+        muscleResponse.updatedAt = muscle.updatedAt
 
         return muscleResponse
     }
