@@ -2,7 +2,7 @@ import {Body, Controller, Get, HttpStatus, Param, Post, Req, Res, UseGuards,} fr
 import {ApiBearerAuth, ApiResponse, ApiTags,} from '@nestjs/swagger';
 import {ExerciseExampleService} from './exercise-example.service';
 import {JwtAuthGuard} from '../auth/guards/jwt-auth.guard';
-import {ExerciseExampleRequestDto} from "./dto/exercise-example-request.dto";
+import {ExerciseExampleRequest} from "./dto/exercise-example.request";
 
 @Controller('exercise-examples')
 @ApiTags('exercise-examples')
@@ -51,7 +51,7 @@ export class ExerciseExampleController {
     @UseGuards(JwtAuthGuard)
     @ApiResponse({status: HttpStatus.UNAUTHORIZED, description: 'Unauthorized'})
     @ApiResponse({status: HttpStatus.FORBIDDEN, description: 'Forbidden'})
-    setExerciseExample(@Req() req, @Res() res, @Body() body: ExerciseExampleRequestDto) {
+    setExerciseExample(@Req() req, @Res() res, @Body() body: ExerciseExampleRequest) {
         const user = req.user;
         return this.exerciseExamplesService
             .setOrUpdateExerciseExample(body, user)

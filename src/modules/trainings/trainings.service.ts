@@ -2,7 +2,7 @@ import {BadRequestException, Inject, Injectable} from '@nestjs/common';
 import {UsersEntity} from '../../entities/users.entity';
 import {v4} from 'uuid';
 import {Repository} from 'typeorm';
-import {TrainingsRequestDto} from './dto/trainings-request.dto';
+import {TrainingsRequest} from './dto/trainings.request';
 import {TrainingsEntity} from '../../entities/trainings.entity';
 import {ExercisesEntity} from '../../entities/exercises.entity';
 import {IterationsEntity} from '../../entities/iterations.entity';
@@ -33,7 +33,10 @@ export class TrainingsService {
         return this.trainingsRepository
             .createQueryBuilder('trainings')
             .where('trainings.userId = :userId', {userId: user.id})
-            .andWhere('date(:start) <= date(trainings.createdAt) and date(:end) >= date(trainings.createdAt)', {start, end})
+            .andWhere('date(:start) <= date(trainings.createdAt) and date(:end) >= date(trainings.createdAt)', {
+                start,
+                end
+            })
             .leftJoinAndSelect('trainings.exercises', 'exercises')
             .leftJoinAndSelect('exercises.exerciseExample', 'exerciseExample')
             .leftJoinAndSelect('exercises.iterations', 'iterations')
@@ -55,7 +58,7 @@ export class TrainingsService {
             .getOne();
     }
 
-    async setOrUpdateTraining(body: TrainingsRequestDto, user) {
+    async setOrUpdateTraining(body: TrainingsRequest, user) {
         const {exercises, ...rest} = body;
 
         const training = new TrainingsEntity();

@@ -2,7 +2,7 @@ import {Body, Controller, Get, HttpStatus, Param, Post, Query, Req, Res, UseGuar
 import {ApiBearerAuth, ApiQuery, ApiResponse, ApiTags,} from '@nestjs/swagger';
 import {TrainingsService} from './trainings.service';
 import {JwtAuthGuard} from '../auth/guards/jwt-auth.guard';
-import {TrainingsRequestDto} from './dto/trainings-request.dto';
+import {TrainingsRequest} from './dto/trainings.request';
 
 @Controller('trainings')
 @ApiTags('trainings')
@@ -46,7 +46,7 @@ export class TrainingsController {
     @UseGuards(JwtAuthGuard)
     @ApiResponse({status: HttpStatus.UNAUTHORIZED, description: 'Unauthorized'})
     @ApiResponse({status: HttpStatus.FORBIDDEN, description: 'Forbidden'})
-    setTraining(@Req() req, @Res() res, @Body() body: TrainingsRequestDto) {
+    setTraining(@Req() req, @Res() res, @Body() body: TrainingsRequest) {
         const user = req.user;
         return this.usersService
             .setOrUpdateTraining(body, user)

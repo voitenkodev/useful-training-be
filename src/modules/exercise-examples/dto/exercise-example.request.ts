@@ -1,7 +1,7 @@
 import {ApiProperty} from '@nestjs/swagger';
 import {ExerciseCategoryEnum} from "../../../lib/exercise-category.enum";
 
-export class ExerciseExampleMuscleExerciseBundleRequestDto {
+export class ExerciseExampleMuscleExerciseBundleRequest {
     id?: string;
 
     @ApiProperty({type: 'string', example: '3a975ded-af6b-4dd2-9a0e-6e3554e8e6dd'})
@@ -11,7 +11,7 @@ export class ExerciseExampleMuscleExerciseBundleRequestDto {
     percentage: string;
 }
 
-export class ExerciseExampleRequestDto {
+export class ExerciseExampleRequest {
     id?: string;
 
     @ApiProperty({type: 'string', example: 'bench press'})
@@ -32,6 +32,6 @@ export class ExerciseExampleRequestDto {
     })
     imageUrl: string;
 
-    @ApiProperty({type: [ExerciseExampleMuscleExerciseBundleRequestDto]})
-    muscleExerciseBundles: ExerciseExampleMuscleExerciseBundleRequestDto[];
+    @ApiProperty({type: [ExerciseExampleMuscleExerciseBundleRequest]})
+    muscleExerciseBundles: ExerciseExampleMuscleExerciseBundleRequest[];
 }

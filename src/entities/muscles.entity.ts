@@ -29,6 +29,9 @@ export class MusclesEntity {
     @Column({type: 'enum', enum: MuscleEnum, nullable: true})
     type: MuscleEnum;
 
+    @Column({type: 'integer', nullable: true})
+    recoveryTimeHours: number;
+
     @Column({default: null})
     nameRu: string;
 

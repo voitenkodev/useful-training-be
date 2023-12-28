@@ -1,7 +1,7 @@
 import {ApiProperty} from '@nestjs/swagger';
-import {ExerciseExampleRequestDto} from "../../exercise-examples/dto/exercise-example-request.dto";
+import {ExerciseExampleRequest} from "../../exercise-examples/dto/exercise-example.request";
 
-export class ExerciseIterationRequestDto {
+export class ExerciseIterationRequest {
     id?: string;
 
     @ApiProperty({type: 'double', example: 100.5, description: 'kg'})
@@ -11,7 +11,7 @@ export class ExerciseIterationRequestDto {
     repetitions: number;
 }
 
-export class TrainingExerciseRequestDto {
+export class TrainingExerciseRequest {
     id?: string;
 
     @ApiProperty({type: 'string', example: 'bench press'})
@@ -26,14 +26,14 @@ export class TrainingExerciseRequestDto {
     @ApiProperty({type: 'double', example: 60, description: 'percentage'})
     intensity: number;
 
-    @ApiProperty({type: [ExerciseIterationRequestDto]})
-    iterations: ExerciseIterationRequestDto[];
+    @ApiProperty({type: [ExerciseIterationRequest]})
+    iterations: ExerciseIterationRequest[];
 
-    @ApiProperty({type: [ExerciseExampleRequestDto]})
-    exerciseExample: ExerciseExampleRequestDto[];
+    @ApiProperty({type: [ExerciseExampleRequest]})
+    exerciseExample: ExerciseExampleRequest[];
 }
 
-export class TrainingsRequestDto {
+export class TrainingsRequest {
     id?: string;
 
     @ApiProperty({type: 'number', example: 25, description: 'minutes'})
@@ -48,6 +48,6 @@ export class TrainingsRequestDto {
     @ApiProperty({type: 'number', example: 60, description: 'percentage'})
     intensity: number;
 
-    @ApiProperty({type: [TrainingExerciseRequestDto]})
-    exercises: TrainingExerciseRequestDto[];
+    @ApiProperty({type: [TrainingExerciseRequest]})
+    exercises: TrainingExerciseRequest[];
 }

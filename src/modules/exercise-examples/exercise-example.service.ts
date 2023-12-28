@@ -5,7 +5,7 @@ import {v4} from 'uuid';
 import {ExerciseExamplesEntity} from "../../entities/exercise-examples.entity";
 import {MuscleExerciseBundlesEntity} from "../../entities/muscle-exercise-bundles.entity";
 import {MusclesEntity} from "../../entities/muscles.entity";
-import {ExerciseExampleRequestDto} from "./dto/exercise-example-request.dto";
+import {ExerciseExampleRequest} from "./dto/exercise-example.request";
 
 @Injectable()
 export class ExerciseExampleService {
@@ -31,7 +31,7 @@ export class ExerciseExampleService {
             .getMany();
     }
 
-     async getRecommendedExerciseExamples(user) {
+    async getRecommendedExerciseExamples(user) {
         return this.exerciseExamplesRepository
             .createQueryBuilder('exercise_examples')
             .where('exercise_examples.userId = :userId', {userId: user.id})
@@ -52,7 +52,7 @@ export class ExerciseExampleService {
             .getOne();
     }
 
-    async setOrUpdateExerciseExample(body: ExerciseExampleRequestDto, user) {
+    async setOrUpdateExerciseExample(body: ExerciseExampleRequest, user) {
         const {muscleExerciseBundles, ...rest} = body;
 
         const exerciseExample = new ExerciseExamplesEntity();
@@ -71,7 +71,7 @@ export class ExerciseExampleService {
             muscleExerciseExampleBundlesEntities.push(muscleExerciseExampleBundles);
         });
 
-        await this.muscleExerciseBundlesRepository.delete({ exerciseExampleId: exerciseExample.id });
+        await this.muscleExerciseBundlesRepository.delete({exerciseExampleId: exerciseExample.id});
         await this.exerciseExamplesRepository.save(exerciseExample);
         await this.muscleExerciseBundlesRepository.save(muscleExerciseExampleBundlesEntities);
 
