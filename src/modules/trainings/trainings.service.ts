@@ -93,4 +93,27 @@ export class TrainingsService {
 
         return this.getTrainingById(training.id, user);
     }
+
+    // todo move it
+    async getExerciseWeight(id: string, user) {
+        return this.exerciseExamplesRepository
+            .createQueryBuilder("exercise_examples")
+            .where('exercise_examples.userId = :userId', {userId: user.id})
+            .andWhere('exercise_examples.id = :id ', {id})
+            .leftJoin('exercise_examples.exercises', "exercises")
+            .leftJoin('exercises.iterations', "iterations")
+            .addSelect([
+                    'exercise_examples.id',
+                    'exercises.id',
+                    'iterations.id',
+                    'MAX(iterations.weight) as max_weight'
+                ]
+            )
+            .groupBy('exercise_examples.id')
+            .addGroupBy('exercises.id')
+            .addGroupBy('iterations.id')
+            .addGroupBy('iterations.weight')
+            .getOne()
+    }
+
 }

@@ -22,10 +22,22 @@ export class UsersService {
     }
 
     async getUser(id: string) {
-        return this.usersRepository
+        const user = await this.usersRepository
             .createQueryBuilder('users')
             .where('users.id = :id', {id})
             .select(['users.id', 'users.email', 'users.name', 'users.height', 'users.createdAt', 'users.updatedAt'])
             .getOne();
+
+        const weightData = await this.userWeightsRepository
+            .createQueryBuilder("weights")
+            .where('weights.userId = :userId', {userId: user.id})
+            .orderBy('weights.createdAt', 'DESC')
+            .select(['weights.id', 'weights.weight'])
+            .getOne();
+
+        return {
+            ...user,
+            weight: weightData.weight
+        }
     }
 }

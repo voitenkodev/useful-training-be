@@ -23,7 +23,6 @@ export class MuscleResponse {
 
     @ApiProperty({type: Date, example: Date.now()})
     createdAt: Date;
-
 }
 
 export class MuscleTypeResponse {
