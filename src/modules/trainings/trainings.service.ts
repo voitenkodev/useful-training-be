@@ -115,5 +115,4 @@ export class TrainingsService {
             .addGroupBy('iterations.weight')
             .getOne()
     }
-
 }
