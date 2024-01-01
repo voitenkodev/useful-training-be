@@ -36,7 +36,11 @@ export class MusclesService {
                     muscleResponse.name = muscleBundle.name
                     muscleResponse.type = muscleBundle.type
                     muscleResponse.muscleTypeId = muscleBundle.muscleTypeId
-                    muscleResponse.status = MuscleStatusEnum.MEDIUM
+
+                    const statusValues = Object.values(MuscleStatusEnum); // random value
+                    muscleResponse.status = statusValues[Math.floor(Math.random() * statusValues.length)];
+
+
                     muscleResponse.createdAt = muscleBundle.createdAt
                     muscleResponse.updatedAt = muscleBundle.updatedAt
                     return muscleResponse
@@ -58,7 +62,10 @@ export class MusclesService {
         muscleResponse.name = muscle.name
         muscleResponse.type = muscle.type
         muscleResponse.muscleTypeId = muscle.muscleTypeId
-        muscleResponse.status = MuscleStatusEnum.MEDIUM
+
+        const statusValues = Object.values(MuscleStatusEnum); // random value
+        muscleResponse.status = statusValues[Math.floor(Math.random() * statusValues.length)];
+
         muscleResponse.createdAt = muscle.createdAt
         muscleResponse.updatedAt = muscle.updatedAt
 
