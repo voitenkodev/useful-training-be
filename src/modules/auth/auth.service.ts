@@ -1,4 +1,4 @@
-import {BadRequestException, Inject, Injectable, Logger, UnauthorizedException,} from '@nestjs/common';
+import {BadRequestException, Inject, Injectable, UnauthorizedException} from '@nestjs/common';
 import {Repository} from 'typeorm';
 import {UsersEntity} from '../../entities/users.entity';
 import {LoginResponse} from './dto/login.response';
@@ -7,10 +7,10 @@ import {JwtService, JwtSignOptions} from '@nestjs/jwt';
 import {Hash} from '../../lib/hash';
 import {ConfigService} from '@nestjs/config';
 import {RegisterRequest} from "./dto/register.request";
+import {UserWeightsEntity} from "../../entities/user-weights.entity";
 
 @Injectable()
 export class AuthService {
-    private readonly logger = new Logger(AuthService.name);
     private readonly jwtOptions: JwtSignOptions;
     private readonly jwtKey: string;
     private readonly expiresInDefault: string | number;
@@ -20,9 +20,10 @@ export class AuthService {
         private readonly jwtService: JwtService,
         @Inject('USERS_REPOSITORY')
         private usersRepository: Repository<UsersEntity>,
+        @Inject('USER_WEIGHTS_REPOSITORY')
+        private userWeightsRepository: Repository<UsersEntity>
     ) {
-        this.expiresInDefault =
-            parseInt(configService.get('JWT_EXPIRATION_TIME'), 10) || 60 * 5;
+        this.expiresInDefault = parseInt(configService.get('JWT_EXPIRATION_TIME'), 10) || 60 * 5;
         this.jwtKey = configService.get('JWT_SECRET_KEY');
         this.jwtOptions = {secret: this.jwtKey, expiresIn: this.expiresInDefault};
     }
@@ -56,14 +57,19 @@ export class AuthService {
             throw new BadRequestException('This email already taken');
         }
 
-        const entity = new UsersEntity();
-        entity.email = body.email;
-        entity.name = body.name;
-        entity.weight = body.weight;
-        entity.height = body.height;
-        entity.password = Hash.make(body.password);
+        const userEntity = new UsersEntity();
+        userEntity.email = body.email;
+        userEntity.name = body.name;
+        userEntity.height = body.height;
+        userEntity.password = Hash.make(body.password);
 
-        const user = await this.usersRepository.save(entity);
+        const user = await this.usersRepository.save(userEntity);
+
+        const userWeightsEntity = new UserWeightsEntity();
+        userWeightsEntity.userId = user.id
+        userWeightsEntity.weight = body.weight
+
+        await this.userWeightsRepository.save(userWeightsEntity);
 
         const accessToken = await this.createAccessToken(user.id);
 
