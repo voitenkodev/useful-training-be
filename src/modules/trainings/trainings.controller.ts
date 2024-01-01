@@ -5,14 +5,14 @@ import {JwtAuthGuard} from '../auth/guards/jwt-auth.guard';
 import {TrainingsRequest} from './dto/trainings.request';
 
 // todo 'trainings'
-@Controller('')
+@Controller('trainings')
 @ApiTags('trainings')
 @ApiBearerAuth()
 export class TrainingsController {
     constructor(private readonly usersService: TrainingsService) {
     }
 
-    @Get('trainings')
+    @Get()
     @UseGuards(JwtAuthGuard)
     @ApiResponse({status: HttpStatus.UNAUTHORIZED, description: 'Unauthorized'})
     @ApiResponse({status: HttpStatus.FORBIDDEN, description: 'Forbidden'})
@@ -31,7 +31,7 @@ export class TrainingsController {
             .catch((err) => res.status(400).send(err.message));
     }
 
-    @Get('trainings/:id')
+    @Get(':id')
     @UseGuards(JwtAuthGuard)
     @ApiResponse({status: HttpStatus.UNAUTHORIZED, description: 'Unauthorized'})
     @ApiResponse({status: HttpStatus.FORBIDDEN, description: 'Forbidden'})
@@ -43,7 +43,7 @@ export class TrainingsController {
             .catch((err) => res.status(400).send(err.message));
     }
 
-    @Post('trainings')
+    @Post()
     @UseGuards(JwtAuthGuard)
     @ApiResponse({status: HttpStatus.UNAUTHORIZED, description: 'Unauthorized'})
     @ApiResponse({status: HttpStatus.FORBIDDEN, description: 'Forbidden'})
@@ -51,18 +51,6 @@ export class TrainingsController {
         const user = req.user;
         return this.usersService
             .setOrUpdateTraining(body, user)
-            .then((data) => res.json(data))
-            .catch((err) => res.status(400).send(err.message));
-    }
-
-    @Get('achievements')
-    @UseGuards(JwtAuthGuard)
-    @ApiResponse({status: HttpStatus.UNAUTHORIZED, description: 'Unauthorized'})
-    @ApiResponse({status: HttpStatus.FORBIDDEN, description: 'Forbidden'})
-    getAchievements(@Req() req, @Res() res, @Query("id") id: string) {
-        const user = req.user;
-        return this.usersService
-            .getExerciseWeight(id, user)
             .then((data) => res.json(data))
             .catch((err) => res.status(400).send(err.message));
     }

@@ -7,6 +7,7 @@ import {TrainingsModule} from './modules/trainings/trainings.module';
 import {ExerciseExampleModule} from "./modules/exercise-examples/exercise-example.module";
 import {MusclesModule} from "./modules/muscles/muscles.module";
 import {UserWeightsModule} from "./modules/user-weights/user-weights.module";
+import {StatisticsModule} from "./modules/statistics/statistics.module";
 
 @Module({
     imports: [
@@ -18,6 +19,7 @@ import {UserWeightsModule} from "./modules/user-weights/user-weights.module";
         AuthModule,
         UsersModule,
         TrainingsModule,
+        StatisticsModule,
         UserWeightsModule,
         ExerciseExampleModule,
         MusclesModule
