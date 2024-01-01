@@ -9,8 +9,8 @@ import {
 } from 'typeorm';
 import {UsersEntity} from "./users.entity";
 
-@Entity({name: 'user_weights'})
-export class UserWeightsEntity {
+@Entity({name: 'weight_history'})
+export class WeightHistoryEntity {
     @PrimaryGeneratedColumn('uuid')
     id: string;
 

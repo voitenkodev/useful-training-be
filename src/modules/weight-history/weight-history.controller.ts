@@ -1,13 +1,13 @@
 import {Controller, Get, HttpStatus, Req, Res, UseGuards,} from '@nestjs/common';
 import {ApiBearerAuth, ApiOperation, ApiResponse, ApiTags,} from '@nestjs/swagger';
-import {UserWeightsService} from './user-weights.service';
+import {WeightHistoryService} from './weight-history.service';
 import {JwtAuthGuard} from '../auth/guards/jwt-auth.guard';
 
-@Controller('user-weights')
-@ApiTags('user-weights')
+@Controller('weight-history')
+@ApiTags('weight-history')
 @ApiBearerAuth()
-export class UserWeightsController {
-    constructor(private readonly userWeightsService: UserWeightsService) {
+export class WeightHistoryController {
+    constructor(private readonly weightHistoryService: WeightHistoryService) {
     }
 
     @Get("")
@@ -15,10 +15,10 @@ export class UserWeightsController {
     @ApiOperation({summary: ``})
     @ApiResponse({status: HttpStatus.UNAUTHORIZED, description: 'Unauthorized'})
     @ApiResponse({status: HttpStatus.FORBIDDEN, description: 'Forbidden'})
-    getUserWeights(@Req() req, @Res() res) {
+    getWeightHistory(@Req() req, @Res() res) {
         const user = req.user;
-        return this.userWeightsService
-            .getUserWeights(user)
+        return this.weightHistoryService
+            .getWeightHistory(user)
             .then((data) => res.json(data))
             .catch((err) => res.status(400).send(err.message));
     }

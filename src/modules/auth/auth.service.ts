@@ -7,7 +7,7 @@ import {JwtService, JwtSignOptions} from '@nestjs/jwt';
 import {Hash} from '../../lib/hash';
 import {ConfigService} from '@nestjs/config';
 import {RegisterRequest} from "./dto/register.request";
-import {UserWeightsEntity} from "../../entities/user-weights.entity";
+import {WeightHistoryEntity} from "../../entities/weight-history.entity";
 
 @Injectable()
 export class AuthService {
@@ -20,8 +20,8 @@ export class AuthService {
         private readonly jwtService: JwtService,
         @Inject('USERS_REPOSITORY')
         private usersRepository: Repository<UsersEntity>,
-        @Inject('USER_WEIGHTS_REPOSITORY')
-        private userWeightsRepository: Repository<UsersEntity>
+        @Inject('WEIGHT_HISTORY_REPOSITORY')
+        private weightHistoryRepository: Repository<UsersEntity>
     ) {
         this.expiresInDefault = parseInt(configService.get('JWT_EXPIRATION_TIME'), 10) || 60 * 5;
         this.jwtKey = configService.get('JWT_SECRET_KEY');
@@ -65,11 +65,11 @@ export class AuthService {
 
         const user = await this.usersRepository.save(userEntity);
 
-        const userWeightsEntity = new UserWeightsEntity();
-        userWeightsEntity.userId = user.id
-        userWeightsEntity.weight = body.weight
+        const weightEntity = new WeightHistoryEntity();
+        weightEntity.userId = user.id
+        weightEntity.weight = body.weight
 
-        await this.userWeightsRepository.save(userWeightsEntity);
+        await this.weightHistoryRepository.save(weightEntity);
 
         const accessToken = await this.createAccessToken(user.id);
 

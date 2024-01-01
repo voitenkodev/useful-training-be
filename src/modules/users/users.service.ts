@@ -1,15 +1,15 @@
 import {Inject, Injectable} from '@nestjs/common';
 import {UsersEntity} from '../../entities/users.entity';
 import {Repository} from 'typeorm';
-import {UserWeightsEntity} from "../../entities/user-weights.entity";
+import {WeightHistoryEntity} from "../../entities/weight-history.entity";
 
 @Injectable()
 export class UsersService {
     constructor(
         @Inject('USERS_REPOSITORY')
         private readonly usersRepository: Repository<UsersEntity>,
-        @Inject('USER_WEIGHTS_REPOSITORY')
-        private readonly userWeightsRepository: Repository<UserWeightsEntity>
+        @Inject('WEIGHT_HISTORY_REPOSITORY')
+        private readonly weightHistoryRepository: Repository<WeightHistoryEntity>
     ) {
     }
 
@@ -28,7 +28,7 @@ export class UsersService {
             .select(['users.id', 'users.email', 'users.name', 'users.height', 'users.createdAt', 'users.updatedAt'])
             .getOne();
 
-        const weightData = await this.userWeightsRepository
+        const weightData = await this.weightHistoryRepository
             .createQueryBuilder("weights")
             .where('weights.userId = :userId', {userId: user.id})
             .orderBy('weights.createdAt', 'DESC')

@@ -6,7 +6,7 @@ import {AuthModule} from './modules/auth/auth.module';
 import {TrainingsModule} from './modules/trainings/trainings.module';
 import {ExerciseExampleModule} from "./modules/exercise-examples/exercise-example.module";
 import {MusclesModule} from "./modules/muscles/muscles.module";
-import {UserWeightsModule} from "./modules/user-weights/user-weights.module";
+import {WeightHistoryModule} from "./modules/weight-history/weight-history.module";
 import {StatisticsModule} from "./modules/statistics/statistics.module";
 
 @Module({
@@ -20,7 +20,7 @@ import {StatisticsModule} from "./modules/statistics/statistics.module";
         UsersModule,
         TrainingsModule,
         StatisticsModule,
-        UserWeightsModule,
+        WeightHistoryModule,
         ExerciseExampleModule,
         MusclesModule
     ],

@@ -7,7 +7,7 @@ import {MuscleExerciseBundlesEntity} from '../entities/muscle-exercise-bundles.e
 import {MusclesEntity} from '../entities/muscles.entity';
 import {ExerciseExamplesEntity} from '../entities/exercise-examples.entity';
 import {MuscleTypesEntity} from "../entities/muscle-types.entity";
-import {UserWeightsEntity} from "../entities/user-weights.entity";
+import {WeightHistoryEntity} from "../entities/weight-history.entity";
 
 export const repositoryProviders = [
     {
@@ -17,9 +17,9 @@ export const repositoryProviders = [
         inject: ['DATA_SOURCE'],
     },
     {
-        provide: 'USER_WEIGHTS_REPOSITORY',
+        provide: 'WEIGHT_HISTORY_REPOSITORY',
         useFactory: (dataSource: DataSource) =>
-            dataSource.getRepository(UserWeightsEntity),
+            dataSource.getRepository(WeightHistoryEntity),
         inject: ['DATA_SOURCE'],
     },
     {
