@@ -17,4 +17,12 @@ export class WeightHistoryService {
             .addOrderBy('weight_history.createdAt', 'DESC')
             .getMany();
     }
+
+    async setWeightHistory(user, weight: number) {
+        const weightHistoryEntity = new WeightHistoryEntity()
+        weightHistoryEntity.userId = user.id
+        weightHistoryEntity.weight = weight
+
+        return await this.weightHistoryRepository.save(weightHistoryEntity)
+    }
 }
