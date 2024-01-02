@@ -1,5 +1,6 @@
 export enum MuscleStatusEnum {
     LOW = "low",
     MEDIUM = "medium",
-    HIGH = "high"
+    HIGH = "high",
+    EXCLUDED = "excluded"
 }

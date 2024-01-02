@@ -31,6 +31,7 @@ export class MusclesService {
                 muscleType.updatedAt = muscleTypeBundle.updatedAt
 
                 muscleType.muscles = muscleTypeBundle.muscles.map((muscleBundle) => {
+
                     const muscleResponse = new MuscleResponse()
                     muscleResponse.id = muscleBundle.id
                     muscleResponse.name = muscleBundle.name
@@ -39,7 +40,6 @@ export class MusclesService {
 
                     const statusValues = Object.values(MuscleStatusEnum); // random value
                     muscleResponse.status = statusValues[Math.floor(Math.random() * statusValues.length)];
-
 
                     muscleResponse.createdAt = muscleBundle.createdAt
                     muscleResponse.updatedAt = muscleBundle.updatedAt
