@@ -1,9 +1,9 @@
 import {
     Column,
     CreateDateColumn,
-    Entity, JoinColumn,
+    Entity,
+    JoinColumn,
     ManyToOne,
-    OneToMany,
     PrimaryGeneratedColumn,
     UpdateDateColumn,
 } from 'typeorm';
@@ -18,14 +18,14 @@ export class ExcludedMusclesEntity {
     @Column({default: null})
     muscleId: string;
 
+    @Column({default: null})
+    userId: string;
+
     @CreateDateColumn({
         type: 'timestamp without time zone',
         name: 'created_at',
     })
     createdAt: Date;
-
-    @Column({ default: null })
-    userId: string;
 
     @UpdateDateColumn({
         type: 'timestamp without time zone',
@@ -44,6 +44,6 @@ export class ExcludedMusclesEntity {
         onDelete: 'CASCADE',
         orphanedRowAction: 'delete',
     })
-    @JoinColumn({ name: 'user_id' })
+    @JoinColumn({name: 'user_id'})
     user: UsersEntity;
 }

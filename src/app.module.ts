@@ -8,6 +8,7 @@ import {ExerciseExampleModule} from "./modules/exercise-examples/exercise-exampl
 import {MusclesModule} from "./modules/muscles/muscles.module";
 import {WeightHistoryModule} from "./modules/weight-history/weight-history.module";
 import {StatisticsModule} from "./modules/statistics/statistics.module";
+import {ExcludedMusclesModule} from "./modules/excluded-muscles/excluded-muscles.module";
 
 @Module({
     imports: [
@@ -21,6 +22,7 @@ import {StatisticsModule} from "./modules/statistics/statistics.module";
         TrainingsModule,
         StatisticsModule,
         WeightHistoryModule,
+        ExcludedMusclesModule,
         ExerciseExampleModule,
         MusclesModule
     ],

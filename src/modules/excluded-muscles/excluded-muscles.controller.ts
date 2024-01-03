@@ -1,27 +1,13 @@
-import {Body, Controller, Get, HttpStatus, Post, Req, Res, UseGuards,} from '@nestjs/common';
+import {Controller, Delete, HttpStatus, Param, Post, Req, Res, UseGuards,} from '@nestjs/common';
 import {ApiBearerAuth, ApiOperation, ApiResponse, ApiTags,} from '@nestjs/swagger';
-import {WeightHistoryService} from './weight-history.service';
+import {ExcludedMusclesService} from './excluded-muscles.service';
 import {JwtAuthGuard} from '../auth/guards/jwt-auth.guard';
-import {WeightHistoryRequest} from "./dto/weight-history.request";
 
-@Controller('weight-history')
-@ApiTags('weight-history')
+@Controller('excluded-muscles')
+@ApiTags('excluded-muscles')
 @ApiBearerAuth()
-export class WeightHistoryController {
-    constructor(private readonly weightHistoryService: WeightHistoryService) {
-    }
-
-    @Get()
-    @UseGuards(JwtAuthGuard)
-    @ApiOperation({summary: ``})
-    @ApiResponse({status: HttpStatus.UNAUTHORIZED, description: 'Unauthorized'})
-    @ApiResponse({status: HttpStatus.FORBIDDEN, description: 'Forbidden'})
-    getWeightHistory(@Req() req, @Res() res) {
-        const user = req.user;
-        return this.weightHistoryService
-            .getWeightHistory(user)
-            .then((data) => res.json(data))
-            .catch((err) => res.status(400).send(err.message));
+export class ExcludedMusclesController {
+    constructor(private readonly excludedMusclesService: ExcludedMusclesService) {
     }
 
     @Post()
@@ -29,10 +15,23 @@ export class WeightHistoryController {
     @ApiOperation({summary: ``})
     @ApiResponse({status: HttpStatus.UNAUTHORIZED, description: 'Unauthorized'})
     @ApiResponse({status: HttpStatus.FORBIDDEN, description: 'Forbidden'})
-    setWeightHistory(@Req() req, @Res() res, @Body() body: WeightHistoryRequest) {
+    setExcludedMuscle(@Req() req, @Res() res, @Param('id') id: string) {
         const user = req.user;
-        return this.weightHistoryService
-            .setWeightHistory(user, body.weight)
+        return this.excludedMusclesService
+            .setExcludedMuscle(user, id)
+            .then((data) => res.json(data))
+            .catch((err) => res.status(400).send(err.message));
+    }
+
+    @Delete()
+    @UseGuards(JwtAuthGuard)
+    @ApiOperation({summary: ``})
+    @ApiResponse({status: HttpStatus.UNAUTHORIZED, description: 'Unauthorized'})
+    @ApiResponse({status: HttpStatus.FORBIDDEN, description: 'Forbidden'})
+    deleteExcludedMuscle(@Req() req, @Res() res, @Param('id') id: string) {
+        const user = req.user;
+        return this.excludedMusclesService
+            .deleteExcludedMuscle(user, id)
             .then((data) => res.json(data))
             .catch((err) => res.status(400).send(err.message));
     }
