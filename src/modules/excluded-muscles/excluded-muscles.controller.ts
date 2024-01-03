@@ -10,7 +10,7 @@ export class ExcludedMusclesController {
     constructor(private readonly excludedMusclesService: ExcludedMusclesService) {
     }
 
-    @Post()
+    @Post(":id")
     @UseGuards(JwtAuthGuard)
     @ApiOperation({summary: ``})
     @ApiResponse({status: HttpStatus.UNAUTHORIZED, description: 'Unauthorized'})
@@ -23,7 +23,7 @@ export class ExcludedMusclesController {
             .catch((err) => res.status(400).send(err.message));
     }
 
-    @Delete()
+    @Delete(":id")
     @UseGuards(JwtAuthGuard)
     @ApiOperation({summary: ``})
     @ApiResponse({status: HttpStatus.UNAUTHORIZED, description: 'Unauthorized'})

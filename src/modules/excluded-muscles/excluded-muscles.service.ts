@@ -9,7 +9,7 @@ export class ExcludedMusclesService {
         @Inject('EXCLUDED_MUSCLES_REPOSITORY')
         private readonly excludedMusclesEntity: Repository<ExcludedMusclesEntity>,
         @Inject('MUSCLES_REPOSITORY')
-        private readonly musclesRepository: Repository<MusclesEntity>,
+        private readonly musclesRepository: Repository<MusclesEntity>
     ) {
     }
 
@@ -48,7 +48,7 @@ export class ExcludedMusclesService {
             .getOne();
 
         if (excludedMuscle == null) {
-            throw new BadRequestException('This muscle already included');
+            throw new BadRequestException('This muscle is not excluded');
         }
 
         return await this.excludedMusclesEntity.remove(excludedMuscle)
