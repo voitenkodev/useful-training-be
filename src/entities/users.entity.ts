@@ -2,6 +2,7 @@ import {Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, Upd
 import {TrainingsEntity} from './trainings.entity';
 import {ExerciseExamplesEntity} from "./exercise-examples.entity";
 import {WeightHistoryEntity} from "./weight-history.entity";
+import {ExcludedMusclesEntity} from "./excluded-muscles.entity";
 
 @Entity({name: 'users'})
 export class UsersEntity {
@@ -46,4 +47,9 @@ export class UsersEntity {
         cascade: ['remove'],
     })
     weights: WeightHistoryEntity[];
+
+    @OneToMany(() => ExcludedMusclesEntity, (excludeMuscles) => excludeMuscles.user, {
+        cascade: ['remove'],
+    })
+    excludedMuscles: ExcludedMusclesEntity[];
 }

@@ -11,6 +11,7 @@ import {
 import {MuscleExerciseBundlesEntity} from './muscle-exercise-bundles.entity';
 import {MuscleTypesEntity} from "./muscle-types.entity";
 import {MuscleEnum} from "../lib/muscle.enum";
+import {ExcludedMusclesEntity} from "./excluded-muscles.entity";
 
 @Entity({name: 'muscles'})
 export class MusclesEntity {
@@ -59,4 +60,9 @@ export class MusclesEntity {
 
     @JoinColumn({name: 'muscle_type_id'})
     muscleType: MuscleTypesEntity;
+
+    @OneToMany(() => ExcludedMusclesEntity, (excludedMuscles) => excludedMuscles.muscle, {
+        cascade: ['remove']
+    })
+    excludedMuscles: ExcludedMusclesEntity[];
 }
