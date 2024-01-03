@@ -110,7 +110,6 @@ export class MusclesService {
         muscleResponse.status = status
         muscleResponse.createdAt = muscle.createdAt
         muscleResponse.updatedAt = muscle.updatedAt
-
         return muscleResponse
     }
 }
