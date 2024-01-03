@@ -39,7 +39,7 @@ export class MusclesController {
     @ApiResponse({status: HttpStatus.FORBIDDEN, description: 'Forbidden'})
     getMuscles(@Req() req, @Res() res) {
         return this.musclesService
-            .getMuscles()
+            .getPublicMuscles()
             .then((data) => res.json(data))
             .catch((err) => res.status(400).send(err.message));
     }

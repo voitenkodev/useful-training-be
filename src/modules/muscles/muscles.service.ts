@@ -46,7 +46,22 @@ export class MusclesService {
         )
     }
 
-    async getMuscles() {
+    async getMuscleById(user, id: string) {
+        const muscle: MusclesEntity = await this.musclesRepository
+            .createQueryBuilder('muscles')
+            .where('muscles.id = :id', {id})
+            .getOne();
+
+        const excludedMuscles = await this.excludedMusclesEntity
+            .createQueryBuilder('excluded_muscles')
+            .where('excluded_muscles.userId = :userId', {userId: user.id})
+            .select(['excluded_muscles.muscleId'])
+            .getMany();
+
+        return this.processingMuscle(user, muscle, excludedMuscles)
+    }
+
+    async getPublicMuscles() {
         const muscleTypes = await this.muscleTypeRepository
             .createQueryBuilder('muscle_types')
             .leftJoinAndSelect('muscle_types.muscles', 'muscles')
@@ -73,21 +88,6 @@ export class MusclesService {
                 return muscleType
             }
         )
-    }
-
-    async getMuscleById(user, id: string) {
-        const muscle: MusclesEntity = await this.musclesRepository
-            .createQueryBuilder('muscles')
-            .where('muscles.id = :id', {id})
-            .getOne();
-
-        const excludedMuscles = await this.excludedMusclesEntity
-            .createQueryBuilder('excluded_muscles')
-            .where('excluded_muscles.userId = :userId', {userId: user.id})
-            .select(['excluded_muscles.muscleId'])
-            .getMany();
-
-        return this.processingMuscle(user, muscle, excludedMuscles)
     }
 
     private processingMuscle(user, muscle, excludedMuscles) {
