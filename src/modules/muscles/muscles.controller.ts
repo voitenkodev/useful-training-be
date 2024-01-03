@@ -1,29 +1,45 @@
-import {Controller, Get, HttpStatus, Param, Req, Res,} from '@nestjs/common';
-import {ApiResponse, ApiTags,} from '@nestjs/swagger';
+import {Controller, Get, HttpStatus, Param, Req, Res, UseGuards,} from '@nestjs/common';
+import {ApiBearerAuth, ApiResponse, ApiTags,} from '@nestjs/swagger';
 import {MusclesService} from './muscles.service';
+import {JwtAuthGuard} from "../auth/guards/jwt-auth.guard";
 
-@Controller('muscles')
+@Controller()
 @ApiTags('muscles')
 export class MusclesController {
     constructor(private readonly musclesService: MusclesService) {
     }
 
-    @Get()
+    @Get("user-muscles")
+    @UseGuards(JwtAuthGuard)
+    @ApiBearerAuth()
+    @ApiResponse({status: HttpStatus.UNAUTHORIZED, description: 'Unauthorized'})
     @ApiResponse({status: HttpStatus.FORBIDDEN, description: 'Forbidden'})
-    getMuscles(@Req() req, @Res() res) {
+    getUserMuscles(@Req() req, @Res() res) {
         const user = req.user
         return this.musclesService
-            .getMuscles(user)
+            .getUserMuscles(user)
             .then((data) => res.json(data))
             .catch((err) => res.status(400).send(err.message));
     }
 
-    @Get(':id')
+    @Get('user-muscles/:id')
+    @ApiBearerAuth()
+    @UseGuards(JwtAuthGuard)
+    @ApiResponse({status: HttpStatus.UNAUTHORIZED, description: 'Unauthorized'})
     @ApiResponse({status: HttpStatus.FORBIDDEN, description: 'Forbidden'})
-    getMuscleById(@Req() req, @Res() res, @Param('id') id: string) {
+    getUserMuscleById(@Req() req, @Res() res, @Param('id') id: string) {
         const user = req.user
         return this.musclesService
             .getMuscleById(user, id)
+            .then((data) => res.json(data))
+            .catch((err) => res.status(400).send(err.message));
+    }
+
+    @Get("muscles")
+    @ApiResponse({status: HttpStatus.FORBIDDEN, description: 'Forbidden'})
+    getMuscles(@Req() req, @Res() res) {
+        return this.musclesService
+            .getMuscles()
             .then((data) => res.json(data))
             .catch((err) => res.status(400).send(err.message));
     }

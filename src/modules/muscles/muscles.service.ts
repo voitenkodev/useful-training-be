@@ -18,8 +18,7 @@ export class MusclesService {
     ) {
     }
 
-    async getMuscles(user) {
-
+    async getUserMuscles(user) {
         const muscleTypes = await this.muscleTypeRepository
             .createQueryBuilder('muscle_types')
             .leftJoinAndSelect('muscle_types.muscles', 'muscles')
@@ -40,6 +39,35 @@ export class MusclesService {
                 muscleType.updatedAt = muscleTypeBundle.updatedAt
                 muscleType.muscles = muscleTypeBundle.muscles.map((muscleBundle) => {
                         return this.processingMuscle(user, muscleBundle, excludedMuscles)
+                    }
+                )
+                return muscleType
+            }
+        )
+    }
+
+    async getMuscles() {
+        const muscleTypes = await this.muscleTypeRepository
+            .createQueryBuilder('muscle_types')
+            .leftJoinAndSelect('muscle_types.muscles', 'muscles')
+            .getMany();
+
+        return muscleTypes.map((muscleTypeBundle) => {
+                const muscleType = new MuscleTypeResponse()
+                muscleType.id = muscleTypeBundle.id
+                muscleType.name = muscleTypeBundle.name
+                muscleType.type = muscleTypeBundle.type
+                muscleType.createdAt = muscleTypeBundle.createdAt
+                muscleType.updatedAt = muscleTypeBundle.updatedAt
+                muscleType.muscles = muscleTypeBundle.muscles.map((muscle) => {
+                        const muscleResponse = new MuscleResponse()
+                        muscleResponse.id = muscle.id
+                        muscleResponse.name = muscle.name
+                        muscleResponse.type = muscle.type
+                        muscleResponse.muscleTypeId = muscle.muscleTypeId
+                        muscleResponse.createdAt = muscle.createdAt
+                        muscleResponse.updatedAt = muscle.updatedAt
+                        return muscleResponse
                     }
                 )
                 return muscleType
