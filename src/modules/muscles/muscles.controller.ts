@@ -11,8 +11,9 @@ export class MusclesController {
     @Get()
     @ApiResponse({status: HttpStatus.FORBIDDEN, description: 'Forbidden'})
     getMuscles(@Req() req, @Res() res) {
+        const user = req.user
         return this.musclesService
-            .getMuscles()
+            .getMuscles(user)
             .then((data) => res.json(data))
             .catch((err) => res.status(400).send(err.message));
     }
@@ -20,8 +21,9 @@ export class MusclesController {
     @Get(':id')
     @ApiResponse({status: HttpStatus.FORBIDDEN, description: 'Forbidden'})
     getMuscleById(@Req() req, @Res() res, @Param('id') id: string) {
+        const user = req.user
         return this.musclesService
-            .getMuscleById(id)
+            .getMuscleById(user, id)
             .then((data) => res.json(data))
             .catch((err) => res.status(400).send(err.message));
     }

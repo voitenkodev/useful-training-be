@@ -1,4 +1,4 @@
-import {Controller, Delete, HttpStatus, Param, Post, Req, Res, UseGuards,} from '@nestjs/common';
+import {Controller, Delete, Get, HttpStatus, Param, Post, Req, Res, UseGuards,} from '@nestjs/common';
 import {ApiBearerAuth, ApiOperation, ApiResponse, ApiTags,} from '@nestjs/swagger';
 import {ExcludedMusclesService} from './excluded-muscles.service';
 import {JwtAuthGuard} from '../auth/guards/jwt-auth.guard';
@@ -8,6 +8,19 @@ import {JwtAuthGuard} from '../auth/guards/jwt-auth.guard';
 @ApiBearerAuth()
 export class ExcludedMusclesController {
     constructor(private readonly excludedMusclesService: ExcludedMusclesService) {
+    }
+
+    @Get()
+    @UseGuards(JwtAuthGuard)
+    @ApiOperation({summary: ``})
+    @ApiResponse({status: HttpStatus.UNAUTHORIZED, description: 'Unauthorized'})
+    @ApiResponse({status: HttpStatus.FORBIDDEN, description: 'Forbidden'})
+    getExcludedMuscle(@Req() req, @Res() res) {
+        const user = req.user;
+        return this.excludedMusclesService
+            .getExcludedMuscle(user)
+            .then((data) => res.json(data))
+            .catch((err) => res.status(400).send(err.message));
     }
 
     @Post(":id")

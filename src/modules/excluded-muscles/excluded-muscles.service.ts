@@ -13,6 +13,13 @@ export class ExcludedMusclesService {
     ) {
     }
 
+    async getExcludedMuscle(user) {
+        return await this.excludedMusclesEntity
+            .createQueryBuilder('excluded_muscles')
+            .where('excluded_muscles.userId = :userId', {userId: user.id})
+            .getOne()
+    }
+
     async setExcludedMuscle(user, id: string) {
         const excludedMuscle = await this.excludedMusclesEntity
             .createQueryBuilder('excluded_muscles')
