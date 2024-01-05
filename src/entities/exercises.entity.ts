@@ -55,7 +55,8 @@ export class ExercisesEntity {
     training: TrainingsEntity;
 
     @ManyToOne(() => ExerciseExamplesEntity, (exerciseExample) => exerciseExample.exercises, {
-        orphanedRowAction: 'delete'
+        onDelete: 'SET NULL',
+        orphanedRowAction: 'nullify',
     })
     @JoinColumn({name: 'exercise_example_id'})
     exerciseExample: ExerciseExamplesEntity;
