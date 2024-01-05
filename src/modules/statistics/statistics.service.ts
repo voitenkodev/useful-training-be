@@ -23,7 +23,7 @@ export class StatisticsService {
     ) {
     }
 
-    async getExerciseStatistics(id: string, user, limit: number) {
+    async getExerciseExampleAchievements(id: string, user, limit: number) {
         const maxWeight = await this.iterationsRepository
             .createQueryBuilder("iterations")
             .leftJoin('iterations.exercise', 'exercise')
