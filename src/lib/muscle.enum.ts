@@ -7,6 +7,7 @@ export enum MuscleEnum {
     TRAPEZIUS = "trapezius",
     LATISSIMUS_DORSI = "latissimus_dorsi",
     RHOMBOIDS = "rhomboids",
+    TERES_MAJOR = "teres_major",
 
     // Abdominal
     RECTUS_ABDOMINIS = "rectus_abdominis",
