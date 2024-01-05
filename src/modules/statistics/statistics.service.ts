@@ -5,6 +5,7 @@ import {TrainingsEntity} from '../../entities/trainings.entity';
 import {ExercisesEntity} from '../../entities/exercises.entity';
 import {IterationsEntity} from '../../entities/iterations.entity';
 import {ExerciseExamplesEntity} from "../../entities/exercise-examples.entity";
+import {ExerciseVolumeRequest, MaxRepetitionRequest, MaxWeightRequest} from "./dto/exercise.response";
 
 @Injectable()
 export class StatisticsService {
@@ -23,7 +24,7 @@ export class StatisticsService {
     }
 
     async getExerciseStatistics(id: string, user, limit: number) {
-        const weight = await this.iterationsRepository
+        const maxWeight = await this.iterationsRepository
             .createQueryBuilder("iterations")
             .leftJoin('iterations.exercise', 'exercise')
             .leftJoin('exercise.exerciseExample', 'exerciseExample')
@@ -33,6 +34,7 @@ export class StatisticsService {
             .andWhere('exerciseExample.userId = :userId', {userId: user.id})
             .select([
                 'iterations.id',
+                'iterations.createdAt',
                 'exercise.id',
                 'exerciseExample.id',
                 'iterations.weight',
@@ -40,7 +42,7 @@ export class StatisticsService {
             .orderBy('iterations.weight', "DESC")
             .getOne();
 
-        const repetitions = await this.iterationsRepository
+        const maxRepetition = await this.iterationsRepository
             .createQueryBuilder("iterations")
             .leftJoin('iterations.exercise', 'exercise')
             .leftJoin('exercise.exerciseExample', 'exerciseExample')
@@ -50,14 +52,15 @@ export class StatisticsService {
             .andWhere('exerciseExample.userId = :userId', {userId: user.id})
             .select([
                 'iterations.id',
+                'iterations.createdAt',
+                'iterations.repetitions',
                 'exercise.id',
                 'exerciseExample.id',
-                'iterations.repetitions',
             ])
             .orderBy('iterations.repetitions', "DESC")
             .getOne();
 
-        const volume = await this.exercisesRepository
+        const maxVolume = await this.exercisesRepository
             .createQueryBuilder("exercise")
             .leftJoin('exercise.exerciseExample', 'exerciseExample')
             .leftJoin('exercise.training', 'training')
@@ -67,6 +70,7 @@ export class StatisticsService {
             .select([
                 'exercise.id',
                 'exercise.volume',
+                'exercise.createdAt',
                 'exerciseExample.id',
             ])
             .orderBy('exercise.volume', "DESC")
@@ -89,11 +93,40 @@ export class StatisticsService {
             .take(limit)
             .getMany();
 
+        const lastVolumesResponse = lastVolumes.map(entry => {
+            const exerciseResult = new ExerciseVolumeRequest();
+            exerciseResult.id = entry.id;
+            exerciseResult.volume = entry.volume;
+            exerciseResult.createdAt = entry.createdAt;
+            exerciseResult.exerciseExampleId = entry.exerciseExample.id;
+            return exerciseResult;
+        });
+
+        const maxVolumeResponse = new ExerciseVolumeRequest();
+        maxVolumeResponse.id = maxVolume.id;
+        maxVolumeResponse.volume = maxVolume.volume;
+        maxVolumeResponse.createdAt = maxVolume.createdAt;
+        maxVolumeResponse.exerciseExampleId = maxVolume.exerciseExample.id;
+
+        const maxWeightResponse = new MaxWeightRequest();
+        maxWeightResponse.id = maxWeight.id;
+        maxWeightResponse.exerciseId = maxWeight.exercise.id;
+        maxWeightResponse.weight = maxWeight.weight;
+        maxWeightResponse.createdAt = maxWeight.createdAt;
+        maxWeightResponse.exerciseExampleId = maxWeight.exercise.exerciseExample.id;
+
+        const maxRepetitionResponse = new MaxRepetitionRequest();
+        maxRepetitionResponse.id = maxRepetition.id;
+        maxRepetitionResponse.exerciseId = maxRepetition.exercise.id;
+        maxRepetitionResponse.createdAt = maxRepetition.createdAt;
+        maxRepetitionResponse.repetition = maxRepetition.repetitions;
+        maxRepetitionResponse.exerciseExampleId = maxRepetition.exercise.exerciseExample.id;
+
         return {
-            weight,
-            repetitions,
-            volume,
-            lastVolumes
+            maxWeight: maxWeightResponse,
+            maxRepetition: maxRepetitionResponse,
+            maxVolume: maxVolumeResponse,
+            lastVolumes: lastVolumesResponse
         }
     }
 }
