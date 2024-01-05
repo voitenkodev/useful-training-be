@@ -8,6 +8,7 @@ import {Hash} from '../../lib/hash';
 import {ConfigService} from '@nestjs/config';
 import {RegisterRequest} from "./dto/register.request";
 import {WeightHistoryEntity} from "../../entities/weight-history.entity";
+import {ExcludedMusclesEntity} from "../../entities/excluded-muscles.entity";
 
 @Injectable()
 export class AuthService {
@@ -21,7 +22,9 @@ export class AuthService {
         @Inject('USERS_REPOSITORY')
         private usersRepository: Repository<UsersEntity>,
         @Inject('WEIGHT_HISTORY_REPOSITORY')
-        private weightHistoryRepository: Repository<UsersEntity>
+        private weightHistoryRepository: Repository<UsersEntity>,
+        @Inject('EXCLUDED_MUSCLES_REPOSITORY')
+        private excludedMusclesEntity: Repository<ExcludedMusclesEntity>
     ) {
         this.expiresInDefault = parseInt(configService.get('JWT_EXPIRATION_TIME'), 10) || 60 * 5;
         this.jwtKey = configService.get('JWT_SECRET_KEY');
@@ -70,6 +73,15 @@ export class AuthService {
         weightEntity.weight = body.weight
 
         await this.weightHistoryRepository.save(weightEntity);
+
+        const excludedMuscleEntities = body.excludeMuscleIds.map((r) => {
+            const excludedMuscleEntity = new ExcludedMusclesEntity();
+            excludedMuscleEntity.muscleId = r
+            excludedMuscleEntity.userId = user.id
+            return excludedMuscleEntity
+        })
+
+        await this.excludedMusclesEntity.save(excludedMuscleEntities)
 
         const accessToken = await this.createAccessToken(user.id);
 
