@@ -22,13 +22,15 @@ export class StatisticsService {
     ) {
     }
 
-    async getStatistics(id: string, user) {
-        return this.iterationsRepository
+    async getExerciseStatistics(id: string, user, limit: number) {
+        const weight = await this.iterationsRepository
             .createQueryBuilder("iterations")
             .leftJoin('iterations.exercise', 'exercise')
             .leftJoin('exercise.exerciseExample', 'exerciseExample')
-            .where('exercise.exerciseExampleId = :id', {id})
-            .andWhere('exerciseExample.userId = :userId', { userId: user.id })
+            .leftJoin('exercise.training', 'training')
+            .where('training.userId = :userId', {userId: user.id})
+            .andWhere('exercise.exerciseExampleId = :id', {id})
+            .andWhere('exerciseExample.userId = :userId', {userId: user.id})
             .select([
                 'iterations.id',
                 'exercise.id',
@@ -37,5 +39,61 @@ export class StatisticsService {
             ])
             .orderBy('iterations.weight', "DESC")
             .getOne();
+
+        const repetitions = await this.iterationsRepository
+            .createQueryBuilder("iterations")
+            .leftJoin('iterations.exercise', 'exercise')
+            .leftJoin('exercise.exerciseExample', 'exerciseExample')
+            .leftJoin('exercise.training', 'training')
+            .where('training.userId = :userId', {userId: user.id})
+            .andWhere('exercise.exerciseExampleId = :id', {id})
+            .andWhere('exerciseExample.userId = :userId', {userId: user.id})
+            .select([
+                'iterations.id',
+                'exercise.id',
+                'exerciseExample.id',
+                'iterations.repetitions',
+            ])
+            .orderBy('iterations.repetitions', "DESC")
+            .getOne();
+
+        const volume = await this.exercisesRepository
+            .createQueryBuilder("exercise")
+            .leftJoin('exercise.exerciseExample', 'exerciseExample')
+            .leftJoin('exercise.training', 'training')
+            .where('training.userId = :userId', {userId: user.id})
+            .andWhere('exercise.exerciseExampleId = :id', {id})
+            .andWhere('exerciseExample.userId = :userId', {userId: user.id})
+            .select([
+                'exercise.id',
+                'exercise.volume',
+                'exerciseExample.id',
+            ])
+            .orderBy('exercise.volume', "DESC")
+            .getOne();
+
+        const lastVolumes = await this.exercisesRepository
+            .createQueryBuilder("exercise")
+            .leftJoin('exercise.exerciseExample', 'exerciseExample')
+            .leftJoin('exercise.training', 'training')
+            .where('training.userId = :userId', {userId: user.id})
+            .andWhere('exercise.exerciseExampleId = :id', {id})
+            .andWhere('exerciseExample.userId = :userId', {userId: user.id})
+            .select([
+                'exercise.id',
+                'exercise.volume',
+                'exercise.createdAt',
+                'exerciseExample.id',
+            ])
+            .orderBy('exercise.createdAt', "DESC")
+            .take(limit)
+            .getMany();
+
+        return {
+            weight,
+            repetitions,
+            volume,
+            lastVolumes
+        }
     }
 }
