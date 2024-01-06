@@ -20,16 +20,10 @@ export class MuscleTypesEntity {
     @Column({type: 'enum', enum: MuscleTypeEnum, nullable: true})
     type: MuscleTypeEnum;
 
-    @CreateDateColumn({
-        type: 'timestamp without time zone',
-        name: 'created_at',
-    })
+    @CreateDateColumn({type: 'timestamp without time zone', name: 'created_at',})
     createdAt: Date;
 
-    @UpdateDateColumn({
-        type: 'timestamp without time zone',
-        name: 'updated_at',
-    })
+    @UpdateDateColumn({type: 'timestamp without time zone', name: 'updated_at',})
     updatedAt: Date;
 
     @OneToMany(() => MusclesEntity, (muscles) => muscles.muscleType, {

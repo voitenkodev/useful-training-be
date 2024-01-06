@@ -37,16 +37,10 @@ export class ExerciseExamplesEntity {
     @Column({type: 'enum', enum: WeightTypeEnum, nullable: true})
     weightType: WeightTypeEnum;
 
-    @CreateDateColumn({
-        type: 'timestamp without time zone',
-        name: 'created_at',
-    })
+    @CreateDateColumn({type: 'timestamp without time zone', name: 'created_at',})
     createdAt: Date;
 
-    @UpdateDateColumn({
-        type: 'timestamp without time zone',
-        name: 'updated_at',
-    })
+    @UpdateDateColumn({type: 'timestamp without time zone', name: 'updated_at',})
     updatedAt: Date;
 
     @OneToMany(() => MuscleExerciseBundlesEntity, (muscleExerciseBundle) => muscleExerciseBundle.exerciseExample, {

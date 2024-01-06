@@ -35,16 +35,10 @@ export class ExercisesEntity {
     @Column({default: null})
     exerciseExampleId: string;
 
-    @CreateDateColumn({
-        type: 'timestamp without time zone',
-        name: 'created_at',
-    })
+    @CreateDateColumn({type: 'timestamp without time zone', name: 'created_at',})
     createdAt: Date;
 
-    @UpdateDateColumn({
-        type: 'timestamp without time zone',
-        name: 'updated_at',
-    })
+    @UpdateDateColumn({type: 'timestamp without time zone', name: 'updated_at',})
     updatedAt: Date;
 
     @ManyToOne(() => TrainingsEntity, (training) => training.exercises, {

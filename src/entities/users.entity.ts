@@ -3,6 +3,7 @@ import {TrainingsEntity} from './trainings.entity';
 import {ExerciseExamplesEntity} from "./exercise-examples.entity";
 import {WeightHistoryEntity} from "./weight-history.entity";
 import {ExcludedMusclesEntity} from "./excluded-muscles.entity";
+import {ExcludedEquipmentsEntity} from "./excluded-equipments.entity";
 
 @Entity({name: 'users'})
 export class UsersEntity {
@@ -21,16 +22,10 @@ export class UsersEntity {
     @Column({type: 'double precision'})
     height: number;
 
-    @CreateDateColumn({
-        type: 'timestamp without time zone',
-        name: 'created_at',
-    })
+    @CreateDateColumn({type: 'timestamp without time zone', name: 'created_at',})
     createdAt: Date;
 
-    @UpdateDateColumn({
-        type: 'timestamp without time zone',
-        name: 'updated_at',
-    })
+    @UpdateDateColumn({type: 'timestamp without time zone', name: 'updated_at',})
     updatedAt: Date;
 
     @OneToMany(() => TrainingsEntity, (trainings) => trainings.user, {
@@ -52,4 +47,9 @@ export class UsersEntity {
         cascade: ['remove'],
     })
     excludedMuscles: ExcludedMusclesEntity[];
+
+    @OneToMany(() => ExcludedEquipmentsEntity, (excludeEquipments) => excludeEquipments.user, {
+        cascade: ['remove'],
+    })
+    excludedEquipments: ExcludedEquipmentsEntity[];
 }

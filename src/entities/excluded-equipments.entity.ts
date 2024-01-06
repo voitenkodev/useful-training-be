@@ -9,14 +9,15 @@ import {
 } from 'typeorm';
 import {MusclesEntity} from "./muscles.entity";
 import {UsersEntity} from "./users.entity";
+import {EquipmentEntity} from "./equipment.entity";
 
-@Entity({name: 'excluded_muscles'})
-export class ExcludedMusclesEntity {
+@Entity({name: 'excluded_equipments'})
+export class ExcludedEquipmentsEntity {
     @PrimaryGeneratedColumn('uuid')
     id: string;
 
     @Column({default: null})
-    muscleId: string;
+    equipmentId: string;
 
     @Column({default: null})
     userId: string;
@@ -27,14 +28,14 @@ export class ExcludedMusclesEntity {
     @UpdateDateColumn({type: 'timestamp without time zone', name: 'updated_at',})
     updatedAt: Date;
 
-    @ManyToOne(() => MusclesEntity, (muscle) => muscle.excludedMuscles, {
+    @ManyToOne(() => EquipmentEntity, (equipment) => equipment.excludedEquipments, {
         onDelete: 'CASCADE',
         orphanedRowAction: 'delete',
     })
-    @JoinColumn({name: 'muscle_id'})
-    muscle: MusclesEntity;
+    @JoinColumn({name: 'equipment_id'})
+    equipments: EquipmentEntity;
 
-    @ManyToOne(() => UsersEntity, (user) => user.excludedMuscles, {
+    @ManyToOne(() => UsersEntity, (user) => user.excludedEquipments, {
         onDelete: 'CASCADE',
         orphanedRowAction: 'delete',
     })

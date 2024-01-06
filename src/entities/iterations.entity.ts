@@ -23,16 +23,10 @@ export class IterationsEntity {
   @Column({ default: null })
   exerciseId: string;
 
-  @CreateDateColumn({
-    type: 'timestamp without time zone',
-    name: 'created_at',
-  })
+  @CreateDateColumn({type: 'timestamp without time zone', name: 'created_at',})
   createdAt: Date;
 
-  @UpdateDateColumn({
-    type: 'timestamp without time zone',
-    name: 'updated_at',
-  })
+  @UpdateDateColumn({type: 'timestamp without time zone', name: 'updated_at',})
   updatedAt: Date;
 
   @ManyToOne(() => ExercisesEntity, (exercise) => exercise.iterations, {
