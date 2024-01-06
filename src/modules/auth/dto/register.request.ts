@@ -19,4 +19,11 @@ export class RegisterRequest {
 
     @ApiProperty({example: ['2e0faf2b-31a5-4c63-ac15-454be132796f'], type: 'list', description: 'excluded muscle ids'})
     excludeMuscleIds: string[];
+
+    @ApiProperty({
+        example: ['9896a0c5-0de2-42de-a274-0e3695b1accf'],
+        type: 'list',
+        description: 'excluded equipment ids'
+    })
+    excludeEquipmentIds: string[];
 }

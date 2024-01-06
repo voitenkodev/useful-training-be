@@ -9,6 +9,7 @@ import {ConfigService} from '@nestjs/config';
 import {RegisterRequest} from "./dto/register.request";
 import {WeightHistoryEntity} from "../../entities/weight-history.entity";
 import {ExcludedMusclesEntity} from "../../entities/excluded-muscles.entity";
+import {ExcludedEquipmentsEntity} from "../../entities/excluded-equipments.entity";
 
 @Injectable()
 export class AuthService {
@@ -24,7 +25,9 @@ export class AuthService {
         @Inject('WEIGHT_HISTORY_REPOSITORY')
         private weightHistoryRepository: Repository<UsersEntity>,
         @Inject('EXCLUDED_MUSCLES_REPOSITORY')
-        private excludedMusclesEntity: Repository<ExcludedMusclesEntity>
+        private excludedMusclesEntity: Repository<ExcludedMusclesEntity>,
+        @Inject('EXCLUDED_EQUIPMENTS_REPOSITORY')
+        private readonly excludedEquipmentsRepository: Repository<ExcludedEquipmentsEntity>,
     ) {
         this.expiresInDefault = parseInt(configService.get('JWT_EXPIRATION_TIME'), 10) || 60 * 5;
         this.jwtKey = configService.get('JWT_SECRET_KEY');
@@ -75,13 +78,22 @@ export class AuthService {
         await this.weightHistoryRepository.save(weightEntity);
 
         const excludedMuscleEntities = body.excludeMuscleIds.map((r) => {
-            const excludedMuscleEntity = new ExcludedMusclesEntity();
-            excludedMuscleEntity.muscleId = r
-            excludedMuscleEntity.userId = user.id
-            return excludedMuscleEntity
+            const entity = new ExcludedMusclesEntity();
+            entity.muscleId = r
+            entity.userId = user.id
+            return entity
         })
 
         await this.excludedMusclesEntity.save(excludedMuscleEntities)
+
+        const excludedEquipmentEntities = body.excludeEquipmentIds.map((r) => {
+            const entity = new ExcludedEquipmentsEntity();
+            entity.equipmentId = r
+            entity.userId = user.id
+            return entity
+        })
+
+        await this.excludedEquipmentsRepository.save(excludedEquipmentEntities)
 
         const accessToken = await this.createAccessToken(user.id);
 
