@@ -7,9 +7,8 @@ import {
     PrimaryGeneratedColumn,
     UpdateDateColumn,
 } from 'typeorm';
-import {MusclesEntity} from "./muscles.entity";
 import {UsersEntity} from "./users.entity";
-import {EquipmentEntity} from "./equipment.entity";
+import {EquipmentsEntity} from "./equipments.entity";
 
 @Entity({name: 'excluded_equipments'})
 export class ExcludedEquipmentsEntity {
@@ -28,12 +27,12 @@ export class ExcludedEquipmentsEntity {
     @UpdateDateColumn({type: 'timestamp without time zone', name: 'updated_at',})
     updatedAt: Date;
 
-    @ManyToOne(() => EquipmentEntity, (equipment) => equipment.excludedEquipments, {
+    @ManyToOne(() => EquipmentsEntity, (equipment) => equipment.excludedEquipments, {
         onDelete: 'CASCADE',
         orphanedRowAction: 'delete',
     })
     @JoinColumn({name: 'equipment_id'})
-    equipments: EquipmentEntity;
+    equipments: EquipmentsEntity;
 
     @ManyToOne(() => UsersEntity, (user) => user.excludedEquipments, {
         onDelete: 'CASCADE',

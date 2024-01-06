@@ -9,6 +9,9 @@ import {ExerciseExamplesEntity} from '../entities/exercise-examples.entity';
 import {MuscleTypesEntity} from "../entities/muscle-types.entity";
 import {WeightHistoryEntity} from "../entities/weight-history.entity";
 import {ExcludedMusclesEntity} from "../entities/excluded-muscles.entity";
+import {EquipmentsEntity} from "../entities/equipments.entity";
+import {ExcludedEquipmentsEntity} from "../entities/excluded-equipments.entity";
+import {EquipmentTypesEntity} from "../entities/equipment-types.entity";
 
 export const repositoryProviders = [
     {
@@ -69,6 +72,23 @@ export const repositoryProviders = [
         provide: 'EXERCISE_EXAMPLES_REPOSITORY',
         useFactory: (dataSource: DataSource) =>
             dataSource.getRepository(ExerciseExamplesEntity),
+        inject: ['DATA_SOURCE'],
+    }, {
+        provide: 'EQUIPMENTS_REPOSITORY',
+        useFactory: (dataSource: DataSource) =>
+            dataSource.getRepository(EquipmentsEntity),
+        inject: ['DATA_SOURCE'],
+    },
+    {
+        provide: 'EQUIPMENT_TYPES_REPOSITORY',
+        useFactory: (dataSource: DataSource) =>
+            dataSource.getRepository(EquipmentTypesEntity),
+        inject: ['DATA_SOURCE'],
+    },
+    {
+        provide: 'EXCLUDED_EQUIPMENTS_REPOSITORY',
+        useFactory: (dataSource: DataSource) =>
+            dataSource.getRepository(ExcludedEquipmentsEntity),
         inject: ['DATA_SOURCE'],
     }
 ];

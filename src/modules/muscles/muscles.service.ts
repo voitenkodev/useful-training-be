@@ -24,21 +24,21 @@ export class MusclesService {
             .leftJoinAndSelect('muscle_types.muscles', 'muscles')
             .getMany();
 
-        const excludedMuscles = await this.excludedMusclesEntity
+        const excluded = await this.excludedMusclesEntity
             .createQueryBuilder('excluded_muscles')
             .where('excluded_muscles.userId = :userId', {userId: user.id})
             .select(['excluded_muscles.muscleId'])
             .getMany();
 
-        return muscleTypes.map((muscleTypeBundle) => {
+        return muscleTypes.map((item) => {
                 const muscleType = new MuscleTypeResponse()
-                muscleType.id = muscleTypeBundle.id
-                muscleType.name = muscleTypeBundle.name
-                muscleType.type = muscleTypeBundle.type
-                muscleType.createdAt = muscleTypeBundle.createdAt
-                muscleType.updatedAt = muscleTypeBundle.updatedAt
-                muscleType.muscles = muscleTypeBundle.muscles.map((muscleBundle) => {
-                        return this.processingMuscle(user, muscleBundle, excludedMuscles)
+                muscleType.id = item.id
+                muscleType.name = item.name
+                muscleType.type = item.type
+                muscleType.createdAt = item.createdAt
+                muscleType.updatedAt = item.updatedAt
+                muscleType.muscles = item.muscles.map((muscle) => {
+                        return this.processingMuscle(user, muscle, excluded)
                     }
                 )
                 return muscleType
@@ -52,13 +52,13 @@ export class MusclesService {
             .where('muscles.id = :id', {id})
             .getOne();
 
-        const excludedMuscles = await this.excludedMusclesEntity
+        const excluded = await this.excludedMusclesEntity
             .createQueryBuilder('excluded_muscles')
             .where('excluded_muscles.userId = :userId', {userId: user.id})
             .select(['excluded_muscles.muscleId'])
             .getMany();
 
-        return this.processingMuscle(user, muscle, excludedMuscles)
+        return this.processingMuscle(user, muscle, excluded)
     }
 
     async getPublicMuscles() {
@@ -67,14 +67,14 @@ export class MusclesService {
             .leftJoinAndSelect('muscle_types.muscles', 'muscles')
             .getMany();
 
-        return muscleTypes.map((muscleTypeBundle) => {
+        return muscleTypes.map((item) => {
                 const muscleType = new MuscleTypeResponse()
-                muscleType.id = muscleTypeBundle.id
-                muscleType.name = muscleTypeBundle.name
-                muscleType.type = muscleTypeBundle.type
-                muscleType.createdAt = muscleTypeBundle.createdAt
-                muscleType.updatedAt = muscleTypeBundle.updatedAt
-                muscleType.muscles = muscleTypeBundle.muscles.map((muscle) => {
+                muscleType.id = item.id
+                muscleType.name = item.name
+                muscleType.type = item.type
+                muscleType.createdAt = item.createdAt
+                muscleType.updatedAt = item.updatedAt
+                muscleType.muscles = item.muscles.map((muscle) => {
                         const muscleResponse = new MuscleResponse()
                         muscleResponse.id = muscle.id
                         muscleResponse.name = muscle.name
@@ -90,11 +90,11 @@ export class MusclesService {
         )
     }
 
-    private processingMuscle(user, muscle, excludedMuscles) {
+    private processingMuscle(user, muscle, excluded) {
         let status: MuscleStatusEnum = null
 
         if (user) {
-            if (excludedMuscles.some((excludedMuscle) => excludedMuscle.muscleId === muscle.id)) {
+            if (excluded.some((excludedItem) => excludedItem.muscleId === muscle.id)) {
                 status = MuscleStatusEnum.EXCLUDED
             } else {
                 const list = [MuscleStatusEnum.LOW, MuscleStatusEnum.MEDIUM, MuscleStatusEnum.HIGH]

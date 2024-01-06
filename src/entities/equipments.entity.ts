@@ -12,8 +12,8 @@ import {EquipmentTypesEntity} from "./equipment-types.entity";
 import {EquipmentEnum} from "../lib/equipment.enum";
 import {ExcludedEquipmentsEntity} from "./excluded-equipments.entity";
 
-@Entity({name: 'equipment'})
-export class EquipmentEntity {
+@Entity({name: 'equipments'})
+export class EquipmentsEntity {
     @PrimaryGeneratedColumn('uuid')
     id: string;
 

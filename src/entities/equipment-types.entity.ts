@@ -1,10 +1,9 @@
 import {Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn,} from 'typeorm';
 import {EquipmentTypeEnum} from "../lib/equipment-type.enum";
-import {EquipmentEntity} from "./equipment.entity";
+import {EquipmentsEntity} from "./equipments.entity";
 
 @Entity({name: 'equipment_types'})
 export class EquipmentTypesEntity {
-
     @PrimaryGeneratedColumn('uuid')
     id: string;
 
@@ -20,8 +19,8 @@ export class EquipmentTypesEntity {
     @UpdateDateColumn({type: 'timestamp without time zone', name: 'updated_at'})
     updatedAt: Date;
 
-    @OneToMany(() => EquipmentEntity, (equipment) => equipment.equipmentTypes, {
+    @OneToMany(() => EquipmentsEntity, (equipment) => equipment.equipmentTypes, {
         cascade: ['remove']
     })
-    equipments: EquipmentEntity[];
+    equipments: EquipmentsEntity[];
 }
