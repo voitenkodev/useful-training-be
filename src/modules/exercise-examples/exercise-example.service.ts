@@ -3,7 +3,7 @@ import {UsersEntity} from '../../entities/users.entity';
 import {Repository} from 'typeorm';
 import {v4} from 'uuid';
 import {ExerciseExamplesEntity} from "../../entities/exercise-examples.entity";
-import {MuscleExerciseBundlesEntity} from "../../entities/muscle-exercise-bundles.entity";
+import {ExerciseExampleBundlesEntity} from "../../entities/exercise-example-bundles.entity";
 import {MusclesEntity} from "../../entities/muscles.entity";
 import {ExerciseExampleRequest} from "./dto/exercise-example.request";
 
@@ -14,8 +14,8 @@ export class ExerciseExampleService {
         private readonly usersRepository: Repository<UsersEntity>,
         @Inject('EXERCISE_EXAMPLES_REPOSITORY')
         private readonly exerciseExamplesRepository: Repository<ExerciseExamplesEntity>,
-        @Inject('MUSCLE_EXERCISE_BUNDLES_REPOSITORY')
-        private readonly muscleExerciseBundlesRepository: Repository<MuscleExerciseBundlesEntity>,
+        @Inject('EXERCISE_EXAMPLE_BUNDLES_REPOSITORY')
+        private readonly exerciseExampleBundlesRepository: Repository<ExerciseExampleBundlesEntity>,
         @Inject('MUSCLES_REPOSITORY')
         private readonly musclesRepository: Repository<MusclesEntity>,
     ) {
@@ -25,8 +25,8 @@ export class ExerciseExampleService {
         return this.exerciseExamplesRepository
             .createQueryBuilder('exercise_examples')
             .where('exercise_examples.userId = :userId', {userId: user.id})
-            .leftJoinAndSelect('exercise_examples.muscleExerciseBundles', 'muscleExerciseBundles')
-            .leftJoinAndSelect('muscleExerciseBundles.muscle', 'muscle')
+            .leftJoinAndSelect('exercise_examples.exerciseExampleBundles', 'exerciseExampleBundles')
+            .leftJoinAndSelect('exerciseExampleBundles.muscle', 'muscle')
             .addOrderBy('exercise_examples.createdAt', 'DESC')
             .getMany();
     }
@@ -35,8 +35,8 @@ export class ExerciseExampleService {
         return this.exerciseExamplesRepository
             .createQueryBuilder('exercise_examples')
             .where('exercise_examples.userId = :userId', {userId: user.id})
-            .leftJoinAndSelect('exercise_examples.muscleExerciseBundles', 'muscleExerciseBundles')
-            .leftJoinAndSelect('muscleExerciseBundles.muscle', 'muscle')
+            .leftJoinAndSelect('exercise_examples.exerciseExampleBundles', 'exerciseExampleBundles')
+            .leftJoinAndSelect('exerciseExampleBundles.muscle', 'muscle')
             .addOrderBy('exercise_examples.createdAt', 'DESC')
             .getMany();
     }
@@ -46,34 +46,34 @@ export class ExerciseExampleService {
             .createQueryBuilder('exercise_examples')
             .where('exercise_examples.id = :id', {id})
             .andWhere('exercise_examples.userId = :userId', {userId: user.id})
-            .leftJoinAndSelect('exercise_examples.muscleExerciseBundles', 'muscleExerciseBundles')
-            .leftJoinAndSelect('muscleExerciseBundles.muscle', 'muscle')
+            .leftJoinAndSelect('exercise_examples.exerciseExampleBundles', 'exerciseExampleBundles')
+            .leftJoinAndSelect('exerciseExampleBundles.muscle', 'muscle')
             .addOrderBy('exercise_examples.createdAt', 'DESC')
             .getOne();
     }
 
     async setOrUpdateExerciseExample(body: ExerciseExampleRequest, user) {
-        const {muscleExerciseBundles, ...rest} = body;
+        const {exerciseExampleBundles, ...rest} = body;
 
         const exerciseExample = new ExerciseExamplesEntity();
         Object.assign(exerciseExample, rest);
         exerciseExample.id = !exerciseExample.id ? v4() : exerciseExample.id;
         exerciseExample.userId = user.id;
 
-        const muscleExerciseExampleBundlesEntities = [];
+        const exerciseExampleBundlesEntities = [];
 
-        muscleExerciseBundles.forEach((el) => {
-            const muscleExerciseExampleBundles = new MuscleExerciseBundlesEntity();
-            Object.assign(muscleExerciseExampleBundles, el);
-            muscleExerciseExampleBundles.id = !muscleExerciseExampleBundles.id ? v4() : muscleExerciseExampleBundles.id;
-            muscleExerciseExampleBundles.muscleId = el.muscleId;
-            muscleExerciseExampleBundles.exerciseExampleId = exerciseExample.id;
-            muscleExerciseExampleBundlesEntities.push(muscleExerciseExampleBundles);
+        exerciseExampleBundles.forEach((el) => {
+            const exerciseExampleBundles = new ExerciseExampleBundlesEntity();
+            Object.assign(exerciseExampleBundles, el);
+            exerciseExampleBundles.id = !exerciseExampleBundles.id ? v4() : exerciseExampleBundles.id;
+            exerciseExampleBundles.muscleId = el.muscleId;
+            exerciseExampleBundles.exerciseExampleId = exerciseExample.id;
+            exerciseExampleBundlesEntities.push(exerciseExampleBundles);
         });
 
-        await this.muscleExerciseBundlesRepository.delete({exerciseExampleId: exerciseExample.id});
+        await this.exerciseExampleBundlesRepository.delete({exerciseExampleId: exerciseExample.id});
         await this.exerciseExamplesRepository.save(exerciseExample);
-        await this.muscleExerciseBundlesRepository.save(muscleExerciseExampleBundlesEntities);
+        await this.exerciseExampleBundlesRepository.save(exerciseExampleBundlesEntities);
 
         return this.getExerciseExamplesById(exerciseExample.id, user);
     }

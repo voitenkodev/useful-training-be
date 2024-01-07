@@ -8,7 +8,7 @@ import {
     PrimaryGeneratedColumn,
     UpdateDateColumn,
 } from 'typeorm';
-import {MuscleExerciseBundlesEntity} from './muscle-exercise-bundles.entity';
+import {ExerciseExampleBundlesEntity} from './exercise-example-bundles.entity';
 import {UsersEntity} from "./users.entity";
 import {ExercisesEntity} from "./exercises.entity";
 import {ExerciseCategoryEnum} from "../lib/exercise-category.enum";
@@ -43,10 +43,10 @@ export class ExerciseExamplesEntity {
     @UpdateDateColumn({type: 'timestamp without time zone', name: 'updated_at',})
     updatedAt: Date;
 
-    @OneToMany(() => MuscleExerciseBundlesEntity, (muscleExerciseBundle) => muscleExerciseBundle.exerciseExample, {
+    @OneToMany(() => ExerciseExampleBundlesEntity, (exerciseExampleBundle) => exerciseExampleBundle.exerciseExample, {
         cascade: ['remove'],
     })
-    muscleExerciseBundles: MuscleExerciseBundlesEntity[];
+    exerciseExampleBundles: ExerciseExampleBundlesEntity[];
 
     @ManyToOne(() => UsersEntity, (user) => user.exerciseExamples, {
         onDelete: 'CASCADE',

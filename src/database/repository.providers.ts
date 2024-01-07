@@ -3,7 +3,7 @@ import {UsersEntity} from '../entities/users.entity';
 import {ExercisesEntity} from '../entities/exercises.entity';
 import {IterationsEntity} from '../entities/iterations.entity';
 import {TrainingsEntity} from '../entities/trainings.entity';
-import {MuscleExerciseBundlesEntity} from '../entities/muscle-exercise-bundles.entity';
+import {ExerciseExampleBundlesEntity} from '../entities/exercise-example-bundles.entity';
 import {MusclesEntity} from '../entities/muscles.entity';
 import {ExerciseExamplesEntity} from '../entities/exercise-examples.entity';
 import {MuscleTypesEntity} from "../entities/muscle-types.entity";
@@ -63,9 +63,9 @@ export const repositoryProviders = [
         inject: ['DATA_SOURCE'],
     },
     {
-        provide: 'MUSCLE_EXERCISE_BUNDLES_REPOSITORY',
+        provide: 'EXERCISE_EXAMPLE_BUNDLES_REPOSITORY',
         useFactory: (dataSource: DataSource) =>
-            dataSource.getRepository(MuscleExerciseBundlesEntity),
+            dataSource.getRepository(ExerciseExampleBundlesEntity),
         inject: ['DATA_SOURCE'],
     },
     {

@@ -1,7 +1,7 @@
 import {ApiProperty} from '@nestjs/swagger';
 import {ExerciseCategoryEnum} from "../../../lib/exercise-category.enum";
 
-export class ExerciseExampleMuscleExerciseBundleRequest {
+export class ExerciseExampleBundleRequest {
     id?: string;
 
     @ApiProperty({type: 'string', example: '3a975ded-af6b-4dd2-9a0e-6e3554e8e6dd'})
@@ -32,6 +32,6 @@ export class ExerciseExampleRequest {
     })
     imageUrl: string;
 
-    @ApiProperty({type: [ExerciseExampleMuscleExerciseBundleRequest]})
-    muscleExerciseBundles: ExerciseExampleMuscleExerciseBundleRequest[];
+    @ApiProperty({type: [ExerciseExampleBundleRequest]})
+    exerciseExampleBundles: ExerciseExampleBundleRequest[];
 }

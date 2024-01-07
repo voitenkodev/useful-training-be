@@ -51,8 +51,8 @@ export class TrainingsService {
             .andWhere('trainings.userId = :userId', {userId: user.id})
             .leftJoinAndSelect('trainings.exercises', 'exercises')
             .leftJoinAndSelect('exercises.exerciseExample', 'exerciseExample')
-            .leftJoinAndSelect('exerciseExample.muscleExerciseBundles', 'muscleExerciseBundles')
-            .leftJoinAndSelect('muscleExerciseBundles.muscle', 'muscle')
+            .leftJoinAndSelect('exerciseExample.exerciseExampleBundles', 'exerciseExampleBundles')
+            .leftJoinAndSelect('exerciseExampleBundles.muscle', 'muscle')
             .leftJoinAndSelect('exercises.iterations', 'iterations')
             .addOrderBy('trainings.createdAt', 'DESC')
             .getOne();
