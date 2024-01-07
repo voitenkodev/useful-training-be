@@ -1,8 +1,8 @@
 import {Inject, Injectable} from '@nestjs/common';
 import {Repository} from 'typeorm';
 import {MusclesEntity} from "../../entities/muscles.entity";
-import {MuscleTypesEntity} from "../../entities/muscle-types.entity";
-import {MuscleResponse, MuscleTypeResponse} from "./dto/muscle-response";
+import {MuscleGroupsEntity} from "../../entities/muscle-groups.entity";
+import {MuscleGroupsResponse, MuscleResponse} from "./dto/muscle-response";
 import {MuscleStatusEnum} from "../../lib/muscle-status.enum";
 import {ExcludedMusclesEntity} from "../../entities/excluded-muscles.entity";
 
@@ -11,17 +11,17 @@ export class MusclesService {
     constructor(
         @Inject('MUSCLES_REPOSITORY')
         private readonly musclesRepository: Repository<MusclesEntity>,
-        @Inject('MUSCLE_TYPES_REPOSITORY')
-        private readonly muscleTypeRepository: Repository<MuscleTypesEntity>,
+        @Inject('MUSCLE_GROUPS_REPOSITORY')
+        private readonly muscleGroupsRepository: Repository<MuscleGroupsEntity>,
         @Inject('EXCLUDED_MUSCLES_REPOSITORY')
         private readonly excludedMusclesEntity: Repository<ExcludedMusclesEntity>
     ) {
     }
 
     async getUserMuscles(user) {
-        const muscleTypes = await this.muscleTypeRepository
-            .createQueryBuilder('muscle_types')
-            .leftJoinAndSelect('muscle_types.muscles', 'muscles')
+        const muscleGroups = await this.muscleGroupsRepository
+            .createQueryBuilder('muscle_groups')
+            .leftJoinAndSelect('muscle_groups.muscles', 'muscles')
             .getMany();
 
         const excluded = await this.excludedMusclesEntity
@@ -30,18 +30,18 @@ export class MusclesService {
             .select(['excluded_muscles.muscleId'])
             .getMany();
 
-        return muscleTypes.map((item) => {
-                const muscleType = new MuscleTypeResponse()
-                muscleType.id = item.id
-                muscleType.name = item.name
-                muscleType.type = item.type
-                muscleType.createdAt = item.createdAt
-                muscleType.updatedAt = item.updatedAt
-                muscleType.muscles = item.muscles.map((muscle) => {
+        return muscleGroups.map((item) => {
+                const muscleGroup = new MuscleGroupsResponse()
+                muscleGroup.id = item.id
+                muscleGroup.name = item.name
+                muscleGroup.type = item.type
+                muscleGroup.createdAt = item.createdAt
+                muscleGroup.updatedAt = item.updatedAt
+                muscleGroup.muscles = item.muscles.map((muscle) => {
                         return this.processingMuscle(user, muscle, excluded)
                     }
                 )
-                return muscleType
+                return muscleGroup
             }
         )
     }
@@ -62,30 +62,30 @@ export class MusclesService {
     }
 
     async getPublicMuscles() {
-        const muscleTypes = await this.muscleTypeRepository
-            .createQueryBuilder('muscle_types')
-            .leftJoinAndSelect('muscle_types.muscles', 'muscles')
+        const muscleGroups = await this.muscleGroupsRepository
+            .createQueryBuilder('muscle_groups')
+            .leftJoinAndSelect('muscle_groups.muscles', 'muscles')
             .getMany();
 
-        return muscleTypes.map((item) => {
-                const muscleType = new MuscleTypeResponse()
-                muscleType.id = item.id
-                muscleType.name = item.name
-                muscleType.type = item.type
-                muscleType.createdAt = item.createdAt
-                muscleType.updatedAt = item.updatedAt
-                muscleType.muscles = item.muscles.map((muscle) => {
+        return muscleGroups.map((item) => {
+                const group = new MuscleGroupsResponse()
+                group.id = item.id
+                group.name = item.name
+                group.type = item.type
+                group.createdAt = item.createdAt
+                group.updatedAt = item.updatedAt
+                group.muscles = item.muscles.map((muscle) => {
                         const muscleResponse = new MuscleResponse()
                         muscleResponse.id = muscle.id
                         muscleResponse.name = muscle.name
                         muscleResponse.type = muscle.type
-                        muscleResponse.muscleTypeId = muscle.muscleTypeId
+                        muscleResponse.muscleGroupId = muscle.muscleGroupId
                         muscleResponse.createdAt = muscle.createdAt
                         muscleResponse.updatedAt = muscle.updatedAt
                         return muscleResponse
                     }
                 )
-                return muscleType
+                return group
             }
         )
     }
@@ -106,7 +106,7 @@ export class MusclesService {
         muscleResponse.id = muscle.id
         muscleResponse.name = muscle.name
         muscleResponse.type = muscle.type
-        muscleResponse.muscleTypeId = muscle.muscleTypeId
+        muscleResponse.muscleGroupId = muscle.muscleGroupId
         muscleResponse.status = status
         muscleResponse.createdAt = muscle.createdAt
         muscleResponse.updatedAt = muscle.updatedAt

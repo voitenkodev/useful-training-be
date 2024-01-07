@@ -9,7 +9,7 @@ import {
     UpdateDateColumn,
 } from 'typeorm';
 import {ExerciseExampleBundlesEntity} from './exercise-example-bundles.entity';
-import {MuscleTypesEntity} from "./muscle-types.entity";
+import {MuscleGroupsEntity} from "./muscle-groups.entity";
 import {MuscleEnum} from "../lib/muscle.enum";
 import {ExcludedMusclesEntity} from "./excluded-muscles.entity";
 
@@ -22,7 +22,7 @@ export class MusclesEntity {
     name: string;
 
     @Column({default: null})
-    muscleTypeId: string;
+    muscleGroupId: string;
 
     @Column({default: null})
     nameUa: string;
@@ -47,13 +47,13 @@ export class MusclesEntity {
     })
     exerciseExampleBundles: ExerciseExampleBundlesEntity[];
 
-    @ManyToOne(() => MuscleTypesEntity, (muscleType) => muscleType.muscles, {
+    @ManyToOne(() => MuscleGroupsEntity, (muscleGroup) => muscleGroup.muscles, {
         onDelete: 'CASCADE',
         orphanedRowAction: 'delete',
     })
 
-    @JoinColumn({name: 'muscle_type_id'})
-    muscleType: MuscleTypesEntity;
+    @JoinColumn({name: 'muscle_group_id'})
+    muscleGroup: MuscleGroupsEntity;
 
     @OneToMany(() => ExcludedMusclesEntity, (excludedMuscles) => excludedMuscles.muscle, {
         cascade: ['remove']
