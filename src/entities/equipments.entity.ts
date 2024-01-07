@@ -32,6 +32,9 @@ export class EquipmentsEntity {
     @UpdateDateColumn({type: 'timestamp without time zone', name: 'updated_at',})
     updatedAt: Date;
 
+    @Column({default: null})
+    imageUrl: string;
+
     @ManyToOne(() => EquipmentGroupsEntity, (equipmentGroup) => equipmentGroup.equipments, {
         onDelete: 'CASCADE',
         orphanedRowAction: 'delete',

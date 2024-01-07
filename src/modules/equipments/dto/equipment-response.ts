@@ -23,6 +23,12 @@ export class EquipmentResponse {
 
     @ApiProperty({type: Date, example: Date.now()})
     createdAt: Date;
+
+    @ApiProperty({
+        type: 'string',
+        example: 'https://static.vecteezy.com/system/resources/thumbnails/022/653/711/small/treadmill-in-modern-gym-toned-image-3d-rendering-generative-ai-free-photo.jpg'
+    })
+    imageUrl: string;
 }
 
 export class EquipmentGroupResponse {
