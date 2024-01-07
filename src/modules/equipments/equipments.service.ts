@@ -1,8 +1,8 @@
 import {Inject, Injectable} from '@nestjs/common';
 import {Repository} from 'typeorm';
-import {EquipmentResponse, EquipmentTypeResponse} from "./dto/equipment-response";
+import {EquipmentGroupResponse, EquipmentResponse} from "./dto/equipment-response";
 import {ExcludedEquipmentsEntity} from "../../entities/excluded-equipments.entity";
-import {EquipmentTypesEntity} from "../../entities/equipment-types.entity";
+import {EquipmentGroupsEntity} from "../../entities/equipment-groups.entity";
 import {EquipmentsEntity} from "../../entities/equipments.entity";
 import {EquipmentStatusEnum} from "../../lib/equipment-status.enum";
 
@@ -11,17 +11,17 @@ export class EquipmentsService {
     constructor(
         @Inject('EQUIPMENTS_REPOSITORY')
         private readonly equipmentsRepository: Repository<EquipmentsEntity>,
-        @Inject('EQUIPMENT_TYPES_REPOSITORY')
-        private readonly equipmentTypesRepository: Repository<EquipmentTypesEntity>,
+        @Inject('EQUIPMENT_GROUPS_REPOSITORY')
+        private readonly equipmenGroupsRepository: Repository<EquipmentGroupsEntity>,
         @Inject('EXCLUDED_EQUIPMENTS_REPOSITORY')
         private readonly excludedEquipmentsRepository: Repository<ExcludedEquipmentsEntity>,
     ) {
     }
 
     async getUserEquipments(user) {
-        const equipmentTypes = await this.equipmentTypesRepository
-            .createQueryBuilder('equipment_types')
-            .leftJoinAndSelect('equipment_types.equipments', 'equipments')
+        const equipmentGroups = await this.equipmenGroupsRepository
+            .createQueryBuilder('equipment_groups')
+            .leftJoinAndSelect('equipment_groups.equipments', 'equipments')
             .getMany();
 
         const excluded = await this.excludedEquipmentsRepository
@@ -30,47 +30,47 @@ export class EquipmentsService {
             .select(['excluded_equipments.equipmentId'])
             .getMany();
 
-        return equipmentTypes.map((item) => {
-                const equipmentType = new EquipmentTypeResponse()
-                equipmentType.id = item.id
-                equipmentType.name = item.name
-                equipmentType.type = item.type
-                equipmentType.createdAt = item.createdAt
-                equipmentType.updatedAt = item.updatedAt
-                equipmentType.equipments = item.equipments.map((equipment) => {
+        return equipmentGroups.map((item) => {
+                const equipmentGroup = new EquipmentGroupResponse()
+                equipmentGroup.id = item.id
+                equipmentGroup.name = item.name
+                equipmentGroup.type = item.type
+                equipmentGroup.createdAt = item.createdAt
+                equipmentGroup.updatedAt = item.updatedAt
+                equipmentGroup.equipments = item.equipments.map((equipment) => {
                         return this.processingEquipment(user, equipment, excluded)
                     }
                 )
-                return equipmentType
+                return equipmentGroup
             }
         )
     }
 
     async getPublicEquipments() {
-        const equipmentTypes = await this.equipmentTypesRepository
-            .createQueryBuilder('equipment_types')
-            .leftJoinAndSelect('equipment_types.equipments', 'equipments')
+        const equipmentGroups = await this.equipmenGroupsRepository
+            .createQueryBuilder('equipment_groups')
+            .leftJoinAndSelect('equipment_groups.equipments', 'equipments')
             .getMany();
 
-        return equipmentTypes.map((item) => {
-                const equipmentType = new EquipmentTypeResponse()
-                equipmentType.id = item.id
-                equipmentType.name = item.name
-                equipmentType.type = item.type
-                equipmentType.createdAt = item.createdAt
-                equipmentType.updatedAt = item.updatedAt
-                equipmentType.equipments = item.equipments.map((equipment) => {
+        return equipmentGroups.map((item) => {
+                const equipmentGroup = new EquipmentGroupResponse()
+                equipmentGroup.id = item.id
+                equipmentGroup.name = item.name
+                equipmentGroup.type = item.type
+                equipmentGroup.createdAt = item.createdAt
+                equipmentGroup.updatedAt = item.updatedAt
+                equipmentGroup.equipments = item.equipments.map((equipment) => {
                         const response = new EquipmentResponse()
                         response.id = equipment.id
                         response.name = equipment.name
                         response.type = equipment.type
-                        response.equipmentTypeId = equipment.equipmentTypeId
+                        response.equipmentGroupId = equipment.equipmentGroupId
                         response.createdAt = equipment.createdAt
                         response.updatedAt = equipment.updatedAt
                         return response
                     }
                 )
-                return equipmentType
+                return equipmentGroup
             }
         )
     }
@@ -90,7 +90,7 @@ export class EquipmentsService {
         response.id = equipment.id
         response.name = equipment.name
         response.type = equipment.type
-        response.equipmentTypeId = equipment.equipmentTypeId
+        response.equipmentGroupId = equipment.equipmentGroupId
         response.status = status
         response.createdAt = equipment.createdAt
         response.updatedAt = equipment.updatedAt

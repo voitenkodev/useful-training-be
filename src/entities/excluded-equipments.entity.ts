@@ -32,7 +32,7 @@ export class ExcludedEquipmentsEntity {
         orphanedRowAction: 'delete',
     })
     @JoinColumn({name: 'equipment_id'})
-    equipments: EquipmentsEntity;
+    equipment: EquipmentsEntity;
 
     @ManyToOne(() => UsersEntity, (user) => user.excludedEquipments, {
         onDelete: 'CASCADE',

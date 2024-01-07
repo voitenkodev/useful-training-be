@@ -8,7 +8,7 @@ import {
     PrimaryGeneratedColumn,
     UpdateDateColumn,
 } from 'typeorm';
-import {EquipmentTypesEntity} from "./equipment-types.entity";
+import {EquipmentGroupsEntity} from "./equipment-groups.entity";
 import {EquipmentEnum} from "../lib/equipment.enum";
 import {ExcludedEquipmentsEntity} from "./excluded-equipments.entity";
 
@@ -21,7 +21,7 @@ export class EquipmentsEntity {
     name: string;
 
     @Column({default: null})
-    equipmentTypeId: string;
+    equipmentGroupId: string;
 
     @Column({type: 'enum', enum: EquipmentEnum, nullable: true})
     type: EquipmentEnum;
@@ -32,15 +32,15 @@ export class EquipmentsEntity {
     @UpdateDateColumn({type: 'timestamp without time zone', name: 'updated_at',})
     updatedAt: Date;
 
-    @ManyToOne(() => EquipmentTypesEntity, (equipmentTypes) => equipmentTypes.equipments, {
+    @ManyToOne(() => EquipmentGroupsEntity, (equipmentGroup) => equipmentGroup.equipments, {
         onDelete: 'CASCADE',
         orphanedRowAction: 'delete',
     })
 
-    @JoinColumn({name: 'equipment_type_id'})
-    equipmentTypes: EquipmentTypesEntity;
+    @JoinColumn({name: 'equipment_group_id'})
+    equipmentGroup: EquipmentGroupsEntity;
 
-    @OneToMany(() => ExcludedEquipmentsEntity, (excludedEquipments) => excludedEquipments.equipments, {
+    @OneToMany(() => ExcludedEquipmentsEntity, (excludedEquipments) => excludedEquipments.equipment, {
         cascade: ['remove']
     })
     excludedEquipments: ExcludedEquipmentsEntity[];

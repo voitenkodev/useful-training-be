@@ -1,4 +1,4 @@
-export enum EquipmentTypeEnum {
+export enum EquipmentGroupEnum {
     FREE_WEIGHT = "free_weight",
     MACHINES = "machines",
     CABLE_MACHINES = "cable_machines",
