@@ -4,7 +4,6 @@ export enum EquipmentEnum {
     BARBELL = "barbell",
     EZ_BAR = "ez_bar",
     TRAP_BAR = "trap_bar",
-    SAFETY_BAR = "safety_bar",
 
     // Machine
     AB_MACHINES = "ab_machines",
@@ -16,16 +15,12 @@ export enum EquipmentEnum {
     BICEPS_MACHINES = "biceps_machines",
     SMITH_MACHINES = "smith_machines",
     HACK_SQUAT_MACHINES = "hack_squat_machines",
-    LAT_PULLDOWN_MACHINES = "lat_pulldown_machines",
-    ROW_MACHINES = "row_machines",
     DEADLIFT_MACHINES = "deadlift_machines",
-    BACK_EXTENSION_MACHINES = "back_extension_machines",
     SHOULDER_PRESS_MACHINES = "shoulder_press_machines",
     LATERAL_RAISE_MACHINES = "lateral_raise_machines",
     TRICEPS_MACHINES = "triceps_machines",
     CALF_RAISE_MACHINES = "calf_raise_machines",
     GLUTE_MACHINES = "glute_machines",
-    ALL_OTHER_MACHINES = "all_other_machines",
 
     // Cable Machine
     LAT_PULLDOWN = "lat_pulldown",
@@ -36,10 +31,8 @@ export enum EquipmentEnum {
     // Body Weight
     PULL_UP_BAR = "pull_up_bar",
     DIP_BARS = "dip_bars",
-    VERTICAL_BENCH = "vertical_bench",
     ROMAIN_CHAIR = "romain_chair",
     GLUTE_HAM_RAISE_BENCH = "glute_ham_raise_bench",
-    SISSY_SQUAT_BENCH = "sissy_squat_bench",
 
     // Benches & Racks
     FLAT_BENCH = "flat_bench",
