@@ -11,6 +11,7 @@ import {
 import {EquipmentGroupsEntity} from "./equipment-groups.entity";
 import {EquipmentEnum} from "../lib/equipment.enum";
 import {ExcludedEquipmentsEntity} from "./excluded-equipments.entity";
+import {ExerciseExamplesEquipmentsEntity} from "./exercise-examples-equipments.entity";
 
 @Entity({name: 'equipments'})
 export class EquipmentsEntity {
@@ -32,9 +33,6 @@ export class EquipmentsEntity {
     @UpdateDateColumn({type: 'timestamp without time zone', name: 'updated_at',})
     updatedAt: Date;
 
-    @Column({default: null})
-    imageUrl: string;
-
     @ManyToOne(() => EquipmentGroupsEntity, (equipmentGroup) => equipmentGroup.equipments, {
         onDelete: 'CASCADE',
         orphanedRowAction: 'delete',
@@ -47,4 +45,9 @@ export class EquipmentsEntity {
         cascade: ['remove']
     })
     excludedEquipments: ExcludedEquipmentsEntity[];
+
+    @OneToMany(() => ExerciseExamplesEquipmentsEntity, (exerciseExampleRefs) => exerciseExampleRefs.equipment, {
+        cascade: ['remove']
+    })
+    exerciseExampleRefs: ExerciseExamplesEquipmentsEntity[];
 }

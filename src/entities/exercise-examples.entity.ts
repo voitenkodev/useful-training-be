@@ -13,6 +13,7 @@ import {UsersEntity} from "./users.entity";
 import {ExercisesEntity} from "./exercises.entity";
 import {ExerciseCategoryEnum} from "../lib/exercise-category.enum";
 import {WeightTypeEnum} from "../lib/weight-type.enum";
+import {ExerciseExamplesEquipmentsEntity} from "./exercise-examples-equipments.entity";
 
 @Entity({name: 'exercise_examples'})
 export class ExerciseExamplesEntity {
@@ -59,4 +60,9 @@ export class ExerciseExamplesEntity {
         cascade: ['remove']
     })
     exercises: ExercisesEntity[];
+
+    @OneToMany(() => ExerciseExamplesEquipmentsEntity, (exerciseExampleRefs) => exerciseExampleRefs.equipment, {
+        cascade: ['remove']
+    })
+    exerciseExampleRefs: ExerciseExamplesEquipmentsEntity[];
 }
