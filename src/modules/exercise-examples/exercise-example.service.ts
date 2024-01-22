@@ -33,7 +33,7 @@ export class ExerciseExampleService {
             .where('exercise_examples.userId = :userId', {userId: user.id})
             .leftJoinAndSelect('exercise_examples.exerciseExampleBundles', 'exerciseExampleBundles')
             .leftJoinAndSelect('exerciseExampleBundles.muscle', 'muscle')
-            .leftJoinAndSelect('exercise_examples.exerciseExampleRefs', 'equipment_refs')
+            .leftJoinAndSelect('exercise_examples.equipmentRefs', 'equipment_refs')
             .leftJoinAndSelect('equipment_refs.equipment', 'equipments')
             .addOrderBy('exercise_examples.createdAt', 'DESC')
             .getMany();
@@ -45,7 +45,7 @@ export class ExerciseExampleService {
             .where('exercise_examples.userId = :userId', {userId: user.id})
             .leftJoinAndSelect('exercise_examples.exerciseExampleBundles', 'exerciseExampleBundles')
             .leftJoinAndSelect('exerciseExampleBundles.muscle', 'muscle')
-            .leftJoinAndSelect('exercise_examples.exerciseExampleRefs', 'equipment_refs')
+            .leftJoinAndSelect('exercise_examples.equipmentRefs', 'equipment_refs')
             .leftJoinAndSelect('equipment_refs.equipment', 'equipments')
             .addOrderBy('exercise_examples.createdAt', 'DESC')
             .getMany();
@@ -58,7 +58,7 @@ export class ExerciseExampleService {
             .andWhere('exercise_examples.userId = :userId', {userId: user.id})
             .leftJoinAndSelect('exercise_examples.exerciseExampleBundles', 'exerciseExampleBundles')
             .leftJoinAndSelect('exerciseExampleBundles.muscle', 'muscle')
-            .leftJoinAndSelect('exercise_examples.exerciseExampleRefs', 'equipment_refs')
+            .leftJoinAndSelect('exercise_examples.equipmentRefs', 'equipment_refs')
             .leftJoinAndSelect('equipment_refs.equipment', 'equipments')
             .addOrderBy('exercise_examples.createdAt', 'DESC')
             .getOne();

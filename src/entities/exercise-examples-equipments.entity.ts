@@ -35,7 +35,7 @@ export class ExerciseExamplesEquipmentsEntity {
     @JoinColumn({name: 'equipment_id'})
     equipment: EquipmentsEntity;
 
-    @ManyToOne(() => ExerciseExamplesEntity, (exercise) => exercise.exerciseExampleRefs, {
+    @ManyToOne(() => ExerciseExamplesEntity, (exercise) => exercise.equipmentRefs, {
         onDelete: 'CASCADE',
         orphanedRowAction: 'delete',
     })

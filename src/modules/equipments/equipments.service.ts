@@ -67,7 +67,6 @@ export class EquipmentsService {
                         response.equipmentGroupId = equipment.equipmentGroupId
                         response.createdAt = equipment.createdAt
                         response.updatedAt = equipment.updatedAt
-                        response.imageUrl = equipment.imageUrl
                         return response
                     }
                 )
