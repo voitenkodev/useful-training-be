@@ -6,6 +6,8 @@ import {ExerciseExamplesEntity} from "../../entities/exercise-examples.entity";
 import {ExerciseExampleBundlesEntity} from "../../entities/exercise-example-bundles.entity";
 import {MusclesEntity} from "../../entities/muscles.entity";
 import {ExerciseExampleRequest} from "./dto/exercise-example.request";
+import {EquipmentsEntity} from "../../entities/equipments.entity";
+import {ExerciseExamplesEquipmentsEntity} from "../../entities/exercise-examples-equipments.entity";
 
 @Injectable()
 export class ExerciseExampleService {
@@ -18,6 +20,10 @@ export class ExerciseExampleService {
         private readonly exerciseExampleBundlesRepository: Repository<ExerciseExampleBundlesEntity>,
         @Inject('MUSCLES_REPOSITORY')
         private readonly musclesRepository: Repository<MusclesEntity>,
+        @Inject('EQUIPMENTS_REPOSITORY')
+        private readonly equipmentsRepository: Repository<EquipmentsEntity>,
+        @Inject('EXERCISE_EXAMPLES_EQUIPMENTS_REPOSITORY')
+        private readonly exerciseExamplesEquipmentsRepository: Repository<ExerciseExamplesEquipmentsEntity>,
     ) {
     }
 
@@ -27,6 +33,8 @@ export class ExerciseExampleService {
             .where('exercise_examples.userId = :userId', {userId: user.id})
             .leftJoinAndSelect('exercise_examples.exerciseExampleBundles', 'exerciseExampleBundles')
             .leftJoinAndSelect('exerciseExampleBundles.muscle', 'muscle')
+            .leftJoinAndSelect('exercise_examples.exerciseExampleRefs', 'equipment_refs')
+            .leftJoinAndSelect('equipment_refs.equipment', 'equipments')
             .addOrderBy('exercise_examples.createdAt', 'DESC')
             .getMany();
     }
@@ -37,17 +45,21 @@ export class ExerciseExampleService {
             .where('exercise_examples.userId = :userId', {userId: user.id})
             .leftJoinAndSelect('exercise_examples.exerciseExampleBundles', 'exerciseExampleBundles')
             .leftJoinAndSelect('exerciseExampleBundles.muscle', 'muscle')
+            .leftJoinAndSelect('exercise_examples.exerciseExampleRefs', 'equipment_refs')
+            .leftJoinAndSelect('equipment_refs.equipment', 'equipments')
             .addOrderBy('exercise_examples.createdAt', 'DESC')
             .getMany();
     }
 
-    async getExerciseExamplesById(id: string, user) {
-        return this.exerciseExamplesRepository
+    async getExerciseExampleById(id: string, user) {
+        return await this.exerciseExamplesRepository
             .createQueryBuilder('exercise_examples')
             .where('exercise_examples.id = :id', {id})
             .andWhere('exercise_examples.userId = :userId', {userId: user.id})
             .leftJoinAndSelect('exercise_examples.exerciseExampleBundles', 'exerciseExampleBundles')
             .leftJoinAndSelect('exerciseExampleBundles.muscle', 'muscle')
+            .leftJoinAndSelect('exercise_examples.exerciseExampleRefs', 'equipment_refs')
+            .leftJoinAndSelect('equipment_refs.equipment', 'equipments')
             .addOrderBy('exercise_examples.createdAt', 'DESC')
             .getOne();
     }
@@ -59,6 +71,16 @@ export class ExerciseExampleService {
         Object.assign(exerciseExample, rest);
         exerciseExample.id = !exerciseExample.id ? v4() : exerciseExample.id;
         exerciseExample.userId = user.id;
+
+
+        const exerciseEquipment = []
+
+        body.excludeEquipmentIds.forEach((el) => {
+            const exerciseExamplesEquipmentsEntity = new ExerciseExamplesEquipmentsEntity();
+            exerciseExamplesEquipmentsEntity.equipmentId = el
+            exerciseExamplesEquipmentsEntity.exerciseExampleId = exerciseExample.id
+            exerciseEquipment.push(exerciseExamplesEquipmentsEntity);
+        });
 
         const exerciseExampleBundlesEntities = [];
 
@@ -74,7 +96,8 @@ export class ExerciseExampleService {
         await this.exerciseExampleBundlesRepository.delete({exerciseExampleId: exerciseExample.id});
         await this.exerciseExamplesRepository.save(exerciseExample);
         await this.exerciseExampleBundlesRepository.save(exerciseExampleBundlesEntities);
+        await this.exerciseExamplesEquipmentsRepository.save(exerciseEquipment)
 
-        return this.getExerciseExamplesById(exerciseExample.id, user);
+        return this.getExerciseExampleById(exerciseExample.id, user);
     }
 }

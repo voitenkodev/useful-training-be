@@ -34,4 +34,11 @@ export class ExerciseExampleRequest {
 
     @ApiProperty({type: [ExerciseExampleBundleRequest]})
     exerciseExampleBundles: ExerciseExampleBundleRequest[];
+
+    @ApiProperty({
+        example: ['9896a0c5-0de2-42de-a274-0e3695b1accf'],
+        type: 'list',
+        description: 'excluded equipment ids'
+    })
+    excludeEquipmentIds: string[];
 }

@@ -42,7 +42,7 @@ export class ExerciseExampleController {
     getExerciseExampleById(@Req() req, @Res() res, @Param('id') id: string) {
         const user = req.user;
         return this.exerciseExamplesService
-            .getExerciseExamplesById(id, user)
+            .getExerciseExampleById(id, user)
             .then((data) => res.json(data))
             .catch((err) => res.status(400).send(err.message));
     }

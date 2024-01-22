@@ -21,9 +21,9 @@ export class RegisterRequest {
     excludeMuscleIds: string[];
 
     @ApiProperty({
-        example: ['9896a0c5-0de2-42de-a274-0e3695b1accf'],
+        example: ['4e062209-1ddb-453a-a42b-4f9e0b0292f4'],
         type: 'list',
-        description: 'excluded equipment ids'
+        description: 'equipment ids'
     })
     excludeEquipmentIds: string[];
 }

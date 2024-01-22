@@ -61,7 +61,7 @@ export class ExerciseExamplesEntity {
     })
     exercises: ExercisesEntity[];
 
-    @OneToMany(() => ExerciseExamplesEquipmentsEntity, (exerciseExampleRefs) => exerciseExampleRefs.equipment, {
+    @OneToMany(() => ExerciseExamplesEquipmentsEntity, (exerciseExampleRefs) => exerciseExampleRefs.exerciseExample, {
         cascade: ['remove']
     })
     exerciseExampleRefs: ExerciseExamplesEquipmentsEntity[];
