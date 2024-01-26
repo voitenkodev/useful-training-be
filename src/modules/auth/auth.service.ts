@@ -67,6 +67,7 @@ export class AuthService {
         userEntity.email = body.email;
         userEntity.name = body.name;
         userEntity.height = body.height;
+        userEntity.experience = body.experience;
         userEntity.password = Hash.make(body.password);
 
         const user = await this.usersRepository.save(userEntity);

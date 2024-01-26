@@ -16,7 +16,7 @@ export class UsersService {
     async getAllUsers() {
         return this.usersRepository
             .createQueryBuilder('users')
-            .select(['users.id', 'users.email', 'users.name', 'users.weight', 'users.height', 'users.createdAt', 'users.updatedAt'])
+            .select(['users.id', 'users.email', 'users.name', 'users.experience', 'users.weight', 'users.height', 'users.createdAt', 'users.updatedAt'])
             .addOrderBy('users.createdAt', 'DESC')
             .getMany();
     }
@@ -25,7 +25,7 @@ export class UsersService {
         const user = await this.usersRepository
             .createQueryBuilder('users')
             .where('users.id = :id', {id})
-            .select(['users.id', 'users.email', 'users.name', 'users.height', 'users.createdAt', 'users.updatedAt'])
+            .select(['users.id', 'users.email', 'users.name', 'users.experience', 'users.height', 'users.createdAt', 'users.updatedAt'])
             .getOne();
 
         const weightData = await this.weightHistoryRepository
