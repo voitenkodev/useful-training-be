@@ -1,7 +1,5 @@
 import {ApiProperty} from '@nestjs/swagger';
-import {Column} from "typeorm";
-import {WeightTypeEnum} from "../../../lib/weight-type.enum";
-import {UserExperienceEnum} from "../../../lib/user-experience.enum";
+import {ExperienceEnum} from "../../../lib/experience.enum";
 
 export class RegisterRequest {
 
@@ -21,8 +19,8 @@ export class RegisterRequest {
     height: number;
 
 
-    @ApiProperty({example: UserExperienceEnum.PRO, type: 'enum', description: 'user experience'})
-    experience: UserExperienceEnum;
+    @ApiProperty({example: ExperienceEnum.PRO, type: 'enum', description: 'user experience'})
+    experience: ExperienceEnum;
 
     @ApiProperty({example: ['2e0faf2b-31a5-4c63-ac15-454be132796f'], type: 'list', description: 'excluded muscle ids'})
     excludeMuscleIds: string[];

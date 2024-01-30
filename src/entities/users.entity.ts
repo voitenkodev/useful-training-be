@@ -4,7 +4,7 @@ import {ExerciseExamplesEntity} from "./exercise-examples.entity";
 import {WeightHistoryEntity} from "./weight-history.entity";
 import {ExcludedMusclesEntity} from "./excluded-muscles.entity";
 import {ExcludedEquipmentsEntity} from "./excluded-equipments.entity";
-import {UserExperienceEnum} from "../lib/user-experience.enum";
+import {ExperienceEnum} from "../lib/experience.enum";
 
 @Entity({name: 'users'})
 export class UsersEntity {
@@ -29,8 +29,8 @@ export class UsersEntity {
     @UpdateDateColumn({type: 'timestamp without time zone', name: 'updated_at',})
     updatedAt: Date;
 
-    @Column({type: 'enum', enum: UserExperienceEnum, nullable: true})
-    experience: UserExperienceEnum;
+    @Column({type: 'enum', enum: ExperienceEnum, nullable: true})
+    experience: ExperienceEnum;
 
     @OneToMany(() => TrainingsEntity, (trainings) => trainings.user, {
         cascade: ['remove'],

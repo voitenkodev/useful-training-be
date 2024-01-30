@@ -14,6 +14,8 @@ import {ExercisesEntity} from "./exercises.entity";
 import {ExerciseCategoryEnum} from "../lib/exercise-category.enum";
 import {WeightTypeEnum} from "../lib/weight-type.enum";
 import {ExerciseExamplesEquipmentsEntity} from "./exercise-examples-equipments.entity";
+import {ForceTypeEnum} from "../lib/force-type.enum";
+import {ExperienceEnum} from "../lib/experience.enum";
 
 @Entity({name: 'exercise_examples'})
 export class ExerciseExamplesEntity {
@@ -37,6 +39,12 @@ export class ExerciseExamplesEntity {
 
     @Column({type: 'enum', enum: WeightTypeEnum, nullable: true})
     weightType: WeightTypeEnum;
+
+    @Column({type: 'enum', enum: ForceTypeEnum, nullable: true})
+    forceType: ForceTypeEnum;
+
+    @Column({type: 'enum', enum: ExperienceEnum, nullable: true})
+    experience: ExperienceEnum;
 
     @CreateDateColumn({type: 'timestamp without time zone', name: 'created_at',})
     createdAt: Date;
