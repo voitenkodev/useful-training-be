@@ -18,7 +18,6 @@ export class RegisterRequest {
     @ApiProperty({example: 175, type: 'number', description: '175 = 175cm'})
     height: number;
 
-
     @ApiProperty({example: ExperienceEnum.PRO, type: 'enum', description: 'user experience'})
     experience: ExperienceEnum;
 
