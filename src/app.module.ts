@@ -11,6 +11,7 @@ import {StatisticsModule} from "./modules/statistics/statistics.module";
 import {ExcludedMusclesModule} from "./modules/excluded-muscles/excluded-muscles.module";
 import {EquipmentsModule} from "./modules/equipments/equipments.module";
 import {ExcludedEquipmentsModule} from "./modules/excluded-equipments/excluded-equipments.module";
+import {FiltersModule} from "./modules/filters/filters.module";
 
 @Module({
     imports: [
@@ -23,6 +24,7 @@ import {ExcludedEquipmentsModule} from "./modules/excluded-equipments/excluded-e
         UsersModule,
         TrainingsModule,
         StatisticsModule,
+        FiltersModule,
         WeightHistoryModule,
         ExcludedMusclesModule,
         ExcludedEquipmentsModule,
