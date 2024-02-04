@@ -75,9 +75,9 @@ export class ExerciseExampleService {
 
         const exerciseEquipment = []
 
-        body.excludeEquipmentIds.forEach((el) => {
+        body.equipmentRefs.forEach((el) => {
             const exerciseExamplesEquipmentsEntity = new ExerciseExamplesEquipmentsEntity();
-            exerciseExamplesEquipmentsEntity.equipmentId = el
+            exerciseExamplesEquipmentsEntity.equipmentId = el.equipmentId
             exerciseExamplesEquipmentsEntity.exerciseExampleId = exerciseExample.id
             exerciseEquipment.push(exerciseExamplesEquipmentsEntity);
         });
