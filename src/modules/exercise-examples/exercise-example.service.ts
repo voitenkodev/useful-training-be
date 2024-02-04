@@ -72,7 +72,6 @@ export class ExerciseExampleService {
         exerciseExample.id = !exerciseExample.id ? v4() : exerciseExample.id;
         exerciseExample.userId = user.id;
 
-
         const exerciseEquipment = []
 
         body.equipmentRefs.forEach((el) => {
