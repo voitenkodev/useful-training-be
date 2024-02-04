@@ -1,5 +1,8 @@
 import {ApiProperty} from '@nestjs/swagger';
 import {ExerciseCategoryEnum} from "../../../lib/exercise-category.enum";
+import {WeightTypeEnum} from "../../../lib/weight-type.enum";
+import {ExperienceEnum} from "../../../lib/experience.enum";
+import {ForceTypeEnum} from "../../../lib/force-type.enum";
 
 export class ExerciseExampleBundleRequest {
     id?: string;
@@ -20,11 +23,17 @@ export class ExerciseExampleRequest {
     @ApiProperty({type: 'string', example: 'The bench press is a compound strength-training...'})
     description: string;
 
-    @ApiProperty({type: 'string', example: 'fixed'})
+    @ApiProperty({type: 'string', example: WeightTypeEnum.Fixed})
     weightType: string;
 
-    @ApiProperty({type: 'string', example: 'compound'})
+    @ApiProperty({type: 'string', example: ExerciseCategoryEnum.Compound})
     category: ExerciseCategoryEnum;
+
+    @ApiProperty({type: 'string', example: ExperienceEnum.PRO})
+    experience: ExperienceEnum;
+
+    @ApiProperty({type: 'string', example: ForceTypeEnum.PUSH})
+    forceType: ForceTypeEnum;
 
     @ApiProperty({
         type: 'string',
