@@ -23,7 +23,7 @@ export class StatisticsService {
     ) {
     }
 
-    async getExerciseExampleAchievements(id: string, user, limit: number) {
+    async getExerciseExampleAchievements(id: string, user, size: number) {
         const maxWeight = await this.iterationsRepository
             .createQueryBuilder("iterations")
             .leftJoin('iterations.exercise', 'exercise')
@@ -90,7 +90,7 @@ export class StatisticsService {
                 'exerciseExample.id',
             ])
             .orderBy('exercise.createdAt', "DESC")
-            .take(limit)
+            .take(size)
             .getMany();
 
         const lastVolumesResponse = lastVolumes.map(entry => {

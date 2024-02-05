@@ -15,10 +15,10 @@ export class StatisticsController {
     @UseGuards(JwtAuthGuard)
     @ApiResponse({status: HttpStatus.UNAUTHORIZED, description: 'Unauthorized'})
     @ApiResponse({status: HttpStatus.FORBIDDEN, description: 'Forbidden'})
-    getExerciseExampleAchievements(@Req() req, @Res() res, @Query("id") id: string, @Query("limit") limit: number) {
+    getExerciseExampleAchievements(@Req() req, @Res() res, @Query("id") id: string, @Query("size") size: number) {
         const user = req.user;
         return this.statisticsService
-            .getExerciseExampleAchievements(id, user, limit)
+            .getExerciseExampleAchievements(id, user, size)
             .then((data) => res.json(data))
             .catch((err) => res.status(400).send(err.message));
     }
