@@ -23,7 +23,7 @@ export class ExerciseExampleService {
         @Inject('EQUIPMENTS_REPOSITORY')
         private readonly equipmentsRepository: Repository<EquipmentsEntity>,
         @Inject('EXERCISE_EXAMPLES_EQUIPMENTS_REPOSITORY')
-        private readonly exerciseExamplesEquipmentsRepository: Repository<ExerciseExamplesEquipmentsEntity>,
+        private readonly exerciseExamplesEquipmentsRepository: Repository<ExerciseExamplesEquipmentsEntity>
     ) {
     }
 
