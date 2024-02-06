@@ -27,16 +27,59 @@ export class ExerciseExampleService {
     ) {
     }
 
-    async getAllExerciseExamples(user) {
-        return this.exerciseExamplesRepository
+    async getExerciseExamples(
+        user,
+        page: number,
+        size: number,
+        filters: {
+            query: string, weightType: string, experience: string, forceType: string, category: string,
+            muscleIds: string[], equipmentIds: string[]
+        }
+    ) {
+
+        const {query, weightType, experience, forceType, category, muscleIds, equipmentIds} = filters;
+
+        const queryBuilder = this.exerciseExamplesRepository
             .createQueryBuilder('exercise_examples')
             .where('exercise_examples.userId = :userId', {userId: user.id})
             .leftJoinAndSelect('exercise_examples.exerciseExampleBundles', 'exerciseExampleBundles')
             .leftJoinAndSelect('exerciseExampleBundles.muscle', 'muscle')
             .leftJoinAndSelect('exercise_examples.equipmentRefs', 'equipment_refs')
             .leftJoinAndSelect('equipment_refs.equipment', 'equipments')
-            .addOrderBy('exercise_examples.createdAt', 'DESC')
-            .getMany();
+            .addOrderBy('exercise_examples.createdAt', 'DESC');
+
+        if (query) {
+            queryBuilder.andWhere('exercise_examples.name ILIKE :query', {query: `%${query}%`});
+        }
+
+        if (weightType) {
+            queryBuilder.andWhere('exercise_examples.weightType = :weightType', {weightType});
+        }
+
+        if (experience) {
+            queryBuilder.andWhere('exercise_examples.experience = :experience', {experience});
+        }
+
+        if (forceType) {
+            queryBuilder.andWhere('exercise_examples.forceType = :forceType', {forceType});
+        }
+
+        if (category) {
+            queryBuilder.andWhere('exercise_examples.category = :category', {category});
+        }
+
+        if (muscleIds && muscleIds.length > 0) {
+            queryBuilder.andWhere('muscle.id IN (:...muscleIds)', {muscleIds});
+        }
+
+        if (equipmentIds && equipmentIds.length > 0) {
+            queryBuilder.andWhere('equipments.id IN (:...equipmentIds)', {equipmentIds});
+        }
+
+        return await queryBuilder
+            .skip((page - 1) * size)
+            .take(size)
+            .getMany()
     }
 
     async getRecommendedExerciseExamples(user) {

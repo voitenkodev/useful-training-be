@@ -3,7 +3,6 @@ import {ApiBearerAuth, ApiResponse, ApiTags,} from '@nestjs/swagger';
 import {StatisticsService} from './statistics.service';
 import {JwtAuthGuard} from '../auth/guards/jwt-auth.guard';
 
-// todo 'trainings'
 @Controller()
 @ApiTags('statistics')
 @ApiBearerAuth()
