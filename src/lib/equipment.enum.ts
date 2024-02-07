@@ -6,6 +6,7 @@ export enum EquipmentEnum {
     TRAP_BAR = "trap_bar",
     ROPE = "rope",
     STRAIGHT_BAR = "straight_bar",
+    CORD_HANDLES = "cord_handles",
 
     // Machine
     AB_MACHINES = "ab_machines",
