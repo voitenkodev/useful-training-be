@@ -28,6 +28,9 @@ export class ExerciseExamplesTutorialsEntity {
     title: string;
 
     @Column({default: null})
+    value: string;
+
+    @Column({default: null})
     language: string;
 
     @Column({default: null})
@@ -36,7 +39,7 @@ export class ExerciseExamplesTutorialsEntity {
     @Column({type: 'enum', enum: ResourceTypeEnum, nullable: true})
     resourceType: ResourceTypeEnum
 
-    @ManyToOne(() => ExerciseExamplesEntity, (exercise) => exercise.exerciseExamplesTutorials, {
+    @ManyToOne(() => ExerciseExamplesEntity, (exercise) => exercise.tutorials, {
         onDelete: 'CASCADE',
         orphanedRowAction: 'delete',
     })
