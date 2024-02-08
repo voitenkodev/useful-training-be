@@ -16,6 +16,7 @@ import {WeightTypeEnum} from "../lib/weight-type.enum";
 import {ExerciseExamplesEquipmentsEntity} from "./exercise-examples-equipments.entity";
 import {ForceTypeEnum} from "../lib/force-type.enum";
 import {ExperienceEnum} from "../lib/experience.enum";
+import {ExerciseExamplesTutorialsEntity} from "./exercise-examples-tutorials.entity";
 
 @Entity({name: 'exercise_examples'})
 export class ExerciseExamplesEntity {
@@ -53,9 +54,14 @@ export class ExerciseExamplesEntity {
     updatedAt: Date;
 
     @OneToMany(() => ExerciseExampleBundlesEntity, (exerciseExampleBundle) => exerciseExampleBundle.exerciseExample, {
-        cascade: ['remove'],
+        cascade: ['remove']
     })
     exerciseExampleBundles: ExerciseExampleBundlesEntity[];
+
+    @OneToMany(() => ExerciseExamplesTutorialsEntity, (tutorial) => tutorial.exerciseExample, {
+        cascade: ['remove']
+    })
+    tutorials: ExerciseExamplesTutorialsEntity[];
 
     @ManyToOne(() => UsersEntity, (user) => user.exerciseExamples, {
         onDelete: 'CASCADE',

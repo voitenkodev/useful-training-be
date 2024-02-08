@@ -8,6 +8,7 @@ import {MusclesEntity} from "../../entities/muscles.entity";
 import {ExerciseExampleRequest} from "./dto/exercise-example.request";
 import {EquipmentsEntity} from "../../entities/equipments.entity";
 import {ExerciseExamplesEquipmentsEntity} from "../../entities/exercise-examples-equipments.entity";
+import {ExerciseExamplesTutorialsEntity} from "../../entities/exercise-examples-tutorials.entity";
 
 @Injectable()
 export class ExerciseExampleService {
@@ -23,7 +24,9 @@ export class ExerciseExampleService {
         @Inject('EQUIPMENTS_REPOSITORY')
         private readonly equipmentsRepository: Repository<EquipmentsEntity>,
         @Inject('EXERCISE_EXAMPLES_EQUIPMENTS_REPOSITORY')
-        private readonly exerciseExamplesEquipmentsRepository: Repository<ExerciseExamplesEquipmentsEntity>
+        private readonly exerciseExamplesEquipmentsRepository: Repository<ExerciseExamplesEquipmentsEntity>,
+        @Inject('EXERCISE_EXAMPLES_TUTORIALS_REPOSITORY')
+        private readonly exerciseExamplesTutorialsEntityRepository: Repository<ExerciseExamplesTutorialsEntity>,
     ) {
     }
 
@@ -45,6 +48,7 @@ export class ExerciseExampleService {
             .leftJoinAndSelect('exercise_examples.exerciseExampleBundles', 'exerciseExampleBundles')
             .leftJoinAndSelect('exerciseExampleBundles.muscle', 'muscle')
             .leftJoinAndSelect('exercise_examples.equipmentRefs', 'equipment_refs')
+            .leftJoinAndSelect('exercise_examples.tutorials', 'tutorials')
             .leftJoinAndSelect('equipment_refs.equipment', 'equipments')
             .addOrderBy('exercise_examples.createdAt', 'DESC');
 
@@ -89,6 +93,7 @@ export class ExerciseExampleService {
             .leftJoinAndSelect('exercise_examples.exerciseExampleBundles', 'exerciseExampleBundles')
             .leftJoinAndSelect('exerciseExampleBundles.muscle', 'muscle')
             .leftJoinAndSelect('exercise_examples.equipmentRefs', 'equipment_refs')
+            .leftJoinAndSelect('exercise_examples.tutorials', 'tutorials')
             .leftJoinAndSelect('equipment_refs.equipment', 'equipments')
             .addOrderBy('exercise_examples.createdAt', 'DESC')
             .getMany();
@@ -102,6 +107,7 @@ export class ExerciseExampleService {
             .leftJoinAndSelect('exercise_examples.exerciseExampleBundles', 'exerciseExampleBundles')
             .leftJoinAndSelect('exerciseExampleBundles.muscle', 'muscle')
             .leftJoinAndSelect('exercise_examples.equipmentRefs', 'equipment_refs')
+            .leftJoinAndSelect('exercise_examples.tutorials', 'tutorials')
             .leftJoinAndSelect('equipment_refs.equipment', 'equipments')
             .addOrderBy('exercise_examples.createdAt', 'DESC')
             .getOne();
