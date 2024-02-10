@@ -86,7 +86,13 @@ export class ExerciseExampleService {
             .getMany()
     }
 
-    async getRecommendedExerciseExamples(user) {
+    async getRecommendedExerciseExamples(
+        user,
+        page: number,
+        size: number,
+        training: { exerciseCount: number, exerciseExampleIds: string }
+    ) {
+
         return this.exerciseExamplesRepository
             .createQueryBuilder('exercise_examples')
             .where('exercise_examples.userId = :userId', {userId: user.id})
@@ -96,6 +102,8 @@ export class ExerciseExampleService {
             .leftJoinAndSelect('exercise_examples.tutorials', 'tutorials')
             .leftJoinAndSelect('equipment_refs.equipment', 'equipments')
             .addOrderBy('exercise_examples.createdAt', 'DESC')
+            .skip((page - 1) * size)
+            .take(size)
             .getMany();
     }
 
