@@ -11,6 +11,8 @@ import {ExerciseExamplesEquipmentsEntity} from "../../entities/exercise-examples
 import {ExerciseExamplesTutorialsEntity} from "../../entities/exercise-examples-tutorials.entity";
 import {ExcludedEquipmentsEntity} from "../../entities/excluded-equipments.entity";
 import {ExcludedMusclesEntity} from "../../entities/excluded-muscles.entity";
+import {RecommendedRequest} from "./dto/recommended.request";
+import {FiltersRequest} from "./dto/filters.request";
 
 @Injectable()
 export class ExerciseExampleService {
@@ -36,17 +38,9 @@ export class ExerciseExampleService {
     ) {
     }
 
-    async getExerciseExamples(
-        user,
-        page: number,
-        size: number,
-        filters: {
-            query: string, weightType: string, experience: string, forceType: string, category: string,
-            muscleIds: string[], equipmentIds: string[]
-        }
-    ) {
+    async getExerciseExamples(user, page: number, size: number, body: FiltersRequest) {
 
-        const {query, weightType, experience, forceType, category, muscleIds, equipmentIds} = filters;
+        const {query, weightType, experience, forceType, category, muscleIds, equipmentIds} = body;
 
         const queryBuilder = this.exerciseExamplesRepository
             .createQueryBuilder('exercise_examples')
@@ -92,12 +86,7 @@ export class ExerciseExampleService {
             .getMany()
     }
 
-    async getRecommendedExerciseExamples(
-        user,
-        page: number,
-        size: number,
-        training: { exerciseCount: number, exerciseExampleIds: string, targetMuscleId: string }
-    ) {
+    async getRecommendedExerciseExamples(user, page: number, size: number, body: RecommendedRequest) {
 
         const excludedUserEquipment = await this.excludedEquipmentsRepository
             .createQueryBuilder("excluded_equipment")
@@ -122,15 +111,15 @@ export class ExerciseExampleService {
         // Exclude exercises with excluded muscles
         if (excludedUserMuscles.length > 0) {
             const excludedMuscleIds = excludedUserMuscles.map(muscle => muscle.id);
-            exercisesBuilder.andWhere('muscle.id NOT IN (:...excludedMuscleIds)', { excludedMuscleIds });
+            exercisesBuilder.andWhere('muscle.id NOT IN (:...excludedMuscleIds)', {excludedMuscleIds});
         }
 
         // Exclude exercises with excluded equipments
         if (excludedUserEquipment.length > 0) {
             const excludedEquipmentIds = excludedUserEquipment.map(equipment => equipment.id);
-            exercisesBuilder.andWhere('equipments.id NOT IN (:...excludedEquipmentIds)', { excludedEquipmentIds });
+            exercisesBuilder.andWhere('equipments.id NOT IN (:...excludedEquipmentIds)', {excludedEquipmentIds});
         }
-        
+
         return await exercisesBuilder
             .skip((page - 1) * size)
             .take(size)
