@@ -2,13 +2,13 @@ import {ApiProperty} from '@nestjs/swagger';
 
 export class RecommendedRequest {
 
-    @ApiProperty({type: 'string', example: '3a975ded-af6b-4dd2-9a0e-6e3554e8e6dd'})
+    @ApiProperty({type: 'string', example: null})
     targetMuscleId: string;
 
     @ApiProperty({type: 'int', example: '1', description: 'current exercise count'})
     exerciseCount: number;
 
-    @ApiProperty()
+    @ApiProperty({example: []})
     exerciseExampleIds: string[];
 }
 
