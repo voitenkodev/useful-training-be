@@ -33,7 +33,7 @@ export class ExerciseExampleController {
         @Query('forceType') forceType: string,
         @Query('category') category: string,
         @Query('muscleIds') muscleIds: string,
-        @Query('equipmentIds') equipmentIds: string,
+        @Query('equipmentIds') equipmentIds: string
     ) {
         const user = req.user;
 
@@ -53,6 +53,7 @@ export class ExerciseExampleController {
     @UseGuards(JwtAuthGuard)
     @ApiQuery({name: 'exerciseCount', required: false})
     @ApiQuery({name: 'exerciseExampleIds', required: false})
+    @ApiQuery({name: 'targetMuscleId', required: false})
     @ApiResponse({status: HttpStatus.UNAUTHORIZED, description: 'Unauthorized'})
     @ApiResponse({status: HttpStatus.FORBIDDEN, description: 'Forbidden'})
     getRecommendedExerciseExamples(
@@ -61,6 +62,7 @@ export class ExerciseExampleController {
         @Query('size') size: number,
         @Query('page') page: number,
         @Query('exerciseCount') exerciseCount: number,
+        @Query('targetMuscleId') targetMuscleId: string,
         @Query('exerciseExampleIds') exerciseExampleIds: string
     ) {
         const user = req.user;
@@ -68,7 +70,7 @@ export class ExerciseExampleController {
             .getRecommendedExerciseExamples(
                 user, page, size,
                 {
-                    exerciseCount, exerciseExampleIds
+                    exerciseCount, exerciseExampleIds, targetMuscleId
                 }
             )
             .then((data) => res.json(data))

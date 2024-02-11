@@ -9,6 +9,8 @@ import {ExerciseExampleRequest} from "./dto/exercise-example.request";
 import {EquipmentsEntity} from "../../entities/equipments.entity";
 import {ExerciseExamplesEquipmentsEntity} from "../../entities/exercise-examples-equipments.entity";
 import {ExerciseExamplesTutorialsEntity} from "../../entities/exercise-examples-tutorials.entity";
+import {ExcludedEquipmentsEntity} from "../../entities/excluded-equipments.entity";
+import {ExcludedMusclesEntity} from "../../entities/excluded-muscles.entity";
 
 @Injectable()
 export class ExerciseExampleService {
@@ -27,6 +29,10 @@ export class ExerciseExampleService {
         private readonly exerciseExamplesEquipmentsRepository: Repository<ExerciseExamplesEquipmentsEntity>,
         @Inject('EXERCISE_EXAMPLES_TUTORIALS_REPOSITORY')
         private readonly exerciseExamplesTutorialsEntityRepository: Repository<ExerciseExamplesTutorialsEntity>,
+        @Inject('EXCLUDED_EQUIPMENTS_REPOSITORY')
+        private readonly excludedEquipmentsRepository: Repository<ExcludedEquipmentsEntity>,
+        @Inject('EXCLUDED_MUSCLES_REPOSITORY')
+        private excludedMusclesEntity: Repository<ExcludedMusclesEntity>
     ) {
     }
 
@@ -90,10 +96,20 @@ export class ExerciseExampleService {
         user,
         page: number,
         size: number,
-        training: { exerciseCount: number, exerciseExampleIds: string }
+        training: { exerciseCount: number, exerciseExampleIds: string, targetMuscleId: string }
     ) {
 
-        return this.exerciseExamplesRepository
+        const excludedUserEquipment = await this.excludedEquipmentsRepository
+            .createQueryBuilder("excluded_equipment")
+            .where('excluded_equipment.userId = :userId', {userId: user.id})
+            .getMany()
+
+        const excludedUserMuscles = await this.excludedMusclesEntity
+            .createQueryBuilder("excluded_muscles")
+            .where('excluded_muscles.userId = :userId', {userId: user.id})
+            .getMany()
+
+        const exercisesBuilder = this.exerciseExamplesRepository
             .createQueryBuilder('exercise_examples')
             .where('exercise_examples.userId = :userId', {userId: user.id})
             .leftJoinAndSelect('exercise_examples.exerciseExampleBundles', 'exerciseExampleBundles')
@@ -102,9 +118,23 @@ export class ExerciseExampleService {
             .leftJoinAndSelect('exercise_examples.tutorials', 'tutorials')
             .leftJoinAndSelect('equipment_refs.equipment', 'equipments')
             .addOrderBy('exercise_examples.createdAt', 'DESC')
+
+        // Exclude exercises with excluded muscles
+        if (excludedUserMuscles.length > 0) {
+            const excludedMuscleIds = excludedUserMuscles.map(muscle => muscle.id);
+            exercisesBuilder.andWhere('muscle.id NOT IN (:...excludedMuscleIds)', { excludedMuscleIds });
+        }
+
+        // Exclude exercises with excluded equipments
+        if (excludedUserEquipment.length > 0) {
+            const excludedEquipmentIds = excludedUserEquipment.map(equipment => equipment.id);
+            exercisesBuilder.andWhere('equipments.id NOT IN (:...excludedEquipmentIds)', { excludedEquipmentIds });
+        }
+        
+        return await exercisesBuilder
             .skip((page - 1) * size)
             .take(size)
-            .getMany();
+            .getMany()
     }
 
     async getExerciseExampleById(id: string, user) {
