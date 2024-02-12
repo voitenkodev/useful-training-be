@@ -13,8 +13,7 @@ import {ExcludedEquipmentsEntity} from "../../entities/excluded-equipments.entit
 import {ExcludedMusclesEntity} from "../../entities/excluded-muscles.entity";
 import {RecommendedRequest} from "./dto/recommended.request";
 import {FiltersRequest} from "./dto/filters.request";
-import {ExperienceEnum} from "../../lib/experience.enum";
-import {RecommendedUtils} from "../../lib/recommended.utils";
+import {RecommendedUtils} from "../../lib/recommended-utils";
 
 @Injectable()
 export class ExerciseExampleService {
@@ -90,9 +89,15 @@ export class ExerciseExampleService {
 
     async getRecommendedExerciseExamples(user, page: number, size: number, body: RecommendedRequest) {
 
-        let recommendations: string[];
+        let recommendations: string[] = [];
 
         const {targetMuscleId, exerciseExampleIds, exerciseCount} = body;
+
+        const userExperience = await this.usersRepository
+            .createQueryBuilder('users')
+            .where('users.id = :userId', {userId: user.id})
+            .select(['users.experience'])
+            .getOne();
 
         const exercisesBuilder = this.exerciseExamplesRepository
             .createQueryBuilder('exercise_examples')
@@ -103,16 +108,6 @@ export class ExerciseExampleService {
             .leftJoinAndSelect('exercise_examples.tutorials', 'tutorials')
             .leftJoinAndSelect('equipment_refs.equipment', 'equipments')
 
-        //----------------------------------------
-
-        if (targetMuscleId) {
-            exercisesBuilder
-                .andWhere('muscle.id = :targetMuscleId', {targetMuscleId})
-                .andWhere('exercise_example_bundles.percentage > :percentage', {percentage: 50})
-        }
-
-        // ----------------------------------------
-
         let trainingExerciseExamples = exerciseExampleIds && exerciseExampleIds.length > 0
             ? await this.exerciseExamplesRepository
                 .createQueryBuilder('exercise_examples')
@@ -122,85 +117,50 @@ export class ExerciseExampleService {
                 .leftJoinAndSelect('exercise_example_bundles.muscle', 'muscle')
                 .getMany() : [];
 
-        switch (user.experience) {
-            case ExperienceEnum.BEGINNER: {
-                if (exerciseCount >= 4 && exerciseCount <= 8) {
-                    recommendations.push("Optimal count of exercises for BEGINNER 3 - 6")
-                }
-
-                const count = RecommendedUtils.countOfLastMuscleTargetExercises(trainingExerciseExamples)
-
-                if (count >= 1 && count <= 2) {
-                    recommendations.push("Optimal count of exercises per One priority muscle or BEGINNER 1 - 2")
-                }
-                break;
-            }
-
-            case ExperienceEnum.INTERMEDIATE: {
-                if (exerciseCount >= 4 && exerciseCount <= 8) {
-                    recommendations.push("Optimal count of exercises for INTERMEDIATE 4 - 8")
-                }
-
-                const count = RecommendedUtils.countOfLastMuscleTargetExercises(trainingExerciseExamples)
-
-                if (count >= 2 && count <= 3) {
-                    recommendations.push("Optimal count of exercises per One priority muscle or INTERMEDIATE 2 - 3")
-                }
-                break;
-            }
-
-            case ExperienceEnum.ADVANCED: {
-                if (exerciseCount >= 6 && exerciseCount <= 10) {
-                    recommendations.push("Optimal count of exercises for ADVANCED 6 - 10")
-                }
-
-                const count = RecommendedUtils.countOfLastMuscleTargetExercises(trainingExerciseExamples)
-
-                if (count >= 3 && count <= 4) {
-                    recommendations.push("Optimal count of exercises per One priority muscle or ADVANCED 3 - 4")
-                }
-                break;
-            }
-
-            case ExperienceEnum.PRO: {
-                if (exerciseCount >= 8 && exerciseCount <= 12) {
-                    recommendations.push("Optimal count of exercises for PRO 8 - 12")
-                }
-
-                const count = RecommendedUtils.countOfLastMuscleTargetExercises(trainingExerciseExamples)
-
-                if (count >= 4 && count <= 5) {
-                    recommendations.push("Optimal count of exercises per One priority muscle or PRO 4 - 5")
-                }
-                break;
-            }
-        }
-
-        // ----------------------------------------
-
         const excludedUserMuscles = await this.excludedMusclesEntity
             .createQueryBuilder("excluded_muscles")
             .where('excluded_muscles.userId = :userId', {userId: user.id})
             .getMany()
-
-        if (excludedUserMuscles.length > 0) {
-            const excludedMuscleIds = excludedUserMuscles.map(muscle => muscle.id);
-            exercisesBuilder.andWhere('muscle.id NOT IN (:...excludedMuscleIds)', {excludedMuscleIds});
-        }
-
-        // ----------------------------------------
 
         const excludedUserEquipment = await this.excludedEquipmentsRepository
             .createQueryBuilder("excluded_equipment")
             .where('excluded_equipment.userId = :userId', {userId: user.id})
             .getMany()
 
+        //----------------------------------------
+
+        if (targetMuscleId) {
+            exercisesBuilder
+                .andWhere('muscle.id = :targetMuscleId', {targetMuscleId})
+                .andWhere('exercise_example_bundles.percentage > :percentage', {percentage: 50})
+        }
+
+        const minMaxByTraining = RecommendedUtils.minMaxTrainingExercisesByExp(userExperience.experience)
+
+        if (exerciseCount >= minMaxByTraining[0] && exerciseCount <= minMaxByTraining[1]) {
+            recommendations.push(`Optimal count of exercises per training for BEGINNER ${minMaxByTraining[0]} - ${minMaxByTraining[1]}, now - ${exerciseCount}`)
+        } else if (exerciseCount > minMaxByTraining[1]) {
+            recommendations.push(`Optimal count of exercises per training for BEGINNER ${minMaxByTraining[0]} - ${minMaxByTraining[1]}, now - ${exerciseCount}`)
+        }
+
+        const count = RecommendedUtils.countOfLastMuscleTargetExercises(trainingExerciseExamples)
+        const minMaxByMuscle = RecommendedUtils.minMaxMuscleExercisesByExp(userExperience.experience)
+
+        if (count >= minMaxByMuscle[0] && count <= minMaxByMuscle[1]) {
+            recommendations.push(`Optimal count of exercises per One priority muscle or BEGINNER ${minMaxByMuscle[0]} - ${minMaxByMuscle[1]}, now - ${count}`)
+        } else if (count > minMaxByMuscle[1]) {
+            recommendations.push(`Optimal count of exercises per One priority muscle or BEGINNER ${minMaxByMuscle[0]} - ${minMaxByMuscle[1]}, now - ${count}`)
+        }
+
+        if (excludedUserMuscles.length > 0) {
+            const excludedMuscleIds = excludedUserMuscles.map(muscle => muscle.id);
+            exercisesBuilder.andWhere('muscle.id NOT IN (:...excludedMuscleIds)', {excludedMuscleIds});
+        }
+
         if (excludedUserEquipment.length > 0) {
             const excludedEquipmentIds = excludedUserEquipment.map(equipment => equipment.id);
             exercisesBuilder.andWhere('equipments.id NOT IN (:...excludedEquipmentIds)', {excludedEquipmentIds});
         }
-
-        // ----------------------------------------
 
         const exercises = await exercisesBuilder
             .addOrderBy('exercise_examples.createdAt', 'DESC')
@@ -209,8 +169,8 @@ export class ExerciseExampleService {
             .getMany()
 
         return {
+            recommendations,
             exercises,
-            recommendations
         }
     }
 
@@ -263,6 +223,4 @@ export class ExerciseExampleService {
 
         return this.getExerciseExampleById(exerciseExample.id, user);
     }
-
-
 }

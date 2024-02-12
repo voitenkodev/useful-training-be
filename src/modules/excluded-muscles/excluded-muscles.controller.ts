@@ -3,8 +3,8 @@ import {ApiBearerAuth, ApiOperation, ApiResponse, ApiTags,} from '@nestjs/swagge
 import {ExcludedMusclesService} from './excluded-muscles.service';
 import {JwtAuthGuard} from '../auth/guards/jwt-auth.guard';
 
-@Controller('excluded-recommended.utils.ts')
-@ApiTags('excluded-recommended.utils.ts')
+@Controller('excluded-recommended-utils.ts')
+@ApiTags('excluded-recommended-utils.ts')
 @ApiBearerAuth()
 export class ExcludedMusclesController {
     constructor(private readonly excludedMusclesService: ExcludedMusclesService) {

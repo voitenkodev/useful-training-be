@@ -33,7 +33,7 @@ export class ExcludedMusclesService {
 
         const muscle = await this.musclesRepository
             .createQueryBuilder("muscles")
-            .where('recommended.utils.ts.id = :id', {id: id})
+            .where('recommended-utils.ts.id = :id', {id: id})
             .getOne();
 
         if (muscle == null) {
