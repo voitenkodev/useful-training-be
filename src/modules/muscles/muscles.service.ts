@@ -21,7 +21,7 @@ export class MusclesService {
     async getUserMuscles(user) {
         const muscleGroups = await this.muscleGroupsRepository
             .createQueryBuilder('muscle_groups')
-            .leftJoinAndSelect('muscle_groups.muscles', 'muscles')
+            .leftJoinAndSelect('muscle_groups.recommended.utils.ts', 'muscles')
             .getMany();
 
         const excluded = await this.excludedMusclesEntity
@@ -49,7 +49,7 @@ export class MusclesService {
     async getMuscleById(user, id: string) {
         const muscle: MusclesEntity = await this.musclesRepository
             .createQueryBuilder('muscles')
-            .where('muscles.id = :id', {id})
+            .where('recommended.utils.ts.id = :id', {id})
             .getOne();
 
         const excluded = await this.excludedMusclesEntity
@@ -64,7 +64,7 @@ export class MusclesService {
     async getPublicMuscles() {
         const muscleGroups = await this.muscleGroupsRepository
             .createQueryBuilder('muscle_groups')
-            .leftJoinAndSelect('muscle_groups.muscles', 'muscles')
+            .leftJoinAndSelect('muscle_groups.recommended.utils.ts', 'muscles')
             .getMany();
 
         return muscleGroups.map((item) => {
