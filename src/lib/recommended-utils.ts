@@ -10,23 +10,44 @@ export class RecommendedUtils {
             return 0
         }
 
-        const target = exerciseExamples.map((item) =>
+        const lastTarget = exerciseExamples.map((item) =>
             item.exerciseExampleBundles.reduce((maxBundle, bundle) =>
                 bundle.percentage > maxBundle.percentage ? bundle : maxBundle, item.exerciseExampleBundles[0])
-        );
+        ).pop();
 
-        if (!target || target.length == 0) {
+        if (!lastTarget) {
             return 0
         }
 
-        const idCounts = target.reduceRight((counts, muscle) => {
-            counts[muscle.id] = (counts[muscle.id] || 0) + 1;
-            return counts;
-        }, {});
-
-        return Object.values(idCounts).length;
+        return exerciseExamples.filter((item) => {
+            item.exerciseExampleBundles.includes(lastTarget)
+        }).length
     }
 
+    // Get Massive of categories from last muscle target
+    static categoryByLastMuscleTarget(exerciseExamples: ExerciseExamplesEntity[]) {
+        if (!exerciseExamples || exerciseExamples.length == 0) {
+            return []
+        }
+
+        const lastTarget = exerciseExamples.map((item) =>
+            item.exerciseExampleBundles.reduce((maxBundle, bundle) =>
+                bundle.percentage > maxBundle.percentage ? bundle : maxBundle, item.exerciseExampleBundles[0])
+        ).pop();
+
+        if (!lastTarget) {
+            return []
+        }
+
+        return exerciseExamples
+            .filter((item) => {
+                item.exerciseExampleBundles.includes(lastTarget)
+            }).map((item) => {
+                return item.category
+            })
+    }
+
+    // Get minimal a maximal count of exercises per training for different experience
     static minMaxTrainingExercisesByExp(experience: ExperienceEnum) {
         switch (experience) {
             case ExperienceEnum.BEGINNER: {
@@ -44,6 +65,7 @@ export class RecommendedUtils {
         }
     }
 
+    // Get minimal a maximal count of exercises per one muscle for different experience
     static minMaxMuscleExercisesByExp(experience: ExperienceEnum) {
         switch (experience) {
             case ExperienceEnum.BEGINNER: {
@@ -58,6 +80,40 @@ export class RecommendedUtils {
             case ExperienceEnum.PRO: {
                 return [4, 5]
             }
+        }
+    }
+
+    // Get Compound and Isolation count of exercises per one muscle for different experience
+    static categoryMapByExp(experience: ExperienceEnum) {
+        switch (experience) {
+            case ExperienceEnum.BEGINNER: {
+                return [1, 1]
+            }
+            case ExperienceEnum.INTERMEDIATE: {
+                return [2, 1]
+            }
+            case ExperienceEnum.ADVANCED: {
+                return [2, 2]
+            }
+            case ExperienceEnum.PRO: {
+                return [2, 3]
+            }
+        }
+    }
+
+    static getFilterExp(userExperience: ExperienceEnum): ExperienceEnum[] {
+        switch (userExperience) {
+            case ExperienceEnum.BEGINNER:
+                return [ExperienceEnum.BEGINNER];
+            case ExperienceEnum.INTERMEDIATE:
+                return [ExperienceEnum.BEGINNER, ExperienceEnum.INTERMEDIATE];
+            case ExperienceEnum.ADVANCED:
+                return [ExperienceEnum.BEGINNER, ExperienceEnum.INTERMEDIATE, ExperienceEnum.ADVANCED];
+            case ExperienceEnum.PRO:
+                // Assuming PRO includes all levels
+                return Object.values(ExperienceEnum);
+            default:
+                return [];
         }
     }
 }

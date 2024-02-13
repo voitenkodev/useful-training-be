@@ -14,6 +14,7 @@ import {ExcludedMusclesEntity} from "../../entities/excluded-muscles.entity";
 import {RecommendedRequest} from "./dto/recommended.request";
 import {FiltersRequest} from "./dto/filters.request";
 import {RecommendedUtils} from "../../lib/recommended-utils";
+import {ExerciseCategoryEnum} from "../../lib/exercise-category.enum";
 
 @Injectable()
 export class ExerciseExampleService {
@@ -117,6 +118,17 @@ export class ExerciseExampleService {
                 .leftJoinAndSelect('exercise_example_bundles.muscle', 'muscle')
                 .getMany() : [];
 
+        //----------------------------------------
+
+        const availableExpFilter = RecommendedUtils.getFilterExp(userExperience.experience)
+
+        if (availableExpFilter.length > 0) {
+            exercisesBuilder
+                .andWhere('exercise_examples.experience IN (:...availableExpFilter)', {availableExpFilter})
+        }
+
+        //----------------------------------------
+
         const excludedUserMuscles = await this.excludedMusclesEntity
             .createQueryBuilder("excluded_muscles")
             .where('excluded_muscles.userId = :userId', {userId: user.id})
@@ -126,31 +138,6 @@ export class ExerciseExampleService {
             .createQueryBuilder("excluded_equipment")
             .where('excluded_equipment.userId = :userId', {userId: user.id})
             .getMany()
-
-        //----------------------------------------
-
-        if (targetMuscleId) {
-            exercisesBuilder
-                .andWhere('muscle.id = :targetMuscleId', {targetMuscleId})
-                .andWhere('exercise_example_bundles.percentage > :percentage', {percentage: 50})
-        }
-
-        const minMaxByTraining = RecommendedUtils.minMaxTrainingExercisesByExp(userExperience.experience)
-
-        if (exerciseCount >= minMaxByTraining[0] && exerciseCount <= minMaxByTraining[1]) {
-            recommendations.push(`Optimal count of exercises per training for BEGINNER ${minMaxByTraining[0]} - ${minMaxByTraining[1]}, now - ${exerciseCount}`)
-        } else if (exerciseCount > minMaxByTraining[1]) {
-            recommendations.push(`Optimal count of exercises per training for BEGINNER ${minMaxByTraining[0]} - ${minMaxByTraining[1]}, now - ${exerciseCount}`)
-        }
-
-        const count = RecommendedUtils.countOfLastMuscleTargetExercises(trainingExerciseExamples)
-        const minMaxByMuscle = RecommendedUtils.minMaxMuscleExercisesByExp(userExperience.experience)
-
-        if (count >= minMaxByMuscle[0] && count <= minMaxByMuscle[1]) {
-            recommendations.push(`Optimal count of exercises per One priority muscle or BEGINNER ${minMaxByMuscle[0]} - ${minMaxByMuscle[1]}, now - ${count}`)
-        } else if (count > minMaxByMuscle[1]) {
-            recommendations.push(`Optimal count of exercises per One priority muscle or BEGINNER ${minMaxByMuscle[0]} - ${minMaxByMuscle[1]}, now - ${count}`)
-        }
 
         if (excludedUserMuscles.length > 0) {
             const excludedMuscleIds = excludedUserMuscles.map(muscle => muscle.id);
@@ -162,8 +149,55 @@ export class ExerciseExampleService {
             exercisesBuilder.andWhere('equipments.id NOT IN (:...excludedEquipmentIds)', {excludedEquipmentIds});
         }
 
+        //----------------------------------------
+
+        if (targetMuscleId) {
+            exercisesBuilder
+                .andWhere('muscle.id = :targetMuscleId', {targetMuscleId})
+                .andWhere('exercise_example_bundles.percentage > :percentage', {percentage: 50})
+        }
+
+        //----------------------------------------
+
+        const minMaxByTraining = RecommendedUtils.minMaxTrainingExercisesByExp(userExperience.experience)
+
+        if (exerciseCount >= minMaxByTraining[0] && exerciseCount <= minMaxByTraining[1]) {
+            recommendations.push(`Optimal count of exercises per training ${minMaxByTraining[0]} - ${minMaxByTraining[1]}, now - ${exerciseCount}`)
+        } else if (exerciseCount > minMaxByTraining[1]) {
+            recommendations.push(`Optimal count of exercises per training ${minMaxByTraining[0]} - ${minMaxByTraining[1]}, now - ${exerciseCount}`)
+        }
+
+        //----------------------------------------
+
+        const count = RecommendedUtils.countOfLastMuscleTargetExercises(trainingExerciseExamples)
+        const minMaxByMuscle = RecommendedUtils.minMaxMuscleExercisesByExp(userExperience.experience)
+
+        if (count >= minMaxByMuscle[0] && count <= minMaxByMuscle[1]) {
+            recommendations.push(`Optimal count of exercises per muscle ${minMaxByMuscle[0]} - ${minMaxByMuscle[1]}, now - ${count}`)
+        } else if (count > minMaxByMuscle[1]) {
+            recommendations.push(`Optimal count of exercises per muscle ${minMaxByMuscle[0]} - ${minMaxByMuscle[1]}, now - ${count}`)
+        }
+
+        //----------------------------------------
+
+        const lastTargetCategories = RecommendedUtils.categoryByLastMuscleTarget(trainingExerciseExamples)
+        const compoundAndIsolationMap = RecommendedUtils.categoryMapByExp(userExperience.experience)
+        const compound = lastTargetCategories.filter((item) => item == ExerciseCategoryEnum.Compound).length
+        const isolation = lastTargetCategories.filter((item) => item == ExerciseCategoryEnum.Isolation).length
+
+        if (compound < compoundAndIsolationMap[0]) {
+            exercisesBuilder.addOrderBy(`exercise_examples.category`, "ASC")
+            recommendations.push(`Recommendation: Compound Exercise`)
+        }
+
+        if (compound >= compoundAndIsolationMap[0] && isolation > compoundAndIsolationMap[1]) {
+            exercisesBuilder.addOrderBy(`exercise_examples.category`, "DESC")
+            recommendations.push(`Recommendation: Isolated Exercise`)
+        }
+
+        //----------------------------------------
+
         const exercises = await exercisesBuilder
-            .addOrderBy('exercise_examples.createdAt', 'DESC')
             .skip((page - 1) * size)
             .take(size)
             .getMany()
