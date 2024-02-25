@@ -9,7 +9,7 @@ export class MusclesController {
     constructor(private readonly musclesService: MusclesService) {
     }
 
-    @Get("user-recommended-utils.ts")
+    @Get("user-muscles")
     @UseGuards(JwtAuthGuard)
     @ApiBearerAuth()
     @ApiResponse({status: HttpStatus.UNAUTHORIZED, description: 'Unauthorized'})
@@ -22,7 +22,7 @@ export class MusclesController {
             .catch((err) => res.status(400).send(err.message));
     }
 
-    @Get('user-recommended-utils.ts/:id')
+    @Get('user-muscles/:id')
     @ApiBearerAuth()
     @UseGuards(JwtAuthGuard)
     @ApiResponse({status: HttpStatus.UNAUTHORIZED, description: 'Unauthorized'})
@@ -35,7 +35,7 @@ export class MusclesController {
             .catch((err) => res.status(400).send(err.message));
     }
 
-    @Get("public-recommended-utils.ts")
+    @Get("public-muscles")
     @ApiResponse({status: HttpStatus.FORBIDDEN, description: 'Forbidden'})
     getMuscles(@Req() req, @Res() res) {
         return this.musclesService
