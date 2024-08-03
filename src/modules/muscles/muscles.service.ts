@@ -5,6 +5,7 @@ import {MuscleGroupsEntity} from "../../entities/muscle-groups.entity";
 import {MuscleGroupsResponse, MuscleResponse} from "./dto/muscle-response";
 import {MuscleStatusEnum} from "../../lib/muscle-status.enum";
 import {ExcludedMusclesEntity} from "../../entities/excluded-muscles.entity";
+import {MuscleLoadEnum} from "../../lib/muscle-load.enum";
 
 @Injectable()
 export class MusclesService {
@@ -92,14 +93,17 @@ export class MusclesService {
 
     private processingMuscle(user, muscle, excluded) {
         let status: MuscleStatusEnum = null
+        let load: MuscleLoadEnum = null
 
         if (user) {
             if (excluded.some((excludedItem) => excludedItem.muscleId === muscle.id)) {
                 status = MuscleStatusEnum.EXCLUDED
             } else {
-                const list = [MuscleStatusEnum.LOW, MuscleStatusEnum.MEDIUM, MuscleStatusEnum.HIGH]
-                status = list[Math.floor(Math.random() * list.length)];
+                status = MuscleStatusEnum.INCLUDED
             }
+
+            const list = [MuscleLoadEnum.LOW, MuscleLoadEnum.MEDIUM, MuscleLoadEnum.HIGH]
+            load = list[Math.floor(Math.random() * list.length)];
         }
 
         const muscleResponse = new MuscleResponse()
@@ -107,6 +111,7 @@ export class MusclesService {
         muscleResponse.name = muscle.name
         muscleResponse.type = muscle.type
         muscleResponse.muscleGroupId = muscle.muscleGroupId
+        muscleResponse.load = load
         muscleResponse.status = status
         muscleResponse.createdAt = muscle.createdAt
         muscleResponse.updatedAt = muscle.updatedAt

@@ -2,6 +2,7 @@ import {ApiProperty} from '@nestjs/swagger';
 import {MuscleEnum} from "../../../lib/muscle.enum";
 import {MuscleStatusEnum} from "../../../lib/muscle-status.enum";
 import {MuscleGroupEnum} from "../../../lib/muscle-group.enum";
+import {MuscleLoadEnum} from "../../../lib/muscle-load.enum";
 
 export class MuscleResponse {
     id?: string;
@@ -15,8 +16,11 @@ export class MuscleResponse {
     @ApiProperty({type: 'enum', enum: MuscleEnum, example: MuscleEnum.BICEPS})
     type: MuscleEnum;
 
-    @ApiProperty({type: 'enum', enum: MuscleStatusEnum, example: MuscleStatusEnum.LOW})
+    @ApiProperty({type: 'enum', enum: MuscleStatusEnum, example: MuscleStatusEnum.INCLUDED})
     status: MuscleStatusEnum;
+
+    @ApiProperty({type: 'enum', enum: MuscleLoadEnum, example: MuscleLoadEnum.LOW})
+    load: MuscleLoadEnum;
 
     @ApiProperty({type: Date, example: Date.now()})
     updatedAt: Date;
