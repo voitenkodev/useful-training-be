@@ -25,4 +25,23 @@ export class WeightHistoryService {
 
         return await this.weightHistoryRepository.save(weightHistoryEntity)
     }
+
+    async removeWeight(user, id: string) {
+        const count = await this.weightHistoryRepository
+            .createQueryBuilder('weight_history')
+            .where('weight_history.userId = :userId', {userId: user.id})
+            .getCount();
+
+        if (count <= 1) {
+            throw new Error('Cannot delete the last weight history entry');
+        }
+
+        return await this.weightHistoryRepository
+            .createQueryBuilder()
+            .delete()
+            .from(WeightHistoryEntity)
+            .where('id = :id', {id})
+            .andWhere('userId = :userId', {userId: user.id})
+            .execute();
+    }
 }

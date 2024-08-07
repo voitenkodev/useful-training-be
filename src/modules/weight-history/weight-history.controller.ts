@@ -1,4 +1,4 @@
-import {Body, Controller, Get, HttpStatus, Post, Req, Res, UseGuards,} from '@nestjs/common';
+import {Body, Controller, Delete, Get, HttpStatus, Param, Post, Req, Res, UseGuards,} from '@nestjs/common';
 import {ApiBearerAuth, ApiOperation, ApiResponse, ApiTags,} from '@nestjs/swagger';
 import {WeightHistoryService} from './weight-history.service';
 import {JwtAuthGuard} from '../auth/guards/jwt-auth.guard';
@@ -34,6 +34,25 @@ export class WeightHistoryController {
         return this.weightHistoryService
             .setWeightHistory(user, body.weight)
             .then((data) => res.json(data))
+            .catch((err) => res.status(400).send(err.message));
+    }
+
+    @Delete(':id')
+    @UseGuards(JwtAuthGuard)
+    @ApiOperation({summary: 'Remove user weight history entry'})
+    @ApiResponse({status: HttpStatus.UNAUTHORIZED, description: 'Unauthorized'})
+    @ApiResponse({status: HttpStatus.FORBIDDEN, description: 'Forbidden'})
+    async removeWeightHistory(@Req() req, @Res() res, @Param('id') id: string) {
+        const user = req.user;
+
+        return this.weightHistoryService
+            .removeWeight(user, id)
+            .then((result) => {
+                if (result.affected === 0) {
+                    return res.status(404).send('Weight history entry not found');
+                }
+                return res.json({message: 'Weight history entry removed successfully'});
+            })
             .catch((err) => res.status(400).send(err.message));
     }
 }
