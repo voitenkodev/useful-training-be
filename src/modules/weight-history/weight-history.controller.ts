@@ -47,12 +47,7 @@ export class WeightHistoryController {
 
         return this.weightHistoryService
             .removeWeight(user, id)
-            .then((result) => {
-                if (result.affected === 0) {
-                    return res.status(404).send('Weight history entry not found');
-                }
-                return res.json({message: 'Weight history entry removed successfully'});
-            })
+            .then((data) => res.json(data))
             .catch((err) => res.status(400).send(err.message));
     }
 }
