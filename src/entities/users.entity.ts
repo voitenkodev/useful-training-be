@@ -37,11 +37,6 @@ export class UsersEntity {
     })
     trainings: TrainingsEntity[];
 
-    @OneToMany(() => ExerciseExamplesEntity, (exerciseExamples) => exerciseExamples.user, {
-        cascade: ['remove'],
-    })
-    exerciseExamples: ExerciseExamplesEntity[];
-
     @OneToMany(() => WeightHistoryEntity, (weights) => weights.user, {
         cascade: ['remove'],
     })

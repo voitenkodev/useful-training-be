@@ -40,13 +40,12 @@ export class ExerciseExampleService {
     ) {
     }
 
-    async getExerciseExamples(user, page: number, size: number, body: FiltersRequest) {
+    async getExerciseExamples(page: number, size: number, body: FiltersRequest) {
 
         const {query, weightType, experience, forceType, category, muscleIds, equipmentIds} = body;
 
         const queryBuilder = this.exerciseExamplesRepository
             .createQueryBuilder('exercise_examples')
-            .where('exercise_examples.userId = :userId', {userId: user.id})
             .leftJoinAndSelect('exercise_examples.exerciseExampleBundles', 'exerciseExampleBundles')
             .leftJoinAndSelect('exerciseExampleBundles.muscle', 'muscle')
             .leftJoinAndSelect('exercise_examples.equipmentRefs', 'equipment_refs')
@@ -102,7 +101,6 @@ export class ExerciseExampleService {
 
         const exercisesBuilder = this.exerciseExamplesRepository
             .createQueryBuilder('exercise_examples')
-            .where('exercise_examples.userId = :userId', {userId: user.id})
             .leftJoinAndSelect('exercise_examples.exerciseExampleBundles', 'exercise_example_bundles')
             .leftJoinAndSelect('exercise_example_bundles.muscle', 'muscle')
             .leftJoinAndSelect('exercise_examples.equipmentRefs', 'equipment_refs')
@@ -112,7 +110,6 @@ export class ExerciseExampleService {
         let trainingExerciseExamples = exerciseExampleIds && exerciseExampleIds.length > 0
             ? await this.exerciseExamplesRepository
                 .createQueryBuilder('exercise_examples')
-                .where('exercise_examples.userId = :userId', {userId: user.id})
                 .andWhere('exercise_examples.id IN (:...exerciseExampleIds)', {exerciseExampleIds})
                 .leftJoinAndSelect('exercise_examples.exerciseExampleBundles', 'exercise_example_bundles')
                 .leftJoinAndSelect('exercise_example_bundles.muscle', 'muscle')
@@ -120,7 +117,8 @@ export class ExerciseExampleService {
 
         //----------------------------------------
 
-        const availableExpFilter = RecommendedUtils.getFilterExp(userExperience.experience)
+        const availableExpFilter = RecommendedUtils
+            .getFilterExp(userExperience.experience)
 
         if (availableExpFilter.length > 0) {
             exercisesBuilder
@@ -208,11 +206,10 @@ export class ExerciseExampleService {
         }
     }
 
-    async getExerciseExampleById(id: string, user) {
+    async getExerciseExampleById(id: string) {
         return await this.exerciseExamplesRepository
             .createQueryBuilder('exercise_examples')
             .where('exercise_examples.id = :id', {id})
-            .andWhere('exercise_examples.userId = :userId', {userId: user.id})
             .leftJoinAndSelect('exercise_examples.exerciseExampleBundles', 'exercise_example_bundles')
             .leftJoinAndSelect('exercise_example_bundles.muscle', 'muscle')
             .leftJoinAndSelect('exercise_examples.equipmentRefs', 'equipment_refs')
@@ -222,13 +219,12 @@ export class ExerciseExampleService {
             .getOne();
     }
 
-    async setOrUpdateExerciseExample(body: ExerciseExampleRequest, user) {
+    async setOrUpdateExerciseExample(body: ExerciseExampleRequest) {
         const {exerciseExampleBundles, ...rest} = body;
 
         const exerciseExample = new ExerciseExamplesEntity();
         Object.assign(exerciseExample, rest);
         exerciseExample.id = !exerciseExample.id ? v4() : exerciseExample.id;
-        exerciseExample.userId = user.id;
 
         const exerciseEquipment = []
 
@@ -255,6 +251,6 @@ export class ExerciseExampleService {
         await this.exerciseExampleBundlesRepository.save(exerciseExampleBundlesEntities);
         await this.exerciseExamplesEquipmentsRepository.save(exerciseEquipment)
 
-        return this.getExerciseExampleById(exerciseExample.id, user);
+        return this.getExerciseExampleById(exerciseExample.id);
     }
 }

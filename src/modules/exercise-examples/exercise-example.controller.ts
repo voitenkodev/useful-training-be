@@ -22,9 +22,8 @@ export class ExerciseExampleController {
         @Query('size') size: number, @Query('page') page: number,
         @Body() body: FiltersRequest
     ) {
-        const user = req.user;
         return this.exerciseExamplesService
-            .getExerciseExamples(user, page, size, body)
+            .getExerciseExamples(page, size, body)
             .then((data) => res.json(data))
             .catch((err) => res.status(400).send(err.message));
     }
@@ -46,13 +45,10 @@ export class ExerciseExampleController {
     }
 
     @Get(':id')
-    @UseGuards(JwtAuthGuard)
-    @ApiResponse({status: HttpStatus.UNAUTHORIZED, description: 'Unauthorized'})
     @ApiResponse({status: HttpStatus.FORBIDDEN, description: 'Forbidden'})
     getExerciseExampleById(@Req() req, @Res() res, @Param('id') id: string) {
-        const user = req.user;
         return this.exerciseExamplesService
-            .getExerciseExampleById(id, user)
+            .getExerciseExampleById(id)
             .then((data) => res.json(data))
             .catch((err) => res.status(400).send(err.message));
     }
@@ -62,9 +58,14 @@ export class ExerciseExampleController {
     @ApiResponse({status: HttpStatus.UNAUTHORIZED, description: 'Unauthorized'})
     @ApiResponse({status: HttpStatus.FORBIDDEN, description: 'Forbidden'})
     setExerciseExample(@Req() req, @Res() res, @Body() body: ExerciseExampleRequest) {
-        const user = req.user;
+        const userEmail = req.user.email;
+
+        if (userEmail !== 'alienworkout@admin.panel') {
+            return res.status(HttpStatus.FORBIDDEN).json({message: 'Forbidden'});
+        }
+
         return this.exerciseExamplesService
-            .setOrUpdateExerciseExample(body, user)
+            .setOrUpdateExerciseExample(body)
             .then((data) => res.json(data))
             .catch((err) => res.status(400).send(err.message));
     }

@@ -32,9 +32,6 @@ export class ExerciseExamplesEntity {
     @Column({default: null})
     imageUrl: string;
 
-    @Column({default: null})
-    userId: string;
-
     @Column({type: 'enum', enum: ExerciseCategoryEnum, nullable: true})
     category: ExerciseCategoryEnum;
 
@@ -62,13 +59,6 @@ export class ExerciseExamplesEntity {
         cascade: ['remove']
     })
     tutorials: ExerciseExamplesTutorialsEntity[];
-
-    @ManyToOne(() => UsersEntity, (user) => user.exerciseExamples, {
-        onDelete: 'CASCADE',
-        orphanedRowAction: 'delete'
-    })
-    @JoinColumn({name: 'user_id'})
-    user: UsersEntity;
 
     @OneToMany(() => ExercisesEntity, (exercises) => exercises.exerciseExample, {
         cascade: ['remove']
