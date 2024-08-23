@@ -227,6 +227,7 @@ export class ExerciseExampleService {
         exerciseExample.id = !exerciseExample.id ? v4() : exerciseExample.id;
 
         const exerciseEquipment = []
+        const tutorials = []
 
         body.equipmentRefs.forEach((el) => {
             const exerciseExamplesEquipmentsEntity = new ExerciseExamplesEquipmentsEntity();
@@ -246,10 +247,22 @@ export class ExerciseExampleService {
             exerciseExampleBundlesEntities.push(exerciseExampleBundles);
         });
 
+        body.tutorials.forEach((el) => {
+            const tutorial = new ExerciseExamplesTutorialsEntity();
+            tutorial.value = el.value
+            tutorial.title = el.title
+            tutorial.language = el.language
+            tutorial.resource = el.resource
+            tutorial.resourceType = el.resourceType
+            tutorial.exerciseExampleId = exerciseExample.id
+            tutorials.push(tutorial);
+        });
+
         await this.exerciseExampleBundlesRepository.delete({exerciseExampleId: exerciseExample.id});
         await this.exerciseExamplesRepository.save(exerciseExample);
         await this.exerciseExampleBundlesRepository.save(exerciseExampleBundlesEntities);
         await this.exerciseExamplesEquipmentsRepository.save(exerciseEquipment)
+        await this.exerciseExamplesTutorialsEntityRepository.save(tutorials);
 
         return this.getExerciseExampleById(exerciseExample.id);
     }

@@ -3,6 +3,7 @@ import {ExerciseCategoryEnum} from "../../../lib/exercise-category.enum";
 import {WeightTypeEnum} from "../../../lib/weight-type.enum";
 import {ExperienceEnum} from "../../../lib/experience.enum";
 import {ForceTypeEnum} from "../../../lib/force-type.enum";
+import {ResourceTypeEnum} from "../../../lib/resource-type.enum";
 
 export class ExerciseExampleBundleRequest {
     id?: string;
@@ -17,6 +18,26 @@ export class ExerciseExampleBundleRequest {
 export class ExerciseExampleEquipmentRefsRequest {
     @ApiProperty({type: 'string', example: '9896a0c5-0de2-42de-a274-0e3695b1accf'})
     equipmentId: string;
+}
+
+export class ExerciseExampleTutorialRequest {
+    @ApiProperty({type: 'string', example: 'tutorialId1'})
+    id: string;
+
+    @ApiProperty({type: 'string', example: 'Introduction to Bench Press'})
+    title: string;
+
+    @ApiProperty({type: 'string', example: 'Detailed explanation of the bench press exercise.'})
+    value: string;
+
+    @ApiProperty({type: 'string', example: 'en'})
+    language: string;
+
+    @ApiProperty({type: 'string', example: 'https://example.com/tutorial-video'})
+    resource: string;
+
+    @ApiProperty({type: ResourceTypeEnum, example: ResourceTypeEnum.YOUTUBE_VIDEO})
+    resourceType: ResourceTypeEnum;
 }
 
 export class ExerciseExampleRequest {
@@ -51,5 +72,7 @@ export class ExerciseExampleRequest {
 
     @ApiProperty({type: [ExerciseExampleEquipmentRefsRequest]})
     equipmentRefs: ExerciseExampleEquipmentRefsRequest[];
-}
 
+    @ApiProperty({type: [ExerciseExampleTutorialRequest]})
+    tutorials: ExerciseExampleTutorialRequest[];
+}
