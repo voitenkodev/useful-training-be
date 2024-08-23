@@ -31,7 +31,6 @@ export class StatisticsService {
             .leftJoin('exercise.training', 'training')
             .where('training.userId = :userId', {userId: user.id})
             .andWhere('exercise.exerciseExampleId = :id', {id})
-            .andWhere('exerciseExample.userId = :userId', {userId: user.id})
             .select([
                 'iterations.id',
                 'iterations.createdAt',
@@ -49,7 +48,6 @@ export class StatisticsService {
             .leftJoin('exercise.training', 'training')
             .where('training.userId = :userId', {userId: user.id})
             .andWhere('exercise.exerciseExampleId = :id', {id})
-            .andWhere('exerciseExample.userId = :userId', {userId: user.id})
             .select([
                 'iterations.id',
                 'iterations.createdAt',
@@ -66,7 +64,6 @@ export class StatisticsService {
             .leftJoin('exercise.training', 'training')
             .where('training.userId = :userId', {userId: user.id})
             .andWhere('exercise.exerciseExampleId = :id', {id})
-            .andWhere('exerciseExample.userId = :userId', {userId: user.id})
             .select([
                 'exercise.id',
                 'exercise.volume',
@@ -82,7 +79,6 @@ export class StatisticsService {
             .leftJoin('exercise.training', 'training')
             .where('training.userId = :userId', {userId: user.id})
             .andWhere('exercise.exerciseExampleId = :id', {id})
-            .andWhere('exerciseExample.userId = :userId', {userId: user.id})
             .select([
                 'exercise.id',
                 'exercise.volume',
