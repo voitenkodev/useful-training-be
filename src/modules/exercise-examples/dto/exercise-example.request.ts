@@ -36,7 +36,7 @@ export class ExerciseExampleTutorialRequest {
     @ApiProperty({type: 'string', example: 'https://example.com/tutorial-video'})
     resource: string;
 
-    @ApiProperty({type: ResourceTypeEnum, example: ResourceTypeEnum.YOUTUBE_VIDEO})
+    @ApiProperty({type: 'string', example: ResourceTypeEnum.YOUTUBE_VIDEO})
     resourceType: ResourceTypeEnum;
 }
 
