@@ -33,8 +33,8 @@ export class ExerciseExamplesTutorialsEntity {
     @Column({default: null})
     language: string;
 
-    @Column({default: null})
-    resource: string;
+    @Column({default: null, nullable: true})
+    author: string;
 
     @Column({type: 'enum', enum: ResourceTypeEnum, nullable: true})
     resourceType: ResourceTypeEnum

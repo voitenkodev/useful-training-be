@@ -252,7 +252,7 @@ export class ExerciseExampleService {
             tutorial.value = el.value
             tutorial.title = el.title
             tutorial.language = el.language
-            tutorial.resource = el.resource
+            tutorial.author = el.author
             tutorial.resourceType = el.resourceType
             tutorial.exerciseExampleId = exerciseExample.id
             tutorials.push(tutorial);
