@@ -3,6 +3,7 @@ export enum EquipmentEnum {
     DUMBBELLS = "dumbbells",
     BARBELL = "barbell",
     EZ_BAR = "ez_bar",
+    V_BAR = "v_bar",
     TRAP_BAR = "trap_bar",
     ROPE = "rope",
     STRAIGHT_BAR = "straight_bar",
