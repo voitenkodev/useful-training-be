@@ -24,14 +24,14 @@ CREATE EXTENSION IF NOT EXISTS "uuid-ossp" WITH SCHEMA public;
 
 
 --
--- Name: EXTENSION "uuid-ossp"; Type: COMMENT; Schema: -; Owner: 
+-- Name: EXTENSION "uuid-ossp"; Type: COMMENT; Schema: -; Owner: -
 --
 
 COMMENT ON EXTENSION "uuid-ossp" IS 'generate universally unique identifiers (UUIDs)';
 
 
 --
--- Name: equipment_groups_type_enum; Type: TYPE; Schema: public; Owner: trainingdb
+-- Name: equipment_groups_type_enum; Type: TYPE; Schema: public; Owner: -
 --
 
 CREATE TYPE public.equipment_groups_type_enum AS ENUM (
@@ -43,10 +43,8 @@ CREATE TYPE public.equipment_groups_type_enum AS ENUM (
 );
 
 
-ALTER TYPE public.equipment_groups_type_enum OWNER TO trainingdb;
-
 --
--- Name: equipments_type_enum; Type: TYPE; Schema: public; Owner: trainingdb
+-- Name: equipments_type_enum; Type: TYPE; Schema: public; Owner: -
 --
 
 CREATE TYPE public.equipments_type_enum AS ENUM (
@@ -93,10 +91,8 @@ CREATE TYPE public.equipments_type_enum AS ENUM (
 );
 
 
-ALTER TYPE public.equipments_type_enum OWNER TO trainingdb;
-
 --
--- Name: exercise_examples_category_enum; Type: TYPE; Schema: public; Owner: trainingdb
+-- Name: exercise_examples_category_enum; Type: TYPE; Schema: public; Owner: -
 --
 
 CREATE TYPE public.exercise_examples_category_enum AS ENUM (
@@ -105,10 +101,8 @@ CREATE TYPE public.exercise_examples_category_enum AS ENUM (
 );
 
 
-ALTER TYPE public.exercise_examples_category_enum OWNER TO trainingdb;
-
 --
--- Name: exercise_examples_experience_enum; Type: TYPE; Schema: public; Owner: trainingdb
+-- Name: exercise_examples_experience_enum; Type: TYPE; Schema: public; Owner: -
 --
 
 CREATE TYPE public.exercise_examples_experience_enum AS ENUM (
@@ -119,10 +113,8 @@ CREATE TYPE public.exercise_examples_experience_enum AS ENUM (
 );
 
 
-ALTER TYPE public.exercise_examples_experience_enum OWNER TO trainingdb;
-
 --
--- Name: exercise_examples_force_type_enum; Type: TYPE; Schema: public; Owner: trainingdb
+-- Name: exercise_examples_force_type_enum; Type: TYPE; Schema: public; Owner: -
 --
 
 CREATE TYPE public.exercise_examples_force_type_enum AS ENUM (
@@ -131,10 +123,8 @@ CREATE TYPE public.exercise_examples_force_type_enum AS ENUM (
 );
 
 
-ALTER TYPE public.exercise_examples_force_type_enum OWNER TO trainingdb;
-
 --
--- Name: exercise_examples_tutorials_resource_type_enum; Type: TYPE; Schema: public; Owner: trainingdb
+-- Name: exercise_examples_tutorials_resource_type_enum; Type: TYPE; Schema: public; Owner: -
 --
 
 CREATE TYPE public.exercise_examples_tutorials_resource_type_enum AS ENUM (
@@ -144,10 +134,8 @@ CREATE TYPE public.exercise_examples_tutorials_resource_type_enum AS ENUM (
 );
 
 
-ALTER TYPE public.exercise_examples_tutorials_resource_type_enum OWNER TO trainingdb;
-
 --
--- Name: exercise_examples_weight_type_enum; Type: TYPE; Schema: public; Owner: trainingdb
+-- Name: exercise_examples_weight_type_enum; Type: TYPE; Schema: public; Owner: -
 --
 
 CREATE TYPE public.exercise_examples_weight_type_enum AS ENUM (
@@ -156,10 +144,8 @@ CREATE TYPE public.exercise_examples_weight_type_enum AS ENUM (
 );
 
 
-ALTER TYPE public.exercise_examples_weight_type_enum OWNER TO trainingdb;
-
 --
--- Name: muscle_groups_type_enum; Type: TYPE; Schema: public; Owner: trainingdb
+-- Name: muscle_groups_type_enum; Type: TYPE; Schema: public; Owner: -
 --
 
 CREATE TYPE public.muscle_groups_type_enum AS ENUM (
@@ -172,10 +158,8 @@ CREATE TYPE public.muscle_groups_type_enum AS ENUM (
 );
 
 
-ALTER TYPE public.muscle_groups_type_enum OWNER TO trainingdb;
-
 --
--- Name: muscles_type_enum; Type: TYPE; Schema: public; Owner: trainingdb
+-- Name: muscles_type_enum; Type: TYPE; Schema: public; Owner: -
 --
 
 CREATE TYPE public.muscles_type_enum AS ENUM (
@@ -200,10 +184,8 @@ CREATE TYPE public.muscles_type_enum AS ENUM (
 );
 
 
-ALTER TYPE public.muscles_type_enum OWNER TO trainingdb;
-
 --
--- Name: users_experience_enum; Type: TYPE; Schema: public; Owner: trainingdb
+-- Name: users_experience_enum; Type: TYPE; Schema: public; Owner: -
 --
 
 CREATE TYPE public.users_experience_enum AS ENUM (
@@ -214,14 +196,12 @@ CREATE TYPE public.users_experience_enum AS ENUM (
 );
 
 
-ALTER TYPE public.users_experience_enum OWNER TO trainingdb;
-
 SET default_tablespace = '';
 
 SET default_table_access_method = heap;
 
 --
--- Name: equipment_groups; Type: TABLE; Schema: public; Owner: trainingdb
+-- Name: equipment_groups; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE public.equipment_groups (
@@ -233,10 +213,8 @@ CREATE TABLE public.equipment_groups (
 );
 
 
-ALTER TABLE public.equipment_groups OWNER TO trainingdb;
-
 --
--- Name: equipments; Type: TABLE; Schema: public; Owner: trainingdb
+-- Name: equipments; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE public.equipments (
@@ -249,10 +227,8 @@ CREATE TABLE public.equipments (
 );
 
 
-ALTER TABLE public.equipments OWNER TO trainingdb;
-
 --
--- Name: excluded_equipments; Type: TABLE; Schema: public; Owner: trainingdb
+-- Name: excluded_equipments; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE public.excluded_equipments (
@@ -264,10 +240,8 @@ CREATE TABLE public.excluded_equipments (
 );
 
 
-ALTER TABLE public.excluded_equipments OWNER TO trainingdb;
-
 --
--- Name: excluded_muscles; Type: TABLE; Schema: public; Owner: trainingdb
+-- Name: excluded_muscles; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE public.excluded_muscles (
@@ -279,10 +253,8 @@ CREATE TABLE public.excluded_muscles (
 );
 
 
-ALTER TABLE public.excluded_muscles OWNER TO trainingdb;
-
 --
--- Name: exercise_example_bundles; Type: TABLE; Schema: public; Owner: trainingdb
+-- Name: exercise_example_bundles; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE public.exercise_example_bundles (
@@ -295,10 +267,8 @@ CREATE TABLE public.exercise_example_bundles (
 );
 
 
-ALTER TABLE public.exercise_example_bundles OWNER TO trainingdb;
-
 --
--- Name: exercise_examples; Type: TABLE; Schema: public; Owner: trainingdb
+-- Name: exercise_examples; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE public.exercise_examples (
@@ -315,10 +285,8 @@ CREATE TABLE public.exercise_examples (
 );
 
 
-ALTER TABLE public.exercise_examples OWNER TO trainingdb;
-
 --
--- Name: exercise_examples_equipments; Type: TABLE; Schema: public; Owner: trainingdb
+-- Name: exercise_examples_equipments; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE public.exercise_examples_equipments (
@@ -330,10 +298,8 @@ CREATE TABLE public.exercise_examples_equipments (
 );
 
 
-ALTER TABLE public.exercise_examples_equipments OWNER TO trainingdb;
-
 --
--- Name: exercise_examples_tutorials; Type: TABLE; Schema: public; Owner: trainingdb
+-- Name: exercise_examples_tutorials; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE public.exercise_examples_tutorials (
@@ -349,10 +315,8 @@ CREATE TABLE public.exercise_examples_tutorials (
 );
 
 
-ALTER TABLE public.exercise_examples_tutorials OWNER TO trainingdb;
-
 --
--- Name: exercises; Type: TABLE; Schema: public; Owner: trainingdb
+-- Name: exercises; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE public.exercises (
@@ -368,10 +332,8 @@ CREATE TABLE public.exercises (
 );
 
 
-ALTER TABLE public.exercises OWNER TO trainingdb;
-
 --
--- Name: iterations; Type: TABLE; Schema: public; Owner: trainingdb
+-- Name: iterations; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE public.iterations (
@@ -384,10 +346,8 @@ CREATE TABLE public.iterations (
 );
 
 
-ALTER TABLE public.iterations OWNER TO trainingdb;
-
 --
--- Name: muscle_exercise_bundles; Type: TABLE; Schema: public; Owner: trainingdb
+-- Name: muscle_exercise_bundles; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE public.muscle_exercise_bundles (
@@ -400,10 +360,8 @@ CREATE TABLE public.muscle_exercise_bundles (
 );
 
 
-ALTER TABLE public.muscle_exercise_bundles OWNER TO trainingdb;
-
 --
--- Name: muscle_groups; Type: TABLE; Schema: public; Owner: trainingdb
+-- Name: muscle_groups; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE public.muscle_groups (
@@ -417,10 +375,8 @@ CREATE TABLE public.muscle_groups (
 );
 
 
-ALTER TABLE public.muscle_groups OWNER TO trainingdb;
-
 --
--- Name: muscles; Type: TABLE; Schema: public; Owner: trainingdb
+-- Name: muscles; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE public.muscles (
@@ -436,10 +392,8 @@ CREATE TABLE public.muscles (
 );
 
 
-ALTER TABLE public.muscles OWNER TO trainingdb;
-
 --
--- Name: trainings; Type: TABLE; Schema: public; Owner: trainingdb
+-- Name: trainings; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE public.trainings (
@@ -454,10 +408,8 @@ CREATE TABLE public.trainings (
 );
 
 
-ALTER TABLE public.trainings OWNER TO trainingdb;
-
 --
--- Name: users; Type: TABLE; Schema: public; Owner: trainingdb
+-- Name: users; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE public.users (
@@ -472,10 +424,8 @@ CREATE TABLE public.users (
 );
 
 
-ALTER TABLE public.users OWNER TO trainingdb;
-
 --
--- Name: weight_history; Type: TABLE; Schema: public; Owner: trainingdb
+-- Name: weight_history; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE public.weight_history (
@@ -487,10 +437,8 @@ CREATE TABLE public.weight_history (
 );
 
 
-ALTER TABLE public.weight_history OWNER TO trainingdb;
-
 --
--- Data for Name: equipment_groups; Type: TABLE DATA; Schema: public; Owner: trainingdb
+-- Data for Name: equipment_groups; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 INSERT INTO public.equipment_groups VALUES ('56550c17-dd77-40c2-8737-fde011dcbbaa', 'Free Weight', 'free_weight', '2024-07-26 15:20:13.307246', '2024-07-26 15:20:13.307246');
@@ -501,7 +449,7 @@ INSERT INTO public.equipment_groups VALUES ('9f7ba689-6791-4c1e-8ad7-da558a028fa
 
 
 --
--- Data for Name: equipments; Type: TABLE DATA; Schema: public; Owner: trainingdb
+-- Data for Name: equipments; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 INSERT INTO public.equipments VALUES ('9d66ac93-3a48-429d-aeaa-54302856e204', 'Dumbbells', '56550c17-dd77-40c2-8737-fde011dcbbaa', 'dumbbells', '2024-07-26 15:27:07.977174', '2024-07-26 15:27:07.977174');
@@ -547,13 +495,13 @@ INSERT INTO public.equipments VALUES ('524da8cf-0303-4c53-8761-832a5fdb54ed', 'V
 
 
 --
--- Data for Name: excluded_equipments; Type: TABLE DATA; Schema: public; Owner: trainingdb
+-- Data for Name: excluded_equipments; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 
 
 --
--- Data for Name: excluded_muscles; Type: TABLE DATA; Schema: public; Owner: trainingdb
+-- Data for Name: excluded_muscles; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 INSERT INTO public.excluded_muscles VALUES ('72d745dc-a320-4427-b51b-5f38ad1d25d4', 'bba5b66d-9a9c-4b44-8dd6-9574760038ee', '2024-08-23 11:26:13.686097', '5e2eab59-bccb-4679-997a-398e18bc254c', '2024-08-23 11:26:13.686097');
@@ -563,7 +511,7 @@ INSERT INTO public.excluded_muscles VALUES ('043193a4-67d5-49ca-adb7-fd26355f216
 
 
 --
--- Data for Name: exercise_example_bundles; Type: TABLE DATA; Schema: public; Owner: trainingdb
+-- Data for Name: exercise_example_bundles; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 INSERT INTO public.exercise_example_bundles VALUES ('88a227ca-81cf-463f-94f0-b75d6cc75d35', 7, '11644e17-247a-46b0-a391-b3b2a2a6bba8', '831f39bd-80a8-4d11-9964-bde1788abae1', '2024-08-26 14:15:00.637773', '2024-08-26 14:15:00.637773');
@@ -693,7 +641,7 @@ INSERT INTO public.exercise_example_bundles VALUES ('8c5fc4c7-284f-47b1-b3d3-667
 
 
 --
--- Data for Name: exercise_examples; Type: TABLE DATA; Schema: public; Owner: trainingdb
+-- Data for Name: exercise_examples; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 INSERT INTO public.exercise_examples VALUES ('650e9725-d36c-4688-bcab-adf93dfe9e5d', 'EZ Bar Skullcrusher', '2024-08-23 15:44:41.300424', '2024-08-23 15:44:41.300424', 'https://www.mensjournal.com/.image/t_share/MTk2OTg4MTk1NjA1MzI1NDUy/barbellskullcrusher.jpg', 'Select your desired weight and sit on the edge of a flat bench.
@@ -893,7 +841,7 @@ Repeat this movement for desired reps.', 'isolation', 'fixed', 'push', 'beginner
 
 
 --
--- Data for Name: exercise_examples_equipments; Type: TABLE DATA; Schema: public; Owner: trainingdb
+-- Data for Name: exercise_examples_equipments; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 INSERT INTO public.exercise_examples_equipments VALUES ('18eac9b2-be10-4878-a7ad-cc7a56f4c846', '2024-08-23 13:51:17.110081', '2024-08-23 13:51:17.110081', '752ee7ba-ae88-46f0-95fb-e0a316212f16', '6cb225d2-be00-461d-9bf0-7f0c87cfea0b');
@@ -957,7 +905,7 @@ INSERT INTO public.exercise_examples_equipments VALUES ('6a0ee9fe-90e0-4578-b4d7
 
 
 --
--- Data for Name: exercise_examples_tutorials; Type: TABLE DATA; Schema: public; Owner: trainingdb
+-- Data for Name: exercise_examples_tutorials; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 INSERT INTO public.exercise_examples_tutorials VALUES ('0a7a066f-3204-4610-8fd2-85c353db0bf5', '2024-08-23 13:51:17.120552', '6cb225d2-be00-461d-9bf0-7f0c87cfea0b', '2024-08-23 13:51:17.120552', 'Tutorial Straight Bar Tricep Extension', 'https://www.youtube.com/watch?v=mpZ9VRisAyw', 'en', 'https://www.muscleandstrength.com', 'youtube_video');
@@ -1001,25 +949,25 @@ INSERT INTO public.exercise_examples_tutorials VALUES ('95111d60-4fc0-4cc4-8162-
 
 
 --
--- Data for Name: exercises; Type: TABLE DATA; Schema: public; Owner: trainingdb
+-- Data for Name: exercises; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 
 
 --
--- Data for Name: iterations; Type: TABLE DATA; Schema: public; Owner: trainingdb
+-- Data for Name: iterations; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 
 
 --
--- Data for Name: muscle_exercise_bundles; Type: TABLE DATA; Schema: public; Owner: trainingdb
+-- Data for Name: muscle_exercise_bundles; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 
 
 --
--- Data for Name: muscle_groups; Type: TABLE DATA; Schema: public; Owner: trainingdb
+-- Data for Name: muscle_groups; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 INSERT INTO public.muscle_groups VALUES ('e1f1e456-3f8d-46f6-b7ba-75bb4b8c3802', 'Abdominal Muscles', 'Черевні М''язи', 'Брюшные Мышцы', '2023-11-12 00:38:32.665553', '2023-11-12 00:38:32.665553', 'abdominal_muscles');
@@ -1031,7 +979,7 @@ INSERT INTO public.muscle_groups VALUES ('e1117068-06cd-4330-a4f9-93b485165805',
 
 
 --
--- Data for Name: muscles; Type: TABLE DATA; Schema: public; Owner: trainingdb
+-- Data for Name: muscles; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 INSERT INTO public.muscles VALUES ('2e0faf2b-31a5-4c63-ac15-454be132796f', 'Trapezius', '4289bf91-51d8-40b0-9aca-66780584a4eb', 'Трапецієподібні м''язи', 'Трапециевидные мышцы', '2023-11-12 00:44:51.190921', '2023-11-12 00:44:51.190921', 'trapezius', 48);
@@ -1055,27 +1003,27 @@ INSERT INTO public.muscles VALUES ('be38dcef-1bc8-487b-a44f-96df1ab9e68c', 'Tere
 
 
 --
--- Data for Name: trainings; Type: TABLE DATA; Schema: public; Owner: trainingdb
+-- Data for Name: trainings; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 
 
 --
--- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: trainingdb
+-- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 INSERT INTO public.users VALUES ('5e2eab59-bccb-4679-997a-398e18bc254c', 'alienworkout@admin.panel', '$2a$10$qiW50vCNFhj.A02Gozd3mOGozaY.JHwPXC3oK/wJ2kq8MHoS64aiS', 'Admin User', '2024-08-23 10:23:20.828239', '2024-08-23 10:23:20.828239', 1.65, 'advanced');
 
 
 --
--- Data for Name: weight_history; Type: TABLE DATA; Schema: public; Owner: trainingdb
+-- Data for Name: weight_history; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 INSERT INTO public.weight_history VALUES ('59fe6576-cc7d-41ad-9094-d94527eb0472', '5e2eab59-bccb-4679-997a-398e18bc254c', 65, '2024-08-23 10:23:20.841272', '2024-08-23 10:23:20.841272');
 
 
 --
--- Name: muscle_exercise_bundles PK_228cbcce883be9a79735d6de922; Type: CONSTRAINT; Schema: public; Owner: trainingdb
+-- Name: muscle_exercise_bundles PK_228cbcce883be9a79735d6de922; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.muscle_exercise_bundles
@@ -1083,7 +1031,7 @@ ALTER TABLE ONLY public.muscle_exercise_bundles
 
 
 --
--- Name: equipments PK_250348d5d9ae4946bcd634f3e61; Type: CONSTRAINT; Schema: public; Owner: trainingdb
+-- Name: equipments PK_250348d5d9ae4946bcd634f3e61; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.equipments
@@ -1091,7 +1039,7 @@ ALTER TABLE ONLY public.equipments
 
 
 --
--- Name: excluded_equipments PK_6833f08aa872b23c33a2b207073; Type: CONSTRAINT; Schema: public; Owner: trainingdb
+-- Name: excluded_equipments PK_6833f08aa872b23c33a2b207073; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.excluded_equipments
@@ -1099,7 +1047,7 @@ ALTER TABLE ONLY public.excluded_equipments
 
 
 --
--- Name: exercise_examples PK_6ec4db5d5601a567816d4de278b; Type: CONSTRAINT; Schema: public; Owner: trainingdb
+-- Name: exercise_examples PK_6ec4db5d5601a567816d4de278b; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.exercise_examples
@@ -1107,7 +1055,7 @@ ALTER TABLE ONLY public.exercise_examples
 
 
 --
--- Name: excluded_muscles PK_9557dfb4752d43a0520eaf71ddd; Type: CONSTRAINT; Schema: public; Owner: trainingdb
+-- Name: excluded_muscles PK_9557dfb4752d43a0520eaf71ddd; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.excluded_muscles
@@ -1115,7 +1063,7 @@ ALTER TABLE ONLY public.excluded_muscles
 
 
 --
--- Name: users PK_a3ffb1c0c8416b9fc6f907b7433; Type: CONSTRAINT; Schema: public; Owner: trainingdb
+-- Name: users PK_a3ffb1c0c8416b9fc6f907b7433; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.users
@@ -1123,7 +1071,7 @@ ALTER TABLE ONLY public.users
 
 
 --
--- Name: weight_history PK_a5697ac8bfdda68bc5e37d25297; Type: CONSTRAINT; Schema: public; Owner: trainingdb
+-- Name: weight_history PK_a5697ac8bfdda68bc5e37d25297; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.weight_history
@@ -1131,7 +1079,7 @@ ALTER TABLE ONLY public.weight_history
 
 
 --
--- Name: exercise_examples_equipments PK_aa80c21af8dbad5c0146c09e43c; Type: CONSTRAINT; Schema: public; Owner: trainingdb
+-- Name: exercise_examples_equipments PK_aa80c21af8dbad5c0146c09e43c; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.exercise_examples_equipments
@@ -1139,7 +1087,7 @@ ALTER TABLE ONLY public.exercise_examples_equipments
 
 
 --
--- Name: trainings PK_b67237502b175163e47dc85018d; Type: CONSTRAINT; Schema: public; Owner: trainingdb
+-- Name: trainings PK_b67237502b175163e47dc85018d; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.trainings
@@ -1147,7 +1095,7 @@ ALTER TABLE ONLY public.trainings
 
 
 --
--- Name: exercise_example_bundles PK_c2cc4b67be9e9d112e21443a32a; Type: CONSTRAINT; Schema: public; Owner: trainingdb
+-- Name: exercise_example_bundles PK_c2cc4b67be9e9d112e21443a32a; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.exercise_example_bundles
@@ -1155,7 +1103,7 @@ ALTER TABLE ONLY public.exercise_example_bundles
 
 
 --
--- Name: exercises PK_c4c46f5fa89a58ba7c2d894e3c3; Type: CONSTRAINT; Schema: public; Owner: trainingdb
+-- Name: exercises PK_c4c46f5fa89a58ba7c2d894e3c3; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.exercises
@@ -1163,7 +1111,7 @@ ALTER TABLE ONLY public.exercises
 
 
 --
--- Name: muscle_groups PK_c992270adab7acafcedcf3e4428; Type: CONSTRAINT; Schema: public; Owner: trainingdb
+-- Name: muscle_groups PK_c992270adab7acafcedcf3e4428; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.muscle_groups
@@ -1171,7 +1119,7 @@ ALTER TABLE ONLY public.muscle_groups
 
 
 --
--- Name: muscles PK_d447d24f0750ae71b1ec5ae9668; Type: CONSTRAINT; Schema: public; Owner: trainingdb
+-- Name: muscles PK_d447d24f0750ae71b1ec5ae9668; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.muscles
@@ -1179,7 +1127,7 @@ ALTER TABLE ONLY public.muscles
 
 
 --
--- Name: iterations PK_d62c93eaa6fc8129cb942633d12; Type: CONSTRAINT; Schema: public; Owner: trainingdb
+-- Name: iterations PK_d62c93eaa6fc8129cb942633d12; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.iterations
@@ -1187,7 +1135,7 @@ ALTER TABLE ONLY public.iterations
 
 
 --
--- Name: exercise_examples_tutorials PK_de469132881b9b76e0b37fad6ea; Type: CONSTRAINT; Schema: public; Owner: trainingdb
+-- Name: exercise_examples_tutorials PK_de469132881b9b76e0b37fad6ea; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.exercise_examples_tutorials
@@ -1195,7 +1143,7 @@ ALTER TABLE ONLY public.exercise_examples_tutorials
 
 
 --
--- Name: equipment_groups PK_f2248d363b3cd233ec04be2cfac; Type: CONSTRAINT; Schema: public; Owner: trainingdb
+-- Name: equipment_groups PK_f2248d363b3cd233ec04be2cfac; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.equipment_groups
@@ -1203,7 +1151,7 @@ ALTER TABLE ONLY public.equipment_groups
 
 
 --
--- Name: users UQ_97672ac88f789774dd47f7c8be3; Type: CONSTRAINT; Schema: public; Owner: trainingdb
+-- Name: users UQ_97672ac88f789774dd47f7c8be3; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.users
@@ -1211,14 +1159,14 @@ ALTER TABLE ONLY public.users
 
 
 --
--- Name: IDX_b43dd7bd8917f9fca521d49232; Type: INDEX; Schema: public; Owner: trainingdb
+-- Name: IDX_b43dd7bd8917f9fca521d49232; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX "IDX_b43dd7bd8917f9fca521d49232" ON public.trainings USING btree (created_at);
 
 
 --
--- Name: trainings FK_0a6488e45e7e8ed7d5f69e0dead; Type: FK CONSTRAINT; Schema: public; Owner: trainingdb
+-- Name: trainings FK_0a6488e45e7e8ed7d5f69e0dead; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.trainings
@@ -1226,7 +1174,7 @@ ALTER TABLE ONLY public.trainings
 
 
 --
--- Name: muscle_exercise_bundles FK_183fdb588e33d2d612dc4998e95; Type: FK CONSTRAINT; Schema: public; Owner: trainingdb
+-- Name: muscle_exercise_bundles FK_183fdb588e33d2d612dc4998e95; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.muscle_exercise_bundles
@@ -1234,7 +1182,7 @@ ALTER TABLE ONLY public.muscle_exercise_bundles
 
 
 --
--- Name: exercise_example_bundles FK_2d9baa79828c7180ebf28ff5065; Type: FK CONSTRAINT; Schema: public; Owner: trainingdb
+-- Name: exercise_example_bundles FK_2d9baa79828c7180ebf28ff5065; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.exercise_example_bundles
@@ -1242,7 +1190,7 @@ ALTER TABLE ONLY public.exercise_example_bundles
 
 
 --
--- Name: excluded_equipments FK_3fc2cde19015c5361418979a02a; Type: FK CONSTRAINT; Schema: public; Owner: trainingdb
+-- Name: excluded_equipments FK_3fc2cde19015c5361418979a02a; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.excluded_equipments
@@ -1250,7 +1198,7 @@ ALTER TABLE ONLY public.excluded_equipments
 
 
 --
--- Name: excluded_muscles FK_487dfe271837b6e15ee40561fc7; Type: FK CONSTRAINT; Schema: public; Owner: trainingdb
+-- Name: excluded_muscles FK_487dfe271837b6e15ee40561fc7; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.excluded_muscles
@@ -1258,7 +1206,7 @@ ALTER TABLE ONLY public.excluded_muscles
 
 
 --
--- Name: muscle_exercise_bundles FK_5b415788262521c5bfe20147ddc; Type: FK CONSTRAINT; Schema: public; Owner: trainingdb
+-- Name: muscle_exercise_bundles FK_5b415788262521c5bfe20147ddc; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.muscle_exercise_bundles
@@ -1266,7 +1214,7 @@ ALTER TABLE ONLY public.muscle_exercise_bundles
 
 
 --
--- Name: exercise_example_bundles FK_600bedaa30ff58235320ef11133; Type: FK CONSTRAINT; Schema: public; Owner: trainingdb
+-- Name: exercise_example_bundles FK_600bedaa30ff58235320ef11133; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.exercise_example_bundles
@@ -1274,7 +1222,7 @@ ALTER TABLE ONLY public.exercise_example_bundles
 
 
 --
--- Name: excluded_equipments FK_67d0ce866c36449a91e2b5e7296; Type: FK CONSTRAINT; Schema: public; Owner: trainingdb
+-- Name: excluded_equipments FK_67d0ce866c36449a91e2b5e7296; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.excluded_equipments
@@ -1282,7 +1230,7 @@ ALTER TABLE ONLY public.excluded_equipments
 
 
 --
--- Name: iterations FK_83c23650e879d2d07e375574069; Type: FK CONSTRAINT; Schema: public; Owner: trainingdb
+-- Name: iterations FK_83c23650e879d2d07e375574069; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.iterations
@@ -1290,7 +1238,7 @@ ALTER TABLE ONLY public.iterations
 
 
 --
--- Name: weight_history FK_90d01effa2fdd927e738e232f0e; Type: FK CONSTRAINT; Schema: public; Owner: trainingdb
+-- Name: weight_history FK_90d01effa2fdd927e738e232f0e; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.weight_history
@@ -1298,7 +1246,7 @@ ALTER TABLE ONLY public.weight_history
 
 
 --
--- Name: muscles FK_97c14a3154bde81534490d92186; Type: FK CONSTRAINT; Schema: public; Owner: trainingdb
+-- Name: muscles FK_97c14a3154bde81534490d92186; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.muscles
@@ -1306,7 +1254,7 @@ ALTER TABLE ONLY public.muscles
 
 
 --
--- Name: exercise_examples_equipments FK_a97b574c6a2ddefc48ce4e34f80; Type: FK CONSTRAINT; Schema: public; Owner: trainingdb
+-- Name: exercise_examples_equipments FK_a97b574c6a2ddefc48ce4e34f80; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.exercise_examples_equipments
@@ -1314,7 +1262,7 @@ ALTER TABLE ONLY public.exercise_examples_equipments
 
 
 --
--- Name: exercises FK_b0947cc4c27363a5d4525d103dd; Type: FK CONSTRAINT; Schema: public; Owner: trainingdb
+-- Name: exercises FK_b0947cc4c27363a5d4525d103dd; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.exercises
@@ -1322,7 +1270,7 @@ ALTER TABLE ONLY public.exercises
 
 
 --
--- Name: exercise_examples_tutorials FK_c37eef836efb07dc487deb27fca; Type: FK CONSTRAINT; Schema: public; Owner: trainingdb
+-- Name: exercise_examples_tutorials FK_c37eef836efb07dc487deb27fca; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.exercise_examples_tutorials
@@ -1330,7 +1278,7 @@ ALTER TABLE ONLY public.exercise_examples_tutorials
 
 
 --
--- Name: exercise_examples_equipments FK_ca612324a3e3a31b91989cac790; Type: FK CONSTRAINT; Schema: public; Owner: trainingdb
+-- Name: exercise_examples_equipments FK_ca612324a3e3a31b91989cac790; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.exercise_examples_equipments
@@ -1338,7 +1286,7 @@ ALTER TABLE ONLY public.exercise_examples_equipments
 
 
 --
--- Name: equipments FK_dbe5cf6e8bfb13366defd7706ab; Type: FK CONSTRAINT; Schema: public; Owner: trainingdb
+-- Name: equipments FK_dbe5cf6e8bfb13366defd7706ab; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.equipments
@@ -1346,7 +1294,7 @@ ALTER TABLE ONLY public.equipments
 
 
 --
--- Name: exercises FK_f2cff4897a8c9ce4a3511086e1e; Type: FK CONSTRAINT; Schema: public; Owner: trainingdb
+-- Name: exercises FK_f2cff4897a8c9ce4a3511086e1e; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.exercises
@@ -1354,18 +1302,11 @@ ALTER TABLE ONLY public.exercises
 
 
 --
--- Name: excluded_muscles FK_fb5bf30c118024b483e9e2d88c8; Type: FK CONSTRAINT; Schema: public; Owner: trainingdb
+-- Name: excluded_muscles FK_fb5bf30c118024b483e9e2d88c8; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.excluded_muscles
     ADD CONSTRAINT "FK_fb5bf30c118024b483e9e2d88c8" FOREIGN KEY (user_id) REFERENCES public.users(id) ON DELETE CASCADE;
-
-
---
--- Name: SCHEMA public; Type: ACL; Schema: -; Owner: pg_database_owner
---
-
-GRANT ALL ON SCHEMA public TO trainingdb;
 
 
 --

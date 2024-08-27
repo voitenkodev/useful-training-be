@@ -16,14 +16,39 @@ if [[ -z "$POSTGRES_HOST" || -z "$POSTGRES_PORT" || -z "$POSTGRES_USERNAME" || -
   exit 1
 fi
 
-# Start Docker container
-docker-compose -f docker-compose.yml up -d
+# Check if the container already exists
+CONTAINER_EXISTS=$(docker ps -a --filter "name=${POSTGRES_CONTAINER_NAME}" --format "{{.Names}}")
 
-# Wait for the PostgreSQL container to be ready
-echo "Waiting for PostgreSQL to start..."
-sleep 10
+if [ -z "$CONTAINER_EXISTS" ]; then
+  echo "Container ${POSTGRES_CONTAINER_NAME} does not exist. Creating and starting a new container..."
 
-# Dump the database to the current directory
-docker exec "$POSTGRES_CONTAINER_NAME" pg_dump -h "$POSTGRES_HOST" -U "$POSTGRES_USERNAME" "$POSTGRES_DATABASE" > dump.sql
+  # Start Docker container and initialize the database from dump.sql
+  docker-compose -f docker-compose.yml up -d
 
-echo "Database dump saved to dump.sql"
+  # Wait for the PostgreSQL container to be ready
+  echo "Waiting for PostgreSQL to start..."
+  sleep 10
+
+  echo "Database initialized from dump.sql"
+else
+  echo "Container ${POSTGRES_CONTAINER_NAME} already exists. Starting the container..."
+
+  # Start the existing container
+  docker start "$POSTGRES_CONTAINER_NAME"
+
+  # Wait for the PostgreSQL container to be ready
+  echo "Waiting for PostgreSQL to start..."
+  sleep 10
+fi
+
+# Check the status of the container
+if [ "$(docker inspect -f '{{.State.Running}}' "$POSTGRES_CONTAINER_NAME")" != "true" ]; then
+  echo "Failed to start the PostgreSQL container."
+  exit 1
+fi
+
+# Start the npm project
+echo "Starting the npm project..."
+npm start
+
+echo "Project is running"
