@@ -18,6 +18,8 @@ export enum MuscleEnum {
     GLUTEAL = "gluteal",
     HAMSTRINGS = "hamstrings",
     QUADRICEPS = "quadriceps",
+    ADDUCTORS = "adductors",
+    ABDUCTORS = "abductors",
 
     // Shoulder
     ANTERIOR_DELTOID = "anterior_deltoid",
