@@ -71,6 +71,8 @@ CREATE TYPE public.equipments_type_enum AS ENUM (
     'triceps_machines',
     'calf_raise_machines',
     'glute_machines',
+    'abductor_machine',
+    'adductor_machine',
     'lat_pulldown',
     'cable',
     'cable_crossover',
@@ -175,6 +177,8 @@ CREATE TYPE public.muscles_type_enum AS ENUM (
     'gluteal',
     'hamstrings',
     'quadriceps',
+    'adductors',
+    'abductors',
     'anterior_deltoid',
     'lateral_deltoid',
     'posterior_deltoid',
@@ -492,6 +496,8 @@ INSERT INTO public.equipments VALUES ('061ad8e2-77aa-4ba8-9a41-51788e7803c7', 'P
 INSERT INTO public.equipments VALUES ('0eda801d-e31d-4943-8a73-68c702f3d3d2', 'Row Bench', '9f7ba689-6791-4c1e-8ad7-da558a028fac', 'row_bench', '2024-07-27 09:07:42.088418', '2024-07-27 09:07:42.088418');
 INSERT INTO public.equipments VALUES ('af38ec0a-1465-45a8-99ba-a394224530dc', 'Rope', '56550c17-dd77-40c2-8737-fde011dcbbaa', 'rope', '2024-08-23 14:52:12.166064', '2024-08-23 14:52:12.166064');
 INSERT INTO public.equipments VALUES ('524da8cf-0303-4c53-8761-832a5fdb54ed', 'V Bar', '56550c17-dd77-40c2-8737-fde011dcbbaa', 'v_bar', '2024-08-26 14:04:38.569404', '2024-08-26 14:04:38.569404');
+INSERT INTO public.equipments VALUES ('9a4df37b-9fdb-4c19-93b3-d99393d9e605', 'Adductor Machine', 'fcfa00b0-820c-494a-ac9e-ff4cf4e69489', 'adductor_machine', '2024-08-31 21:32:21.683976', '2024-08-31 21:32:21.683976');
+INSERT INTO public.equipments VALUES ('32bed80a-1512-4945-9654-8d710618ef81', 'Abductor Machine', 'fcfa00b0-820c-494a-ac9e-ff4cf4e69489', 'abductor_machine', '2024-08-31 21:32:21.683976', '2024-08-31 21:32:21.683976');
 
 
 --
@@ -504,7 +510,6 @@ INSERT INTO public.equipments VALUES ('524da8cf-0303-4c53-8761-832a5fdb54ed', 'V
 -- Data for Name: excluded_muscles; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-INSERT INTO public.excluded_muscles VALUES ('72d745dc-a320-4427-b51b-5f38ad1d25d4', 'bba5b66d-9a9c-4b44-8dd6-9574760038ee', '2024-08-23 11:26:13.686097', '5e2eab59-bccb-4679-997a-398e18bc254c', '2024-08-23 11:26:13.686097');
 INSERT INTO public.excluded_muscles VALUES ('21a6a90b-4784-4d8f-a595-2c29c15b1e51', '9a8024fe-c721-4bea-969c-db88674b5ece', '2024-08-23 11:26:17.182962', '5e2eab59-bccb-4679-997a-398e18bc254c', '2024-08-23 11:26:17.182962');
 INSERT INTO public.excluded_muscles VALUES ('afd95d66-4d77-4374-a4d5-06267634f5e5', '97a87b01-35e8-490a-94b9-9bdae9c2f965', '2024-08-23 11:58:00.185268', '5e2eab59-bccb-4679-997a-398e18bc254c', '2024-08-23 11:58:00.185268');
 INSERT INTO public.excluded_muscles VALUES ('043193a4-67d5-49ca-adb7-fd26355f2160', '0fd0be35-f933-43b8-a0d7-a4b6adaa9c1a', '2024-08-23 11:58:00.642429', '5e2eab59-bccb-4679-997a-398e18bc254c', '2024-08-23 11:58:00.642429');
@@ -820,6 +825,14 @@ INSERT INTO public.exercise_example_bundles VALUES ('2fa55741-9045-4328-b9e1-2e1
 INSERT INTO public.exercise_example_bundles VALUES ('39ef207e-5b1f-4225-b2ba-cdd05ec9b599', 20, 'ff188494-a871-4721-9d1e-26742539080c', '2e0faf2b-31a5-4c63-ac15-454be132796f', '2024-08-29 21:01:10.94488', '2024-08-29 21:01:10.94488');
 INSERT INTO public.exercise_example_bundles VALUES ('35979c85-f21c-4888-aa66-77d1b8dd64e5', 90, '68381c41-b015-4218-93cb-2bcb64bee255', 'd736a513-9d73-47a3-bffc-c14911662ea2', '2024-08-29 21:09:08.316316', '2024-08-29 21:09:08.316316');
 INSERT INTO public.exercise_example_bundles VALUES ('2e7a9a9f-ba5c-4125-9672-e4215bf74fd9', 10, '68381c41-b015-4218-93cb-2bcb64bee255', '2da3d8f2-6a28-45ff-90a2-ea3a6bb2afe8', '2024-08-29 21:09:08.316316', '2024-08-29 21:09:08.316316');
+INSERT INTO public.exercise_example_bundles VALUES ('665193ee-22d3-4acb-aad1-b1fae2c92e8b', 60, '1fdffa53-d9cb-4aa1-9999-5c83fdb9be80', 'ab1dbd50-83a4-42c7-a3cd-da1784818ec8', '2024-08-31 21:55:50.622209', '2024-08-31 21:55:50.622209');
+INSERT INTO public.exercise_example_bundles VALUES ('5f289087-6c8e-46c5-a9ac-d4fb7008a3d9', 20, '1fdffa53-d9cb-4aa1-9999-5c83fdb9be80', 'f6e65bfe-0746-4a8f-8210-0e9bf88d9886', '2024-08-31 21:55:50.622209', '2024-08-31 21:55:50.622209');
+INSERT INTO public.exercise_example_bundles VALUES ('293682af-45cb-43e1-815c-3c5f1f8906bc', 10, '1fdffa53-d9cb-4aa1-9999-5c83fdb9be80', '3eeaa9fa-0847-4780-9d01-185f91252794', '2024-08-31 21:55:50.622209', '2024-08-31 21:55:50.622209');
+INSERT INTO public.exercise_example_bundles VALUES ('3a4ad59f-8a2f-4fae-a118-67c7083b714c', 10, '1fdffa53-d9cb-4aa1-9999-5c83fdb9be80', '9e69205f-6c6e-44a7-8ee6-89215e28a28e', '2024-08-31 21:55:50.622209', '2024-08-31 21:55:50.622209');
+INSERT INTO public.exercise_example_bundles VALUES ('9609ba95-2643-41ac-8351-8d5785904940', 60, 'a8f9abc7-4515-4f5e-a4f5-095b1b17b9e1', 'fa8025e6-e106-475c-8b9d-77831132fb47', '2024-08-31 22:01:53.336411', '2024-08-31 22:01:53.336411');
+INSERT INTO public.exercise_example_bundles VALUES ('42b3c5ca-b989-4eb6-8d1e-b902adc93ca9', 20, 'a8f9abc7-4515-4f5e-a4f5-095b1b17b9e1', 'f6e65bfe-0746-4a8f-8210-0e9bf88d9886', '2024-08-31 22:01:53.336411', '2024-08-31 22:01:53.336411');
+INSERT INTO public.exercise_example_bundles VALUES ('294f3cb7-4c44-44f7-9ed8-dd47342964ec', 10, 'a8f9abc7-4515-4f5e-a4f5-095b1b17b9e1', '3eeaa9fa-0847-4780-9d01-185f91252794', '2024-08-31 22:01:53.336411', '2024-08-31 22:01:53.336411');
+INSERT INTO public.exercise_example_bundles VALUES ('ce0e8cfc-5814-439c-9148-d28e077e7364', 10, 'a8f9abc7-4515-4f5e-a4f5-095b1b17b9e1', '57559b71-b757-468a-983d-a1b3cec4acef', '2024-08-31 22:01:53.336411', '2024-08-31 22:01:53.336411');
 
 
 --
@@ -1099,6 +1112,8 @@ Inhale, brace your core and raise your arm vertically while keeping a slight ben
 Moving only at the shoulder, continue raising the dumbbell until your arm is just above parallel to the floor.
 Pause for a brief moment at the top of the movement, and slowly lower the dumbbell back to the starting position.
 Repeat for desired reps, and then repeat the movement with your other arm.', 'isolation', 'free', 'pull', 'beginner');
+INSERT INTO public.exercise_examples VALUES ('1fdffa53-d9cb-4aa1-9999-5c83fdb9be80', 'Hip Abduction Machine', '2024-08-31 21:55:50.613451', '2024-08-31 21:55:50.613451', '', 'Setup in an upright position with your back against the pad and your spine neutral. Exhale and push the legs apart as you open the pads. Once your hips are fully externally rotated, slowly return to the starting position. Repeat for the desired number of repetitions.', 'isolation', 'fixed', 'push', 'beginner');
+INSERT INTO public.exercise_examples VALUES ('a8f9abc7-4515-4f5e-a4f5-095b1b17b9e1', 'Hip Adduction Machine', '2024-08-31 22:01:53.328901', '2024-08-31 22:01:53.328901', '', 'Setup in an upright position with your back against the pad and your spine neutral. Exhale and pull the legs together as you squeeze the pads inward. Once the pads touch, slowly return to the starting position. Repeat for the desired number of repetitions.', 'isolation', 'fixed', 'push', 'beginner');
 
 
 --
@@ -1262,6 +1277,8 @@ INSERT INTO public.exercise_examples_equipments VALUES ('3d2f7c53-f1c5-4303-9479
 INSERT INTO public.exercise_examples_equipments VALUES ('125d4f99-0e82-40c1-ac09-6a354c5669a9', '2024-08-29 21:01:10.950406', '2024-08-29 21:01:10.950406', '752ee7ba-ae88-46f0-95fb-e0a316212f16', 'ff188494-a871-4721-9d1e-26742539080c');
 INSERT INTO public.exercise_examples_equipments VALUES ('792c6603-c86f-4fe8-b9a6-e96cf74247c2', '2024-08-29 21:01:10.950406', '2024-08-29 21:01:10.950406', '15495639-2adb-41b8-899c-493ac0172f57', 'ff188494-a871-4721-9d1e-26742539080c');
 INSERT INTO public.exercise_examples_equipments VALUES ('6a9ab4bb-d478-4077-8e89-6a205a5c3a7f', '2024-08-29 21:09:08.322752', '2024-08-29 21:09:08.322752', '9d66ac93-3a48-429d-aeaa-54302856e204', '68381c41-b015-4218-93cb-2bcb64bee255');
+INSERT INTO public.exercise_examples_equipments VALUES ('8f61f0e0-bb61-43f3-8d27-4f5edc1da12f', '2024-08-31 21:55:50.627691', '2024-08-31 21:55:50.627691', '32bed80a-1512-4945-9654-8d710618ef81', '1fdffa53-d9cb-4aa1-9999-5c83fdb9be80');
+INSERT INTO public.exercise_examples_equipments VALUES ('79ce4ce3-9af7-4610-940e-3c6bd46796da', '2024-08-31 22:01:53.342028', '2024-08-31 22:01:53.342028', '9a4df37b-9fdb-4c19-93b3-d99393d9e605', 'a8f9abc7-4515-4f5e-a4f5-095b1b17b9e1');
 
 
 --
@@ -1367,6 +1384,8 @@ INSERT INTO public.exercise_examples_tutorials VALUES ('13149a05-c177-4345-bfdb-
 INSERT INTO public.exercise_examples_tutorials VALUES ('a0a31a37-35a3-4131-9eb1-1eba4af6f12c', '2024-08-29 20:58:25.082319', '984e5dac-f3a8-4980-bfc9-da370cf45e46', '2024-08-29 20:58:25.082319', 'Instruction', 'https://www.muscleandstrength.com/exercises/dumbbell-reverse-fly-on-incline-bench.html', 'en', NULL, 'video');
 INSERT INTO public.exercise_examples_tutorials VALUES ('07d80744-6325-4258-9a9f-fd3b5efc98af', '2024-08-29 21:01:10.956917', 'ff188494-a871-4721-9d1e-26742539080c', '2024-08-29 21:01:10.956917', 'Instruction', 'https://www.muscleandstrength.com/exercises/cable-front-raise.html', 'en', NULL, 'video');
 INSERT INTO public.exercise_examples_tutorials VALUES ('ed29c229-bac4-466a-b9e2-021040b2d112', '2024-08-29 21:09:08.329319', '68381c41-b015-4218-93cb-2bcb64bee255', '2024-08-29 21:09:08.329319', 'Instruction', 'https://www.muscleandstrength.com/exercises/one-arm-standing-dumbbell-front-raise.html', 'en', NULL, 'video');
+INSERT INTO public.exercise_examples_tutorials VALUES ('e660c465-a467-4889-905c-41e8587846c8', '2024-08-31 21:55:50.631673', '1fdffa53-d9cb-4aa1-9999-5c83fdb9be80', '2024-08-31 21:55:50.631673', 'Instruction', 'https://www.muscleandstrength.com/exercises/hip-abduction-machine.html', 'en', NULL, 'video');
+INSERT INTO public.exercise_examples_tutorials VALUES ('b1a1b9cd-8366-40d9-ad17-0084001e9c99', '2024-08-31 22:01:53.348285', 'a8f9abc7-4515-4f5e-a4f5-095b1b17b9e1', '2024-08-31 22:01:53.348285', 'Instruction', 'https://www.muscleandstrength.com/exercises/hip-adduction-machine.html', 'en', NULL, 'video');
 
 
 --
@@ -1421,6 +1440,8 @@ INSERT INTO public.muscles VALUES ('9a8024fe-c721-4bea-969c-db88674b5ece', 'Fore
 INSERT INTO public.muscles VALUES ('97a87b01-35e8-490a-94b9-9bdae9c2f965', 'Biceps Brachii', '2043a22c-c547-42c2-81bb-81f85693d9cd', 'Біцепси', 'Бицепсы', '2023-11-12 00:47:55.131334', '2023-11-12 00:47:55.131334', 'biceps', 36);
 INSERT INTO public.muscles VALUES ('0fd0be35-f933-43b8-a0d7-a4b6adaa9c1a', 'Triceps Brachii', '2043a22c-c547-42c2-81bb-81f85693d9cd', 'Трицепси', 'Трицепсы', '2023-11-13 21:01:37.624512', '2023-11-13 21:01:37.624512', 'triceps', 36);
 INSERT INTO public.muscles VALUES ('be38dcef-1bc8-487b-a44f-96df1ab9e68c', 'Teres Major', '4289bf91-51d8-40b0-9aca-66780584a4eb', 'Терес мажор', 'Терес мажор', '2024-07-30 19:46:35.870695', '2024-07-30 19:46:35.870695', 'teres_major', 36);
+INSERT INTO public.muscles VALUES ('fa8025e6-e106-475c-8b9d-77831132fb47', 'Adductors', '255efc07-6c7e-42ab-97e5-01c06d60b5a3', 'Приводні м’язи', 'Приводящие мышцы', '2024-08-31 13:39:50.77308', '2024-08-31 13:39:50.77308', 'adductors', 48);
+INSERT INTO public.muscles VALUES ('ab1dbd50-83a4-42c7-a3cd-da1784818ec8', 'Abductors', '255efc07-6c7e-42ab-97e5-01c06d60b5a3', 'Відводні м’язи', 'Отводящие мышцы', '2024-08-31 13:39:50.77308', '2024-08-31 13:39:50.77308', 'abductors', 48);
 
 
 --
