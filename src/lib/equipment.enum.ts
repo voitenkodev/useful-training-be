@@ -27,6 +27,7 @@ export enum EquipmentEnum {
     GLUTE_MACHINES = "glute_machines",
     ABDUCTOR_MACHINE = "abductor_machine",
     ADDUCTOR_MACHINE = "adductor_machine",
+    LEG_PRESS_MACHINE = "leg_press_machine",
 
     // Cable Machine
     LAT_PULLDOWN = "lat_pulldown",
