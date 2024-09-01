@@ -833,6 +833,17 @@ INSERT INTO public.exercise_example_bundles VALUES ('9609ba95-2643-41ac-8351-8d5
 INSERT INTO public.exercise_example_bundles VALUES ('42b3c5ca-b989-4eb6-8d1e-b902adc93ca9', 20, 'a8f9abc7-4515-4f5e-a4f5-095b1b17b9e1', 'f6e65bfe-0746-4a8f-8210-0e9bf88d9886', '2024-08-31 22:01:53.336411', '2024-08-31 22:01:53.336411');
 INSERT INTO public.exercise_example_bundles VALUES ('294f3cb7-4c44-44f7-9ed8-dd47342964ec', 10, 'a8f9abc7-4515-4f5e-a4f5-095b1b17b9e1', '3eeaa9fa-0847-4780-9d01-185f91252794', '2024-08-31 22:01:53.336411', '2024-08-31 22:01:53.336411');
 INSERT INTO public.exercise_example_bundles VALUES ('ce0e8cfc-5814-439c-9148-d28e077e7364', 10, 'a8f9abc7-4515-4f5e-a4f5-095b1b17b9e1', '57559b71-b757-468a-983d-a1b3cec4acef', '2024-08-31 22:01:53.336411', '2024-08-31 22:01:53.336411');
+INSERT INTO public.exercise_example_bundles VALUES ('1fe65199-035b-45e9-a8cc-4f9277202974', 80, 'e1361643-e92a-419b-8eb8-fe2a188016e0', '1ddbb748-37a6-4d66-a7d4-4957bdbc647f', '2024-09-01 09:37:56.271231', '2024-09-01 09:37:56.271231');
+INSERT INTO public.exercise_example_bundles VALUES ('b6dd1801-a5e0-459f-bc9b-cbeb020ce49b', 20, 'e1361643-e92a-419b-8eb8-fe2a188016e0', '9e69205f-6c6e-44a7-8ee6-89215e28a28e', '2024-09-01 09:37:56.271231', '2024-09-01 09:37:56.271231');
+INSERT INTO public.exercise_example_bundles VALUES ('36dd63dc-8238-4308-a189-9b485c28f17d', 80, 'f2cf498f-d991-4b85-b08e-58c5f9ff563e', '1ddbb748-37a6-4d66-a7d4-4957bdbc647f', '2024-09-01 12:11:44.138777', '2024-09-01 12:11:44.138777');
+INSERT INTO public.exercise_example_bundles VALUES ('2bb7a1bc-41ee-45c6-8444-19c6b648ba00', 20, 'f2cf498f-d991-4b85-b08e-58c5f9ff563e', '9e69205f-6c6e-44a7-8ee6-89215e28a28e', '2024-09-01 12:11:44.138777', '2024-09-01 12:11:44.138777');
+INSERT INTO public.exercise_example_bundles VALUES ('ffe226af-142e-4425-b2d5-3ac97aa42f6c', 100, '7e80becf-491c-4b48-a98a-a36fff26e29c', '1ddbb748-37a6-4d66-a7d4-4957bdbc647f', '2024-09-01 12:13:55.743989', '2024-09-01 12:13:55.743989');
+INSERT INTO public.exercise_example_bundles VALUES ('12d800cd-2cd9-4535-8f5b-3dd88276bf5e', 100, '2f49a8e8-6f42-422c-aa6f-c23e215620e2', '9e69205f-6c6e-44a7-8ee6-89215e28a28e', '2024-09-01 12:14:59.685387', '2024-09-01 12:14:59.685387');
+INSERT INTO public.exercise_example_bundles VALUES ('548259c5-5325-41ca-9f65-a21ac6f06a4c', 100, 'f2868e11-6e1d-4ce4-a1a8-eb0384a60b71', '9e69205f-6c6e-44a7-8ee6-89215e28a28e', '2024-09-01 12:24:23.20744', '2024-09-01 12:24:23.20744');
+INSERT INTO public.exercise_example_bundles VALUES ('5088eca0-7009-4472-a1bd-3d571e47d6d7', 50, '38af9c0d-b19f-433d-bcda-0b974b5475cf', '1ddbb748-37a6-4d66-a7d4-4957bdbc647f', '2024-09-01 12:25:43.164947', '2024-09-01 12:25:43.164947');
+INSERT INTO public.exercise_example_bundles VALUES ('927d6f98-b24e-4c02-8506-c5db7e0c5f25', 50, '38af9c0d-b19f-433d-bcda-0b974b5475cf', '9e69205f-6c6e-44a7-8ee6-89215e28a28e', '2024-09-01 12:25:43.164947', '2024-09-01 12:25:43.164947');
+INSERT INTO public.exercise_example_bundles VALUES ('77d077c9-aa8f-4b73-b0e3-3e12da245b16', 70, 'c5901a9a-580c-411b-85bd-2ec738123e14', '9e69205f-6c6e-44a7-8ee6-89215e28a28e', '2024-09-01 12:26:49.234868', '2024-09-01 12:26:49.234868');
+INSERT INTO public.exercise_example_bundles VALUES ('2d0e3632-b9f6-447b-94c2-6668e08a7a76', 30, 'c5901a9a-580c-411b-85bd-2ec738123e14', '1ddbb748-37a6-4d66-a7d4-4957bdbc647f', '2024-09-01 12:26:49.234868', '2024-09-01 12:26:49.234868');
 
 
 --
@@ -1114,6 +1125,69 @@ Pause for a brief moment at the top of the movement, and slowly lower the dumbbe
 Repeat for desired reps, and then repeat the movement with your other arm.', 'isolation', 'free', 'pull', 'beginner');
 INSERT INTO public.exercise_examples VALUES ('1fdffa53-d9cb-4aa1-9999-5c83fdb9be80', 'Hip Abduction Machine', '2024-08-31 21:55:50.613451', '2024-08-31 21:55:50.613451', '', 'Setup in an upright position with your back against the pad and your spine neutral. Exhale and push the legs apart as you open the pads. Once your hips are fully externally rotated, slowly return to the starting position. Repeat for the desired number of repetitions.', 'isolation', 'fixed', 'push', 'beginner');
 INSERT INTO public.exercise_examples VALUES ('a8f9abc7-4515-4f5e-a4f5-095b1b17b9e1', 'Hip Adduction Machine', '2024-08-31 22:01:53.328901', '2024-08-31 22:01:53.328901', '', 'Setup in an upright position with your back against the pad and your spine neutral. Exhale and pull the legs together as you squeeze the pads inward. Once the pads touch, slowly return to the starting position. Repeat for the desired number of repetitions.', 'isolation', 'fixed', 'push', 'beginner');
+INSERT INTO public.exercise_examples VALUES ('e1361643-e92a-419b-8eb8-fe2a188016e0', 'Cable Crunch', '2024-09-01 09:37:56.256671', '2024-09-01 09:37:56.256671', '', 'Attach the rope attachment to a high pulley cable and set the appropriate weight on the stack.
+Stand directly in front of the cable machine, facing away from it.
+Grasp the rope from behind your head with your palms facing inward and drop to your knees.
+Your buttocks should be resting on top of your feet. Keeping your elbows bent and hands at either head height or shoulder height, crunch down as far as possible.
+Pause, then slowly lower yourself back to the starting position.
+Cable Crunch Tips:
+This exercise works best when done slowly with perfect form.
+Your buttocks should stay touching your heels at all times.
+Focus on crunching the abs in, not pivoting at the hips.
+As you increase weight it may be more comfortable to rest the rope on your shoulders.
+Don''t choose a weight so heavy that your lower back handles most of the resistance.', 'isolation', 'fixed', 'pull', 'beginner');
+INSERT INTO public.exercise_examples VALUES ('f2cf498f-d991-4b85-b08e-58c5f9ff563e', 'Hanging Leg Raise', '2024-09-01 12:11:44.128319', '2024-09-01 12:11:44.128319', '', 'The hanging leg raise is an awesome exercise for building the lower abs. All you need for this exercise is somewhere to hang from. It could be a chinup bar or it could be a tree.
+Once you''re hanging, tense up the midsection. While keeping your legs straight, raise them up slowly. You should raise your legs as high as possible.
+Pause for a second, and slowly lower your legs back to the starting position.
+Repeat for desired reps.
+Leg Raise Tips:
+Speed is so important with the hanging leg raise. If you swing your legs, you''re using momentum and your abs will not benefit much from the exercise.
+Do not allow your body to swing. Keep your torso as still and controlled as possible.
+Advanced lifters can add weight by holding a dumbbell between the feet.', 'isolation', 'free', 'pull', 'advanced');
+INSERT INTO public.exercise_examples VALUES ('7e80becf-491c-4b48-a98a-a36fff26e29c', 'Dumbbell Side Bends', '2024-09-01 12:13:55.734978', '2024-09-01 12:13:55.734978', '', 'This exercise works the obliques. Grasp a set of dumbbells. Stand straight up with one dumbbell in each hand, palms facing in.
+Keep your feet firmly on the floor with a shoulder width stance.
+Keeping your back straight and your eyes facing forwards, bend down to the right as far as you can, then back up again.
+Without pausing at the top, bend down to the left.
+Repeat for desired reps.
+Side Bend Tips:
+Always keep your back straight, eyes facing forwards, and bend at the torso only.
+Concentrate on the stretch and contraction of the oblique muscles (down the side of your body).
+Keep the dumbbells close to your body.
+This exercise can also be performed while seated on the end of a bench.', 'isolation', 'free', 'pull', 'beginner');
+INSERT INTO public.exercise_examples VALUES ('2f49a8e8-6f42-422c-aa6f-c23e215620e2', 'Decline Sit-Up', '2024-09-01 12:14:59.677632', '2024-09-01 12:14:59.677632', '', 'Set the decline bench to an angle of between 30 and 45 degrees (the more the angle, the harder the sit-ups will be).
+Sit on the bench with your legs resting through the pads.
+Cross your arms across your chest and lean back until your back almost touches the bench.
+Raise yourself back up until your upper body is vertical, then lower again.
+Sit Up Tips:
+Don''t go too far down or up. Your back should never touch the bench and you only need to pull up until your upper body is vertical.
+You can add a twist to work your obliques harder if you like.
+Hold a weight plate or dumbbell in your arms for added resistance and intensity.', 'isolation', 'free', 'pull', 'beginner');
+INSERT INTO public.exercise_examples VALUES ('f2868e11-6e1d-4ce4-a1a8-eb0384a60b71', 'Floor Crunch (Legs on Bench)', '2024-09-01 12:24:23.199368', '2024-09-01 12:24:23.199368', '', 'Set up for the floor crunch by laying a mat down on the floor and positioning a flat bench at the end of the mat to form a T shape.
+Lay down on the mat and put your legs up on the bench. Your calves should be resting on the top of the bench and your legs should be bent at right angles.
+Touch the side of your head with your fingertips (do not put your arms behind your neck!).
+Lift your shoulder blades slightly off the mat to start the exercise, then crunch your abs bringing your elbows in towards your waist.
+Pause for 1 second at the top, and slowly lower back down to the start position.
+Crunch Tips:
+Keep your shoulder blades just off the mat for the entire set.
+Pause for longer at the top of the movement to add extra intensity.', 'isolation', 'free', 'pull', 'beginner');
+INSERT INTO public.exercise_examples VALUES ('38af9c0d-b19f-433d-bcda-0b974b5475cf', 'Twisting Hanging Knee Raise', '2024-09-01 12:25:43.155571', '2024-09-01 12:25:43.155571', '', 'The twisting hanging knee raise hits the lower abs and obliques. You can hang off literally anything that will hold your weight for this exercise. Most people will hang from a pull up bar. Hang off the bar with a slightly wider than shoulder width grip.
+Once you''re hanging with your feet slightly off the floor, pull your knees up and across to the left side of your body.
+Pause, then slowly lower them back down.
+Now raise your knees up and across to the right side of your body.
+Lower back to start position. This is one rep.
+Repeat for desired reps.
+Exercise Tips:
+Hold at the top of the movement (with your knees up) to increase the intensity of the twisting knee raise.
+Advanced athletes can add weight by holding a dumbbell between the feet.', 'compound', 'free', 'pull', 'intermediate');
+INSERT INTO public.exercise_examples VALUES ('c5901a9a-580c-411b-85bd-2ec738123e14', 'Hanging Knee Raise', '2024-09-01 12:26:49.231068', '2024-09-01 12:26:49.231068', '', 'The hanging knee raise hits your lower abs. You can hang from literally anything to do this exercise, but the most popular method is hanging from a pull up bar.
+Grip the bar with hands around shoulder width apart. Increase the width if you''re tall and your feet touch the floor.
+Once you''re hanging with your feet slightly off the floor, slowly pull your knees up keeping your legs together.
+Pause for a second, and slowly lower your knees back to the starting position.
+Repeat for desired reps.
+Knee Raise Tips:
+You must do this exercise slowly. If you want to get the most benefit out of the hanging knee raise, slow it down.
+As you become more advanced, you can place a dumbbell between your feet.
+Avoid swinging your body, keeping your torso as still as possible.', 'compound', 'free', 'pull', 'intermediate');
 
 
 --
@@ -1279,6 +1353,14 @@ INSERT INTO public.exercise_examples_equipments VALUES ('792c6603-c86f-4fe8-b9a6
 INSERT INTO public.exercise_examples_equipments VALUES ('6a9ab4bb-d478-4077-8e89-6a205a5c3a7f', '2024-08-29 21:09:08.322752', '2024-08-29 21:09:08.322752', '9d66ac93-3a48-429d-aeaa-54302856e204', '68381c41-b015-4218-93cb-2bcb64bee255');
 INSERT INTO public.exercise_examples_equipments VALUES ('8f61f0e0-bb61-43f3-8d27-4f5edc1da12f', '2024-08-31 21:55:50.627691', '2024-08-31 21:55:50.627691', '32bed80a-1512-4945-9654-8d710618ef81', '1fdffa53-d9cb-4aa1-9999-5c83fdb9be80');
 INSERT INTO public.exercise_examples_equipments VALUES ('79ce4ce3-9af7-4610-940e-3c6bd46796da', '2024-08-31 22:01:53.342028', '2024-08-31 22:01:53.342028', '9a4df37b-9fdb-4c19-93b3-d99393d9e605', 'a8f9abc7-4515-4f5e-a4f5-095b1b17b9e1');
+INSERT INTO public.exercise_examples_equipments VALUES ('418ee62d-bae1-40a4-87dc-f5600e8ec0ca', '2024-09-01 09:37:56.278637', '2024-09-01 09:37:56.278637', '752ee7ba-ae88-46f0-95fb-e0a316212f16', 'e1361643-e92a-419b-8eb8-fe2a188016e0');
+INSERT INTO public.exercise_examples_equipments VALUES ('d4ead82a-db97-4beb-b2e9-9f4bd11a8f86', '2024-09-01 09:37:56.278637', '2024-09-01 09:37:56.278637', 'af38ec0a-1465-45a8-99ba-a394224530dc', 'e1361643-e92a-419b-8eb8-fe2a188016e0');
+INSERT INTO public.exercise_examples_equipments VALUES ('a9e0063f-d896-48ce-80b3-56677f4e3bd4', '2024-09-01 12:11:44.14147', '2024-09-01 12:11:44.14147', 'ddf4299a-fc48-47bd-9bdf-7e3d7692b09f', 'f2cf498f-d991-4b85-b08e-58c5f9ff563e');
+INSERT INTO public.exercise_examples_equipments VALUES ('621f2bb2-94b6-48a0-aa90-83fd1bc05243', '2024-09-01 12:13:55.750094', '2024-09-01 12:13:55.750094', '9d66ac93-3a48-429d-aeaa-54302856e204', '7e80becf-491c-4b48-a98a-a36fff26e29c');
+INSERT INTO public.exercise_examples_equipments VALUES ('148699e0-bd1e-4d1d-a4a8-5d62bde8bfb1', '2024-09-01 12:14:59.692189', '2024-09-01 12:14:59.692189', 'c4d5e6fe-30fd-4f16-8646-634102d1bf1b', '2f49a8e8-6f42-422c-aa6f-c23e215620e2');
+INSERT INTO public.exercise_examples_equipments VALUES ('fd262b33-6e2f-4bb9-9bf6-3eed7b52a0b7', '2024-09-01 12:24:23.213877', '2024-09-01 12:24:23.213877', '85dbccf6-454e-4440-8905-50a90d91dbcc', 'f2868e11-6e1d-4ce4-a1a8-eb0384a60b71');
+INSERT INTO public.exercise_examples_equipments VALUES ('75b87f45-37ce-4e44-956b-28ed4373b4cf', '2024-09-01 12:25:43.172492', '2024-09-01 12:25:43.172492', 'ddf4299a-fc48-47bd-9bdf-7e3d7692b09f', '38af9c0d-b19f-433d-bcda-0b974b5475cf');
+INSERT INTO public.exercise_examples_equipments VALUES ('ad0a8479-1442-43c4-8438-0985114c04a4', '2024-09-01 12:26:49.236953', '2024-09-01 12:26:49.236953', 'ddf4299a-fc48-47bd-9bdf-7e3d7692b09f', 'c5901a9a-580c-411b-85bd-2ec738123e14');
 
 
 --
@@ -1386,6 +1468,13 @@ INSERT INTO public.exercise_examples_tutorials VALUES ('07d80744-6325-4258-9a9f-
 INSERT INTO public.exercise_examples_tutorials VALUES ('ed29c229-bac4-466a-b9e2-021040b2d112', '2024-08-29 21:09:08.329319', '68381c41-b015-4218-93cb-2bcb64bee255', '2024-08-29 21:09:08.329319', 'Instruction', 'https://www.muscleandstrength.com/exercises/one-arm-standing-dumbbell-front-raise.html', 'en', NULL, 'video');
 INSERT INTO public.exercise_examples_tutorials VALUES ('e660c465-a467-4889-905c-41e8587846c8', '2024-08-31 21:55:50.631673', '1fdffa53-d9cb-4aa1-9999-5c83fdb9be80', '2024-08-31 21:55:50.631673', 'Instruction', 'https://www.muscleandstrength.com/exercises/hip-abduction-machine.html', 'en', NULL, 'video');
 INSERT INTO public.exercise_examples_tutorials VALUES ('b1a1b9cd-8366-40d9-ad17-0084001e9c99', '2024-08-31 22:01:53.348285', 'a8f9abc7-4515-4f5e-a4f5-095b1b17b9e1', '2024-08-31 22:01:53.348285', 'Instruction', 'https://www.muscleandstrength.com/exercises/hip-adduction-machine.html', 'en', NULL, 'video');
+INSERT INTO public.exercise_examples_tutorials VALUES ('da9c5a8e-c292-4b30-a6e7-c6fa667b6dea', '2024-09-01 09:37:56.286411', 'e1361643-e92a-419b-8eb8-fe2a188016e0', '2024-09-01 09:37:56.286411', 'Cable Crunch Instructions', 'https://www.muscleandstrength.com/exercises/cable-crunch.html', 'en', NULL, 'video');
+INSERT INTO public.exercise_examples_tutorials VALUES ('97307d48-8193-4887-81fa-f2f94ae38fe1', '2024-09-01 12:11:44.144292', 'f2cf498f-d991-4b85-b08e-58c5f9ff563e', '2024-09-01 12:11:44.144292', 'Hanging Leg Raise Instructions', 'https://www.muscleandstrength.com/exercises/hanging-leg-raise.html', 'en', NULL, 'video');
+INSERT INTO public.exercise_examples_tutorials VALUES ('a35c2eaa-ca3e-4227-a533-7e237a2fd6f4', '2024-09-01 12:13:55.753377', '7e80becf-491c-4b48-a98a-a36fff26e29c', '2024-09-01 12:13:55.753377', 'Dumbbell Side Bends Instructions', 'https://www.muscleandstrength.com/exercises/dumbbell-side-bends.html', 'en', NULL, 'video');
+INSERT INTO public.exercise_examples_tutorials VALUES ('bcca2cbf-dfd1-4e8a-95ae-bfd61febf033', '2024-09-01 12:14:59.698088', '2f49a8e8-6f42-422c-aa6f-c23e215620e2', '2024-09-01 12:14:59.698088', 'Decline Sit-Up Instructions', 'https://www.muscleandstrength.com/exercises/decline-situp.html', 'en', NULL, 'video');
+INSERT INTO public.exercise_examples_tutorials VALUES ('2e8b65ca-3879-4200-aaac-52ff784c218c', '2024-09-01 12:24:23.221021', 'f2868e11-6e1d-4ce4-a1a8-eb0384a60b71', '2024-09-01 12:24:23.221021', 'Floor Crunch (Legs on Bench) Instructions', 'https://www.muscleandstrength.com/exercises/floor-crunch-legs-on-bench.html', 'en', NULL, 'video');
+INSERT INTO public.exercise_examples_tutorials VALUES ('8320cb3c-0d28-42ec-a4e7-14a21f5ac75c', '2024-09-01 12:25:43.182175', '38af9c0d-b19f-433d-bcda-0b974b5475cf', '2024-09-01 12:25:43.182175', 'Twisting Hanging Knee Raise Instructions', 'https://www.muscleandstrength.com/exercises/twisting-hanging-knee-raise.html', 'en', NULL, 'video');
+INSERT INTO public.exercise_examples_tutorials VALUES ('f8294893-d061-4f4a-8742-d8c4e30bdb45', '2024-09-01 12:26:49.240082', 'c5901a9a-580c-411b-85bd-2ec738123e14', '2024-09-01 12:26:49.240082', 'Hanging Knee Raise Instructions', 'https://www.muscleandstrength.com/exercises/hanging-knee-raise.html', 'en', NULL, 'video');
 
 
 --
