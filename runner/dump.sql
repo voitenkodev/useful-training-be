@@ -73,6 +73,7 @@ CREATE TYPE public.equipments_type_enum AS ENUM (
     'glute_machines',
     'abductor_machine',
     'adductor_machine',
+    'leg_press_machine',
     'lat_pulldown',
     'cable',
     'cable_crossover',
@@ -498,6 +499,7 @@ INSERT INTO public.equipments VALUES ('af38ec0a-1465-45a8-99ba-a394224530dc', 'R
 INSERT INTO public.equipments VALUES ('524da8cf-0303-4c53-8761-832a5fdb54ed', 'V Bar', '56550c17-dd77-40c2-8737-fde011dcbbaa', 'v_bar', '2024-08-26 14:04:38.569404', '2024-08-26 14:04:38.569404');
 INSERT INTO public.equipments VALUES ('9a4df37b-9fdb-4c19-93b3-d99393d9e605', 'Adductor Machine', 'fcfa00b0-820c-494a-ac9e-ff4cf4e69489', 'adductor_machine', '2024-08-31 21:32:21.683976', '2024-08-31 21:32:21.683976');
 INSERT INTO public.equipments VALUES ('32bed80a-1512-4945-9654-8d710618ef81', 'Abductor Machine', 'fcfa00b0-820c-494a-ac9e-ff4cf4e69489', 'abductor_machine', '2024-08-31 21:32:21.683976', '2024-08-31 21:32:21.683976');
+INSERT INTO public.equipments VALUES ('1959d942-75fb-4ece-b501-b7cf8884d479', 'Leg Press Machine', 'fcfa00b0-820c-494a-ac9e-ff4cf4e69489', 'leg_press_machine', '2024-09-01 13:12:20.206731', '2024-09-01 13:12:20.206731');
 
 
 --
@@ -844,6 +846,15 @@ INSERT INTO public.exercise_example_bundles VALUES ('5088eca0-7009-4472-a1bd-3d5
 INSERT INTO public.exercise_example_bundles VALUES ('927d6f98-b24e-4c02-8506-c5db7e0c5f25', 50, '38af9c0d-b19f-433d-bcda-0b974b5475cf', '9e69205f-6c6e-44a7-8ee6-89215e28a28e', '2024-09-01 12:25:43.164947', '2024-09-01 12:25:43.164947');
 INSERT INTO public.exercise_example_bundles VALUES ('77d077c9-aa8f-4b73-b0e3-3e12da245b16', 70, 'c5901a9a-580c-411b-85bd-2ec738123e14', '9e69205f-6c6e-44a7-8ee6-89215e28a28e', '2024-09-01 12:26:49.234868', '2024-09-01 12:26:49.234868');
 INSERT INTO public.exercise_example_bundles VALUES ('2d0e3632-b9f6-447b-94c2-6668e08a7a76', 30, 'c5901a9a-580c-411b-85bd-2ec738123e14', '1ddbb748-37a6-4d66-a7d4-4957bdbc647f', '2024-09-01 12:26:49.234868', '2024-09-01 12:26:49.234868');
+INSERT INTO public.exercise_example_bundles VALUES ('d2a75a7d-bdc9-4fa0-ac98-6ae9ea2035f5', 100, '6e4bc8b2-33ab-46da-9b79-9fff2266cd27', 'bba5b66d-9a9c-4b44-8dd6-9574760038ee', '2024-09-01 12:41:05.649426', '2024-09-01 12:41:05.649426');
+INSERT INTO public.exercise_example_bundles VALUES ('bfaefd8c-4a65-46cf-bfd9-2177ab48751b', 100, '01dff88c-893b-4410-8d54-1e36013b9fdb', 'bba5b66d-9a9c-4b44-8dd6-9574760038ee', '2024-09-01 12:43:01.528705', '2024-09-01 12:43:01.528705');
+INSERT INTO public.exercise_example_bundles VALUES ('24ccb353-afba-48d6-9bc7-6c8543779030', 100, 'd2f28afc-e84c-467c-90d9-c6c2cb63acbc', 'bba5b66d-9a9c-4b44-8dd6-9574760038ee', '2024-09-01 12:47:02.024108', '2024-09-01 12:47:02.024108');
+INSERT INTO public.exercise_example_bundles VALUES ('a2e80949-83f0-41d4-a092-150735f815c9', 100, 'de4e9652-b068-4558-9fd3-38d45e5aa0d9', 'bba5b66d-9a9c-4b44-8dd6-9574760038ee', '2024-09-01 12:49:37.146266', '2024-09-01 12:49:37.146266');
+INSERT INTO public.exercise_example_bundles VALUES ('f58132c7-9c38-49e3-b6fa-b43eed443366', 100, '7227c8f6-cf65-4134-97de-d5e64cb5ff1b', 'bba5b66d-9a9c-4b44-8dd6-9574760038ee', '2024-09-01 12:51:11.824332', '2024-09-01 12:51:11.824332');
+INSERT INTO public.exercise_example_bundles VALUES ('d86c0354-1173-4398-908c-3003125195a1', 100, '46b1efa3-a4f8-4492-a81c-9e48c650dd3d', 'bba5b66d-9a9c-4b44-8dd6-9574760038ee', '2024-09-01 12:52:29.683458', '2024-09-01 12:52:29.683458');
+INSERT INTO public.exercise_example_bundles VALUES ('1e4d063b-6208-4f84-a757-ac3e792b9744', 100, '89ffca84-73f0-4a69-871f-9d9c96521a05', 'bba5b66d-9a9c-4b44-8dd6-9574760038ee', '2024-09-01 12:54:31.266577', '2024-09-01 12:54:31.266577');
+INSERT INTO public.exercise_example_bundles VALUES ('217a09cd-b8f8-400e-821f-f5d1f2a7125a', 100, 'f11c8751-e5ca-413e-b30d-2b387ec14733', 'bba5b66d-9a9c-4b44-8dd6-9574760038ee', '2024-09-01 12:56:50.697125', '2024-09-01 12:56:50.697125');
+INSERT INTO public.exercise_example_bundles VALUES ('ceae5d19-af46-45cb-80f4-75128753a8cf', 100, '9e348a26-e5d0-4ee0-b3e6-fe58563ac698', 'bba5b66d-9a9c-4b44-8dd6-9574760038ee', '2024-09-01 13:30:53.579257', '2024-09-01 13:30:53.579257');
 
 
 --
@@ -1188,6 +1199,94 @@ Knee Raise Tips:
 You must do this exercise slowly. If you want to get the most benefit out of the hanging knee raise, slow it down.
 As you become more advanced, you can place a dumbbell between your feet.
 Avoid swinging your body, keeping your torso as still as possible.', 'compound', 'free', 'pull', 'intermediate');
+INSERT INTO public.exercise_examples VALUES ('6e4bc8b2-33ab-46da-9b79-9fff2266cd27', 'Seated Calf Raise', '2024-09-01 12:41:05.640161', '2024-09-01 12:41:05.640161', '', 'Take a seat on the machine and place the balls of your feet on the platform with your toes pointed forward - your heels will naturally hang off. Position the base of your quads under the knee pad and allow your hands to rest on top. Extend your ankles and release the safety bar. Lower the heels by dorsiflexing the ankles until the calves are fully stretched. Extend the ankles and exhale as you flex the calves. Repeat for the assigned number of repetitions.
+
+Tips:
+- Keep the repetitions slow and controlled. Limit momentum and pause at the top to emphasize the contraction.
+- Limit the depth of the heels if you feel any sort of stretch through the bottom of the foot during the exercise.
+- Try to move through the ball of the foot rather than the base of the toes.', 'isolation', 'fixed', 'push', 'beginner');
+INSERT INTO public.exercise_examples VALUES ('01dff88c-893b-4410-8d54-1e36013b9fdb', 'Seated Dumbbell Calf Raise', '2024-09-01 12:43:01.520267', '2024-09-01 12:43:01.520267', '', 'Set up by placing a step or block at the end of a flat bench. Next, grasp a pair of dumbbells and sit on the end of the bench. Put the balls of your feet on the edge of the step/block and rest the ends of the dumbbells on your thighs close to your knees. Let your heels drop as far as possible without hitting the floor. Slowly raise your heels off the floor as far as possible. Squeeze the calves and pause, and then slowly lower your heels back to the starting position. Repeat for desired reps.
+
+Tips:
+- Don''t let your heels touch the floor at any time throughout the exercise.
+- Pause and squeeze the calves for a count of 1-2 at the top of the movement to add intensity.', 'isolation', 'fixed', 'push', 'beginner');
+INSERT INTO public.exercise_examples VALUES ('d2f28afc-e84c-467c-90d9-c6c2cb63acbc', '45 Degree Leg Press Calf Raise', '2024-09-01 12:47:02.01513', '2024-09-01 12:47:02.01513', '', 'Load the machine with the desired weight and take a seat.
+Sit down and position your feet on the sled with a shoulder width stance.
+Take a deep breath, extend your legs, but keep the safeties locked (if possible).
+Position your feet at the base of the platform and allow the heels to hang off.
+Lower the heels by dorsiflexing the ankles until the calves are fully stretched.
+Drive the weight back to the starting position by extending the ankles and flexing the calves.
+Repeat for the desired number of repetitions.
+SAFETY NOTE: Be extremely careful when re-positioning the feet at the base of the platform. If the safeties are not in place and you lose control of the platform, this could result in very serious injury.
+Keep the repetitions slow and controlled. Limit momentum and pause at the top to emphasize the contraction.
+If you experience any sort of pain or pressure in the back of the knee joint, keep a slight bend in the knee and avoid complete lockout.
+If the knee isn’t entirely locked out then ensure the position doesn’t change during the duration of the repetition.
+Limit depth of the heels if you feel any sort of stretch through the bottom of the foot during the exercise.
+Try to move through the ball of the foot rather than the base of the toes.', 'isolation', 'fixed', 'push', 'beginner');
+INSERT INTO public.exercise_examples VALUES ('de4e9652-b068-4558-9fd3-38d45e5aa0d9', 'Toes In Seated Calf Raise', '2024-09-01 12:49:37.135904', '2024-09-01 12:49:37.135904', '', 'Take a seat on the machine and place the balls of your feet on the platform with your toes pointed in - your heels will naturally hang off. Position the base of quads under the knee pad and allow your hands to rest on top.
+Extend your ankles and release the safety bar.
+Lower the heels by dorsiflexing the ankles until the calves are fully stretched.
+Extend the ankles and exhale as you flex the calves.
+Repeat for the assigned number of repetitions.
+Keep the repetitions slow and controlled. Limit momentum and pause at the top to emphasize the contraction.
+Limit depth of the heels if you feel any sort of stretch through the bottom of the foot during the exercise.
+Try to move through the ball of the foot rather than the base of the toes.', 'isolation', 'fixed', 'push', 'beginner');
+INSERT INTO public.exercise_examples VALUES ('7227c8f6-cf65-4134-97de-d5e64cb5ff1b', 'Toes Out 45 Degree Calf Raise', '2024-09-01 12:51:11.813368', '2024-09-01 12:51:11.813368', '', 'Load the desired weight on a 45-degree leg press and sit down on the seat.
+Place the balls of your feet on the bottom edge of the foot plate and twist your ankles so that your heels come together and your toes point out.
+Push the weight up and disengage the weight platform from the safety using the handles by your sides.
+Slowly allow your toes to come back as far as possible. This is the starting position for the exercise.
+Keeping your legs straight, slowly push your toes up as far as possible.
+Squeeze the calf muscles, and then slowly lower the weight back to the starting position.
+Repeat for desired reps.
+The reason you point your toes out for this exercise is to emphasize the inner calf. Whether this technique is effective for inner calf training is still being debated amongst lifters.
+Make sure the balls of your feet are right on the edge of the footplate. If you position them further in, the exercise becomes easier.
+Use a full range of motion by allowing your toes to come right back and then raising them as far as possible.
+Keep the rep timing slow and control the weight - don''t bounce!', 'isolation', 'fixed', 'push', 'beginner');
+INSERT INTO public.exercise_examples VALUES ('46b1efa3-a4f8-4492-a81c-9e48c650dd3d', 'Toes In Smith Machine Calf Raise', '2024-09-01 12:52:29.675', '2024-09-01 12:52:29.675', '', 'Set the bar on the smith machine to around shoulder height and rack up the weight you want to use.
+Grab a step, calf block, or weight plate and put it below the bar.
+Step up on the block and position the balls of your feet on the edge.
+Twist your feet so that your toes are pointing in at each other.
+Grasp the smith bar with a wide grip and position it across the top of your back muscles (not across the back of your neck).
+Push up to take the weight off the rack and slowly let your heels drop down as far as possible. This is the starting position.
+Slowly raise your heels as far as you can off the floor.
+Squeeze the calf muscles, and then slowly lower your heels back to the starting position.
+Repeat for desired reps.
+The idea behind pointing your toes in for the smith machine calf raise is to emphasize the outer part of the calf muscle. This theory is still debated amongst lifters.
+Don''t let your heels touch the floor throughout the set.
+The balls of your feet should be right on the edge of the block. Do not allow them to come forward as it makes the exercise less challenging.
+Use the maximum range of motion by allowing your heels to drop as far as possible and then raising them as high as possible.
+Focus on not allowing your knees to bend.', 'isolation', 'fixed', 'push', 'beginner');
+INSERT INTO public.exercise_examples VALUES ('89ffca84-73f0-4a69-871f-9d9c96521a05', 'Toes Out Smith Machine Calf Raise', '2024-09-01 12:54:31.257041', '2024-09-01 12:54:31.257041', '', 'Set the bar on the smith machine to around shoulder height and rack up the weight you want to use.
+Grab a step, calf block, or weight plate and put it below the bar.
+Step up on the block and position the balls of your feet on the edge.
+Twist your feet so that your toes are pointing away from each other. Your heels should be almost touching, in a ''V'' format.
+Grasp the smith bar with a wide grip and position it across the top of your back muscles (not across the back of your neck).
+Push up to take the weight off the rack and slowly let your heels drop down as far as possible. This is the starting position.
+Slowly raise your heels as far as you can off the floor.
+Squeeze the calf muscles, and then slowly lower your heels back to the starting position.
+Repeat for desired reps.
+The idea behind pointing your toes out for the smith machine calf raise is to emphasize the inner part of the calf muscle. This theory is still debated amongst lifters.
+Don''t let your heels touch the floor throughout the set.
+The balls of your feet should be right on the edge of the block. Do not allow them to come forward as it makes the exercise less challenging.
+Use the maximum range of motion by allowing your heels to drop as far as possible and then raising them as high as possible.
+Focus on not allowing your knees to bend.', 'isolation', 'fixed', 'push', 'beginner');
+INSERT INTO public.exercise_examples VALUES ('f11c8751-e5ca-413e-b30d-2b387ec14733', 'Toes Out Seated Calf Raise', '2024-09-01 12:56:50.688111', '2024-09-01 12:56:50.688111', '', 'Take a seat on the machine and place the balls of your feet on the platform with your toes pointed out - your heels will naturally hang off. Position the base of quads under the knee pad and allow your hands to rest on top.
+Extend your ankles and release the safety bar.
+Lower the heels by dorsiflexing the ankles until the calves are fully stretched.
+Extend the ankles and exhale as you flex the calves.
+Repeat for the assigned number of repetitions.
+Keep the repetitions slow and controlled. Limit momentum and pause at the top to emphasize the contraction.
+Limit depth of the heels if you feel any sort of stretch through the bottom of the foot during the exercise.
+Try to move through the ball of the foot rather than the base of the toes.', 'isolation', 'fixed', 'push', 'beginner');
+INSERT INTO public.exercise_examples VALUES ('9e348a26-e5d0-4ee0-b3e6-fe58563ac698', 'Hack Squat Calf Raise', '2024-09-01 13:30:53.56497', '2024-09-01 13:30:53.56497', '', 'Load the weight you want to use on a hack squat machine.
+Stand on the foot plate facing the machine with your chest on the back pad and shoulders under the shoulder pads.
+If you have a block available, put it on the foot plate and use it to stand on for extra range of motion.
+Push up and take the weight off the rack by releasing the safety.
+Keeping your legs straight, slowly raise your heels off the floor as far as possible.
+Pause, and then slowly lower back to the starting position without letting your heels fully rest on the foot plate.
+Squeeze the calf muscles and hold for a count of two at the top of the movement for added intensity.
+Don''t let your heels fully rest on the footplate at the bottom of the movement.
+Keep your back straight, and chest against the padding throughout the set.', 'isolation', 'fixed', 'push', 'beginner');
 
 
 --
@@ -1361,6 +1460,16 @@ INSERT INTO public.exercise_examples_equipments VALUES ('148699e0-bd1e-4d1d-a4a8
 INSERT INTO public.exercise_examples_equipments VALUES ('fd262b33-6e2f-4bb9-9bf6-3eed7b52a0b7', '2024-09-01 12:24:23.213877', '2024-09-01 12:24:23.213877', '85dbccf6-454e-4440-8905-50a90d91dbcc', 'f2868e11-6e1d-4ce4-a1a8-eb0384a60b71');
 INSERT INTO public.exercise_examples_equipments VALUES ('75b87f45-37ce-4e44-956b-28ed4373b4cf', '2024-09-01 12:25:43.172492', '2024-09-01 12:25:43.172492', 'ddf4299a-fc48-47bd-9bdf-7e3d7692b09f', '38af9c0d-b19f-433d-bcda-0b974b5475cf');
 INSERT INTO public.exercise_examples_equipments VALUES ('ad0a8479-1442-43c4-8438-0985114c04a4', '2024-09-01 12:26:49.236953', '2024-09-01 12:26:49.236953', 'ddf4299a-fc48-47bd-9bdf-7e3d7692b09f', 'c5901a9a-580c-411b-85bd-2ec738123e14');
+INSERT INTO public.exercise_examples_equipments VALUES ('78e04b3c-02a4-4663-ace1-fc700a32f559', '2024-09-01 12:41:05.655011', '2024-09-01 12:41:05.655011', '7752a881-139d-4cf4-98b2-e92e9de0e2e5', '6e4bc8b2-33ab-46da-9b79-9fff2266cd27');
+INSERT INTO public.exercise_examples_equipments VALUES ('63bdc4bb-0001-40e8-bd4c-972ab4789f5a', '2024-09-01 12:43:01.53445', '2024-09-01 12:43:01.53445', '85dbccf6-454e-4440-8905-50a90d91dbcc', '01dff88c-893b-4410-8d54-1e36013b9fdb');
+INSERT INTO public.exercise_examples_equipments VALUES ('9d614bbd-016b-48d0-b03b-918b5fa99d3d', '2024-09-01 12:43:01.53445', '2024-09-01 12:43:01.53445', '9d66ac93-3a48-429d-aeaa-54302856e204', '01dff88c-893b-4410-8d54-1e36013b9fdb');
+INSERT INTO public.exercise_examples_equipments VALUES ('011edf8a-a8b4-45b8-8825-568519dd71b7', '2024-09-01 12:49:37.152666', '2024-09-01 12:49:37.152666', '7752a881-139d-4cf4-98b2-e92e9de0e2e5', 'de4e9652-b068-4558-9fd3-38d45e5aa0d9');
+INSERT INTO public.exercise_examples_equipments VALUES ('100900e0-67b3-4c61-9108-a8cc18d83298', '2024-09-01 12:52:29.690195', '2024-09-01 12:52:29.690195', '623e0be7-870a-4bca-b053-76e99c9ea7e0', '46b1efa3-a4f8-4492-a81c-9e48c650dd3d');
+INSERT INTO public.exercise_examples_equipments VALUES ('9030787b-f6eb-4611-89ac-083e8655b5f4', '2024-09-01 12:54:31.27172', '2024-09-01 12:54:31.27172', '623e0be7-870a-4bca-b053-76e99c9ea7e0', '89ffca84-73f0-4a69-871f-9d9c96521a05');
+INSERT INTO public.exercise_examples_equipments VALUES ('cd336569-8d94-4f32-880d-4aacef19c47d', '2024-09-01 12:56:50.703307', '2024-09-01 12:56:50.703307', '7752a881-139d-4cf4-98b2-e92e9de0e2e5', 'f11c8751-e5ca-413e-b30d-2b387ec14733');
+INSERT INTO public.exercise_examples_equipments VALUES ('e79d44da-2255-4445-bf81-07bfde8ac4f3', '2024-09-01 12:51:11.829723', '2024-09-01 12:51:11.829723', '1959d942-75fb-4ece-b501-b7cf8884d479', '7227c8f6-cf65-4134-97de-d5e64cb5ff1b');
+INSERT INTO public.exercise_examples_equipments VALUES ('d0c8768e-08bc-46da-8ec0-6b6ccde3cce2', '2024-09-01 12:47:02.029745', '2024-09-01 12:47:02.029745', '1959d942-75fb-4ece-b501-b7cf8884d479', 'd2f28afc-e84c-467c-90d9-c6c2cb63acbc');
+INSERT INTO public.exercise_examples_equipments VALUES ('6e15b634-3eb9-4021-9621-2c6c2f817ff3', '2024-09-01 13:30:53.583243', '2024-09-01 13:30:53.583243', '20e225dd-68d7-409b-9b7d-5ef6d4224d02', '9e348a26-e5d0-4ee0-b3e6-fe58563ac698');
 
 
 --
@@ -1475,6 +1584,15 @@ INSERT INTO public.exercise_examples_tutorials VALUES ('bcca2cbf-dfd1-4e8a-95ae-
 INSERT INTO public.exercise_examples_tutorials VALUES ('2e8b65ca-3879-4200-aaac-52ff784c218c', '2024-09-01 12:24:23.221021', 'f2868e11-6e1d-4ce4-a1a8-eb0384a60b71', '2024-09-01 12:24:23.221021', 'Floor Crunch (Legs on Bench) Instructions', 'https://www.muscleandstrength.com/exercises/floor-crunch-legs-on-bench.html', 'en', NULL, 'video');
 INSERT INTO public.exercise_examples_tutorials VALUES ('8320cb3c-0d28-42ec-a4e7-14a21f5ac75c', '2024-09-01 12:25:43.182175', '38af9c0d-b19f-433d-bcda-0b974b5475cf', '2024-09-01 12:25:43.182175', 'Twisting Hanging Knee Raise Instructions', 'https://www.muscleandstrength.com/exercises/twisting-hanging-knee-raise.html', 'en', NULL, 'video');
 INSERT INTO public.exercise_examples_tutorials VALUES ('f8294893-d061-4f4a-8742-d8c4e30bdb45', '2024-09-01 12:26:49.240082', 'c5901a9a-580c-411b-85bd-2ec738123e14', '2024-09-01 12:26:49.240082', 'Hanging Knee Raise Instructions', 'https://www.muscleandstrength.com/exercises/hanging-knee-raise.html', 'en', NULL, 'video');
+INSERT INTO public.exercise_examples_tutorials VALUES ('8a988795-1281-4ae2-8c92-15a38cd4d736', '2024-09-01 12:41:05.660993', '6e4bc8b2-33ab-46da-9b79-9fff2266cd27', '2024-09-01 12:41:05.660993', 'Seated Calf Raise', 'https://www.muscleandstrength.com/exercises/seated-calf-raise.html', 'en', NULL, 'video');
+INSERT INTO public.exercise_examples_tutorials VALUES ('08f9c70b-61a1-401a-b4e4-d1d4e382caac', '2024-09-01 12:43:01.541438', '01dff88c-893b-4410-8d54-1e36013b9fdb', '2024-09-01 12:43:01.541438', 'Seated Dumbbell Calf Raise', 'https://www.muscleandstrength.com/exercises/seated-dumbbell-calf-raise.html', 'en', NULL, 'video');
+INSERT INTO public.exercise_examples_tutorials VALUES ('32b77a0b-bbe6-444f-ab45-9696dc6aeb0d', '2024-09-01 12:47:02.03533', 'd2f28afc-e84c-467c-90d9-c6c2cb63acbc', '2024-09-01 12:47:02.03533', '45 Degree Leg Press Calf Raise', 'https://www.muscleandstrength.com/exercises/45-degress-calf-press.html', 'en', NULL, 'video');
+INSERT INTO public.exercise_examples_tutorials VALUES ('34fde96e-74bb-4579-894b-af1dcee97f40', '2024-09-01 12:49:37.159057', 'de4e9652-b068-4558-9fd3-38d45e5aa0d9', '2024-09-01 12:49:37.159057', 'Toes In Seated Calf Raise', 'https://www.muscleandstrength.com/exercises/toes-in-seated-calf-raise.html', 'en', NULL, 'video');
+INSERT INTO public.exercise_examples_tutorials VALUES ('5e029193-33b0-4000-8505-d140ca6c1b1a', '2024-09-01 12:51:11.83489', '7227c8f6-cf65-4134-97de-d5e64cb5ff1b', '2024-09-01 12:51:11.83489', 'Toes Out 45 Degree Calf Raise', 'https://www.muscleandstrength.com/exercises/toes-out-45-degree-calf-raise.html', 'en', NULL, 'video');
+INSERT INTO public.exercise_examples_tutorials VALUES ('a19029d4-4989-43d5-9477-65c6a3303154', '2024-09-01 12:52:29.697143', '46b1efa3-a4f8-4492-a81c-9e48c650dd3d', '2024-09-01 12:52:29.697143', 'Toes In Smith Machine Calf Raise', 'https://www.muscleandstrength.com/exercises/toes-in-smith-machine-calf-raise.html', 'en', NULL, 'video');
+INSERT INTO public.exercise_examples_tutorials VALUES ('b55b93bc-5cf2-4276-8c9c-4ed7eb7385bb', '2024-09-01 12:54:31.278042', '89ffca84-73f0-4a69-871f-9d9c96521a05', '2024-09-01 12:54:31.278042', 'Toes Out Smith Machine Calf Raise', 'https://www.muscleandstrength.com/exercises/toes-out-smith-machine-calf-raise.html', 'en', NULL, 'video');
+INSERT INTO public.exercise_examples_tutorials VALUES ('96c0e0df-856f-41bb-958c-b03d16f270f3', '2024-09-01 12:56:50.70875', 'f11c8751-e5ca-413e-b30d-2b387ec14733', '2024-09-01 12:56:50.70875', 'Toes Out Seated Calf Raise', 'https://www.muscleandstrength.com/exercises/toes-out-seated-calf-raise.html', 'en', NULL, 'video');
+INSERT INTO public.exercise_examples_tutorials VALUES ('b6e3e346-ccb9-4e1c-b5c7-efa6f282d2d3', '2024-09-01 13:30:53.588865', '9e348a26-e5d0-4ee0-b3e6-fe58563ac698', '2024-09-01 13:30:53.588865', 'Hack Squat Calf Raise', 'https://www.muscleandstrength.com/exercises/hack-calf-raise.html', 'en', NULL, 'video');
 
 
 --
