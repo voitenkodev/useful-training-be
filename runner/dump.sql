@@ -166,8 +166,9 @@ CREATE TYPE public.muscle_groups_type_enum AS ENUM (
 --
 
 CREATE TYPE public.muscles_type_enum AS ENUM (
-    'pectoralis_major',
-    'pectoralis_minor',
+    'pectoralis_major_clavicular',
+    'pectoralis_major_sternocostal',
+    'pectoralis_major_abdominal',
     'trapezius',
     'latissimus_dorsi',
     'rhomboids',
@@ -512,9 +513,13 @@ INSERT INTO public.equipments VALUES ('1959d942-75fb-4ece-b501-b7cf8884d479', 'L
 -- Data for Name: excluded_muscles; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-INSERT INTO public.excluded_muscles VALUES ('21a6a90b-4784-4d8f-a595-2c29c15b1e51', '9a8024fe-c721-4bea-969c-db88674b5ece', '2024-08-23 11:26:17.182962', '5e2eab59-bccb-4679-997a-398e18bc254c', '2024-08-23 11:26:17.182962');
-INSERT INTO public.excluded_muscles VALUES ('afd95d66-4d77-4374-a4d5-06267634f5e5', '97a87b01-35e8-490a-94b9-9bdae9c2f965', '2024-08-23 11:58:00.185268', '5e2eab59-bccb-4679-997a-398e18bc254c', '2024-08-23 11:58:00.185268');
-INSERT INTO public.excluded_muscles VALUES ('043193a4-67d5-49ca-adb7-fd26355f2160', '0fd0be35-f933-43b8-a0d7-a4b6adaa9c1a', '2024-08-23 11:58:00.642429', '5e2eab59-bccb-4679-997a-398e18bc254c', '2024-08-23 11:58:00.642429');
+INSERT INTO public.excluded_muscles VALUES ('e817eb46-f095-43f0-b767-7218d75979fe', '2e0faf2b-31a5-4c63-ac15-454be132796f', '2024-09-02 11:53:32.991062', '5e2eab59-bccb-4679-997a-398e18bc254c', '2024-09-02 11:53:32.991062');
+INSERT INTO public.excluded_muscles VALUES ('7dea3cc6-50b8-4505-bb66-474a512acd33', '831f39bd-80a8-4d11-9964-bde1788abae1', '2024-09-02 11:53:33.434069', '5e2eab59-bccb-4679-997a-398e18bc254c', '2024-09-02 11:53:33.434069');
+INSERT INTO public.excluded_muscles VALUES ('a647553f-567a-416c-85b4-629879817c37', 'be38dcef-1bc8-487b-a44f-96df1ab9e68c', '2024-09-02 11:53:33.916676', '5e2eab59-bccb-4679-997a-398e18bc254c', '2024-09-02 11:53:33.916676');
+INSERT INTO public.excluded_muscles VALUES ('83834c38-c013-4cdc-91de-476f3161dde9', 'af854064-078a-4f50-af1d-8744e866751e', '2024-09-02 11:53:34.573595', '5e2eab59-bccb-4679-997a-398e18bc254c', '2024-09-02 11:53:34.573595');
+INSERT INTO public.excluded_muscles VALUES ('49a1652d-3a57-4085-b0fd-3e24e7cb1f28', 'a3a8eae0-6315-4435-8974-f2c07ec3567f', '2024-09-02 13:10:43.758999', '5e2eab59-bccb-4679-997a-398e18bc254c', '2024-09-02 13:10:43.758999');
+INSERT INTO public.excluded_muscles VALUES ('9c416636-7c5a-4d68-bc83-4123a69c89b1', 'b4658891-9713-48c4-864c-8dd907da19b0', '2024-09-02 13:10:44.101875', '5e2eab59-bccb-4679-997a-398e18bc254c', '2024-09-02 13:10:44.101875');
+INSERT INTO public.excluded_muscles VALUES ('f7f643a0-6dfa-463a-9518-d978eaa985bd', 'c57aa60c-61ea-4498-b01f-fedcafe8a32a', '2024-09-02 13:10:44.465493', '5e2eab59-bccb-4679-997a-398e18bc254c', '2024-09-02 13:10:44.465493');
 
 
 --
@@ -855,6 +860,30 @@ INSERT INTO public.exercise_example_bundles VALUES ('d86c0354-1173-4398-908c-300
 INSERT INTO public.exercise_example_bundles VALUES ('1e4d063b-6208-4f84-a757-ac3e792b9744', 100, '89ffca84-73f0-4a69-871f-9d9c96521a05', 'bba5b66d-9a9c-4b44-8dd6-9574760038ee', '2024-09-01 12:54:31.266577', '2024-09-01 12:54:31.266577');
 INSERT INTO public.exercise_example_bundles VALUES ('217a09cd-b8f8-400e-821f-f5d1f2a7125a', 100, 'f11c8751-e5ca-413e-b30d-2b387ec14733', 'bba5b66d-9a9c-4b44-8dd6-9574760038ee', '2024-09-01 12:56:50.697125', '2024-09-01 12:56:50.697125');
 INSERT INTO public.exercise_example_bundles VALUES ('ceae5d19-af46-45cb-80f4-75128753a8cf', 100, '9e348a26-e5d0-4ee0-b3e6-fe58563ac698', 'bba5b66d-9a9c-4b44-8dd6-9574760038ee', '2024-09-01 13:30:53.579257', '2024-09-01 13:30:53.579257');
+INSERT INTO public.exercise_example_bundles VALUES ('cae38e00-b9bc-4d32-9471-8c71d0615c51', 50, '548b3de6-0980-4795-ab86-763c20dbc325', 'b4658891-9713-48c4-864c-8dd907da19b0', '2024-09-02 14:01:43.614947', '2024-09-02 14:01:43.614947');
+INSERT INTO public.exercise_example_bundles VALUES ('298cdde5-97d3-41d5-8c6a-7dc4412161c3', 10, '548b3de6-0980-4795-ab86-763c20dbc325', 'c57aa60c-61ea-4498-b01f-fedcafe8a32a', '2024-09-02 14:01:43.614947', '2024-09-02 14:01:43.614947');
+INSERT INTO public.exercise_example_bundles VALUES ('3f96732d-12fd-436f-a1d8-7ae09719ae48', 20, '548b3de6-0980-4795-ab86-763c20dbc325', 'd736a513-9d73-47a3-bffc-c14911662ea2', '2024-09-02 14:01:43.614947', '2024-09-02 14:01:43.614947');
+INSERT INTO public.exercise_example_bundles VALUES ('a0702d6d-7932-4d63-8fdc-4210d47f35fc', 15, '548b3de6-0980-4795-ab86-763c20dbc325', '0fd0be35-f933-43b8-a0d7-a4b6adaa9c1a', '2024-09-02 14:01:43.614947', '2024-09-02 14:01:43.614947');
+INSERT INTO public.exercise_example_bundles VALUES ('1bee524e-4e17-4cde-94bc-e64eb6cf5e6a', 5, '548b3de6-0980-4795-ab86-763c20dbc325', '2da3d8f2-6a28-45ff-90a2-ea3a6bb2afe8', '2024-09-02 14:01:43.614947', '2024-09-02 14:01:43.614947');
+INSERT INTO public.exercise_example_bundles VALUES ('aa5ad2cf-51e5-47ad-9f0d-b461f55de040', 50, '47f00a63-05df-4db7-b2c7-68000c72be9b', 'c57aa60c-61ea-4498-b01f-fedcafe8a32a', '2024-09-02 14:03:25.455092', '2024-09-02 14:03:25.455092');
+INSERT INTO public.exercise_example_bundles VALUES ('c3c18d61-c73d-4994-bc85-806fc28347ea', 20, '47f00a63-05df-4db7-b2c7-68000c72be9b', 'b4658891-9713-48c4-864c-8dd907da19b0', '2024-09-02 14:03:25.455092', '2024-09-02 14:03:25.455092');
+INSERT INTO public.exercise_example_bundles VALUES ('751e5e28-a612-4f2c-9b87-afa94faae500', 15, '47f00a63-05df-4db7-b2c7-68000c72be9b', 'd736a513-9d73-47a3-bffc-c14911662ea2', '2024-09-02 14:03:25.455092', '2024-09-02 14:03:25.455092');
+INSERT INTO public.exercise_example_bundles VALUES ('7cd9c8cf-281b-45d5-bc21-baeee0b34c62', 10, '47f00a63-05df-4db7-b2c7-68000c72be9b', '0fd0be35-f933-43b8-a0d7-a4b6adaa9c1a', '2024-09-02 14:03:25.455092', '2024-09-02 14:03:25.455092');
+INSERT INTO public.exercise_example_bundles VALUES ('d452fdb2-8103-49f6-b033-f813c5b7dbe0', 5, '47f00a63-05df-4db7-b2c7-68000c72be9b', '2da3d8f2-6a28-45ff-90a2-ea3a6bb2afe8', '2024-09-02 14:03:25.455092', '2024-09-02 14:03:25.455092');
+INSERT INTO public.exercise_example_bundles VALUES ('495e63ea-ebbc-4063-866b-565281dfe9ce', 40, 'c0a055b2-daf6-4ecc-b97b-cfedfce6a42a', 'b4658891-9713-48c4-864c-8dd907da19b0', '2024-09-02 14:05:57.418333', '2024-09-02 14:05:57.418333');
+INSERT INTO public.exercise_example_bundles VALUES ('fcce8382-442e-44a3-890a-e43e69aa3751', 30, 'c0a055b2-daf6-4ecc-b97b-cfedfce6a42a', '831f39bd-80a8-4d11-9964-bde1788abae1', '2024-09-02 14:05:57.418333', '2024-09-02 14:05:57.418333');
+INSERT INTO public.exercise_example_bundles VALUES ('55031ce1-4991-405c-99d4-12c776be5cb6', 15, 'c0a055b2-daf6-4ecc-b97b-cfedfce6a42a', 'd736a513-9d73-47a3-bffc-c14911662ea2', '2024-09-02 14:05:57.418333', '2024-09-02 14:05:57.418333');
+INSERT INTO public.exercise_example_bundles VALUES ('d1e4fabc-fa09-4ec7-b60c-67dd58c61631', 10, 'c0a055b2-daf6-4ecc-b97b-cfedfce6a42a', '0fd0be35-f933-43b8-a0d7-a4b6adaa9c1a', '2024-09-02 14:05:57.418333', '2024-09-02 14:05:57.418333');
+INSERT INTO public.exercise_example_bundles VALUES ('e7414533-17d6-488d-97e6-7d94c55ce581', 5, 'c0a055b2-daf6-4ecc-b97b-cfedfce6a42a', '2da3d8f2-6a28-45ff-90a2-ea3a6bb2afe8', '2024-09-02 14:05:57.418333', '2024-09-02 14:05:57.418333');
+INSERT INTO public.exercise_example_bundles VALUES ('92ec36bf-a04b-4d90-b98e-cdf1451f38d7', 40, '2bc37dec-7b06-404c-af63-99bf3f60fb68', 'b4658891-9713-48c4-864c-8dd907da19b0', '2024-09-02 14:06:48.387808', '2024-09-02 14:06:48.387808');
+INSERT INTO public.exercise_example_bundles VALUES ('f7aa3b0c-5d05-4797-b27c-62d75762b001', 30, '2bc37dec-7b06-404c-af63-99bf3f60fb68', '831f39bd-80a8-4d11-9964-bde1788abae1', '2024-09-02 14:06:48.387808', '2024-09-02 14:06:48.387808');
+INSERT INTO public.exercise_example_bundles VALUES ('d98250e4-4f3c-451a-95f2-7bbc89d6baae', 15, '2bc37dec-7b06-404c-af63-99bf3f60fb68', 'd736a513-9d73-47a3-bffc-c14911662ea2', '2024-09-02 14:06:48.387808', '2024-09-02 14:06:48.387808');
+INSERT INTO public.exercise_example_bundles VALUES ('8df965c5-f7b9-4c50-96e9-2f4c73387ce2', 10, '2bc37dec-7b06-404c-af63-99bf3f60fb68', '0fd0be35-f933-43b8-a0d7-a4b6adaa9c1a', '2024-09-02 14:06:48.387808', '2024-09-02 14:06:48.387808');
+INSERT INTO public.exercise_example_bundles VALUES ('d95e981b-2b22-4dd5-bdbb-1e5cdbcbaafc', 5, '2bc37dec-7b06-404c-af63-99bf3f60fb68', '2da3d8f2-6a28-45ff-90a2-ea3a6bb2afe8', '2024-09-02 14:06:48.387808', '2024-09-02 14:06:48.387808');
+INSERT INTO public.exercise_example_bundles VALUES ('2ca1ca06-e68e-4f9e-8b49-5ac5639d469b', 70, '3488eaaa-a999-43c5-acd6-b177b8a3df8a', 'b4658891-9713-48c4-864c-8dd907da19b0', '2024-09-02 14:08:08.354736', '2024-09-02 14:08:08.354736');
+INSERT INTO public.exercise_example_bundles VALUES ('eaa10bef-fa54-4361-99df-2eeed63a0a54', 15, '3488eaaa-a999-43c5-acd6-b177b8a3df8a', 'd736a513-9d73-47a3-bffc-c14911662ea2', '2024-09-02 14:08:08.354736', '2024-09-02 14:08:08.354736');
+INSERT INTO public.exercise_example_bundles VALUES ('6cc12c43-6468-497d-be7f-f3d8de8c9ee2', 10, '3488eaaa-a999-43c5-acd6-b177b8a3df8a', '0fd0be35-f933-43b8-a0d7-a4b6adaa9c1a', '2024-09-02 14:08:08.354736', '2024-09-02 14:08:08.354736');
+INSERT INTO public.exercise_example_bundles VALUES ('7441231e-a3cc-4e8e-8278-de32ad2d6ae7', 5, '3488eaaa-a999-43c5-acd6-b177b8a3df8a', '2da3d8f2-6a28-45ff-90a2-ea3a6bb2afe8', '2024-09-02 14:08:08.354736', '2024-09-02 14:08:08.354736');
 
 
 --
@@ -1287,6 +1316,11 @@ Pause, and then slowly lower back to the starting position without letting your 
 Squeeze the calf muscles and hold for a count of two at the top of the movement for added intensity.
 Don''t let your heels fully rest on the footplate at the bottom of the movement.
 Keep your back straight, and chest against the padding throughout the set.', 'isolation', 'fixed', 'push', 'beginner');
+INSERT INTO public.exercise_examples VALUES ('548b3de6-0980-4795-ab86-763c20dbc325', 'Dumbbell Bench Press', '2024-09-02 14:01:43.604308', '2024-09-02 14:01:43.604308', '', 'The dumbbell bench press is a variation of the barbell bench press and an exercise used to build the muscles of the chest. It is recommended after reaching a certain point of strength on the barbell bench press to avoid pec and shoulder injuries. The exercise requires maintaining shoulder stability throughout, making it a great test of strength and control.', 'compound', 'free', 'push', 'beginner');
+INSERT INTO public.exercise_examples VALUES ('47f00a63-05df-4db7-b2c7-68000c72be9b', 'Incline Dumbbell Bench Press', '2024-09-02 14:03:25.447382', '2024-09-02 14:03:25.447382', '', 'The incline dumbbell bench press is a variation of the incline bench press and an exercise used to build the muscles of the chest, with a focus on the upper chest. The shoulders and triceps are also engaged, making it a great compound movement for upper body strength. The use of dumbbells ensures balanced strength and can help prevent injuries.', 'compound', 'free', 'push', 'beginner');
+INSERT INTO public.exercise_examples VALUES ('c0a055b2-daf6-4ecc-b97b-cfedfce6a42a', 'Dumbbell Pullover', '2024-09-02 14:05:57.412015', '2024-09-02 14:05:57.412015', '', 'The dumbbell pullover is a compound exercise that primarily targets the chest, with significant involvement of the lats, shoulders, and triceps. This movement helps build upper body strength and can be incorporated into chest, upper body, and full-body workouts. Maintaining proper form is crucial to maximize benefits and avoid injury.', 'compound', 'free', 'push', 'intermediate');
+INSERT INTO public.exercise_examples VALUES ('2bc37dec-7b06-404c-af63-99bf3f60fb68', 'Dumbbell Pullover', '2024-09-02 14:06:48.380733', '2024-09-02 14:06:48.380733', '', 'The dumbbell pullover is a compound exercise that primarily targets the chest, with significant involvement of the lats, shoulders, and triceps. This movement helps build upper body strength and can be incorporated into chest, upper body, and full-body workouts. Maintaining proper form is crucial to maximize benefits and avoid injury.', 'compound', 'free', 'push', 'intermediate');
+INSERT INTO public.exercise_examples VALUES ('3488eaaa-a999-43c5-acd6-b177b8a3df8a', 'Dumbbell Flys', '2024-09-02 14:08:08.34696', '2024-09-02 14:08:08.34696', '', 'The dumbbell fly is a classic bodybuilding movement designed to isolate the chest muscles, promoting growth and strength. This exercise is ideal for aesthetic-focused chest workouts, often used to build a stronger bench press. Maintaining proper form is key to effectively targeting the chest and avoiding unnecessary strain on the shoulders.', 'isolation', 'free', 'push', 'beginner');
 
 
 --
@@ -1470,6 +1504,16 @@ INSERT INTO public.exercise_examples_equipments VALUES ('cd336569-8d94-4f32-880d
 INSERT INTO public.exercise_examples_equipments VALUES ('e79d44da-2255-4445-bf81-07bfde8ac4f3', '2024-09-01 12:51:11.829723', '2024-09-01 12:51:11.829723', '1959d942-75fb-4ece-b501-b7cf8884d479', '7227c8f6-cf65-4134-97de-d5e64cb5ff1b');
 INSERT INTO public.exercise_examples_equipments VALUES ('d0c8768e-08bc-46da-8ec0-6b6ccde3cce2', '2024-09-01 12:47:02.029745', '2024-09-01 12:47:02.029745', '1959d942-75fb-4ece-b501-b7cf8884d479', 'd2f28afc-e84c-467c-90d9-c6c2cb63acbc');
 INSERT INTO public.exercise_examples_equipments VALUES ('6e15b634-3eb9-4021-9621-2c6c2f817ff3', '2024-09-01 13:30:53.583243', '2024-09-01 13:30:53.583243', '20e225dd-68d7-409b-9b7d-5ef6d4224d02', '9e348a26-e5d0-4ee0-b3e6-fe58563ac698');
+INSERT INTO public.exercise_examples_equipments VALUES ('b7a0ec3b-b5f0-41f2-b23c-3d325f8f978b', '2024-09-02 14:01:43.622797', '2024-09-02 14:01:43.622797', '9d66ac93-3a48-429d-aeaa-54302856e204', '548b3de6-0980-4795-ab86-763c20dbc325');
+INSERT INTO public.exercise_examples_equipments VALUES ('6564ac53-1d75-421f-ac0a-23035fb471b5', '2024-09-02 14:01:43.622797', '2024-09-02 14:01:43.622797', '85dbccf6-454e-4440-8905-50a90d91dbcc', '548b3de6-0980-4795-ab86-763c20dbc325');
+INSERT INTO public.exercise_examples_equipments VALUES ('2aaae5bb-5701-4917-ad85-1a07cc8265ea', '2024-09-02 14:03:25.461134', '2024-09-02 14:03:25.461134', '9d66ac93-3a48-429d-aeaa-54302856e204', '47f00a63-05df-4db7-b2c7-68000c72be9b');
+INSERT INTO public.exercise_examples_equipments VALUES ('8a50bdfc-f5e9-42d0-9847-66452c64737f', '2024-09-02 14:03:25.461134', '2024-09-02 14:03:25.461134', '6215cbaf-6065-4534-a9d5-a588c1b3dc28', '47f00a63-05df-4db7-b2c7-68000c72be9b');
+INSERT INTO public.exercise_examples_equipments VALUES ('b0db3fb6-d244-4b69-85ae-9b4ae5411988', '2024-09-02 14:05:57.423919', '2024-09-02 14:05:57.423919', '9d66ac93-3a48-429d-aeaa-54302856e204', 'c0a055b2-daf6-4ecc-b97b-cfedfce6a42a');
+INSERT INTO public.exercise_examples_equipments VALUES ('2f5f2aa4-ce7e-4dce-881a-d61e5e9361ca', '2024-09-02 14:05:57.423919', '2024-09-02 14:05:57.423919', '85dbccf6-454e-4440-8905-50a90d91dbcc', 'c0a055b2-daf6-4ecc-b97b-cfedfce6a42a');
+INSERT INTO public.exercise_examples_equipments VALUES ('582ce50e-a9ad-478e-b249-e2775c9f07d9', '2024-09-02 14:06:48.393095', '2024-09-02 14:06:48.393095', '9d66ac93-3a48-429d-aeaa-54302856e204', '2bc37dec-7b06-404c-af63-99bf3f60fb68');
+INSERT INTO public.exercise_examples_equipments VALUES ('a5b131e8-8b29-471e-83c2-2db6efbffb84', '2024-09-02 14:06:48.393095', '2024-09-02 14:06:48.393095', '85dbccf6-454e-4440-8905-50a90d91dbcc', '2bc37dec-7b06-404c-af63-99bf3f60fb68');
+INSERT INTO public.exercise_examples_equipments VALUES ('fe418a73-bcef-45fe-9709-3893bdce5c12', '2024-09-02 14:08:08.360773', '2024-09-02 14:08:08.360773', '9d66ac93-3a48-429d-aeaa-54302856e204', '3488eaaa-a999-43c5-acd6-b177b8a3df8a');
+INSERT INTO public.exercise_examples_equipments VALUES ('7ac6a2c0-5cd2-45d0-9ce5-1dcf470ccae6', '2024-09-02 14:08:08.360773', '2024-09-02 14:08:08.360773', '85dbccf6-454e-4440-8905-50a90d91dbcc', '3488eaaa-a999-43c5-acd6-b177b8a3df8a');
 
 
 --
@@ -1593,6 +1637,11 @@ INSERT INTO public.exercise_examples_tutorials VALUES ('a19029d4-4989-43d5-9477-
 INSERT INTO public.exercise_examples_tutorials VALUES ('b55b93bc-5cf2-4276-8c9c-4ed7eb7385bb', '2024-09-01 12:54:31.278042', '89ffca84-73f0-4a69-871f-9d9c96521a05', '2024-09-01 12:54:31.278042', 'Toes Out Smith Machine Calf Raise', 'https://www.muscleandstrength.com/exercises/toes-out-smith-machine-calf-raise.html', 'en', NULL, 'video');
 INSERT INTO public.exercise_examples_tutorials VALUES ('96c0e0df-856f-41bb-958c-b03d16f270f3', '2024-09-01 12:56:50.70875', 'f11c8751-e5ca-413e-b30d-2b387ec14733', '2024-09-01 12:56:50.70875', 'Toes Out Seated Calf Raise', 'https://www.muscleandstrength.com/exercises/toes-out-seated-calf-raise.html', 'en', NULL, 'video');
 INSERT INTO public.exercise_examples_tutorials VALUES ('b6e3e346-ccb9-4e1c-b5c7-efa6f282d2d3', '2024-09-01 13:30:53.588865', '9e348a26-e5d0-4ee0-b3e6-fe58563ac698', '2024-09-01 13:30:53.588865', 'Hack Squat Calf Raise', 'https://www.muscleandstrength.com/exercises/hack-calf-raise.html', 'en', NULL, 'video');
+INSERT INTO public.exercise_examples_tutorials VALUES ('7bed0641-ef8c-4d6c-af05-515d90864d6b', '2024-09-02 14:01:43.632067', '548b3de6-0980-4795-ab86-763c20dbc325', '2024-09-02 14:01:43.632067', 'Instruction', 'https://www.muscleandstrength.com/exercises/dumbbell-bench-press.html', 'en', NULL, 'video');
+INSERT INTO public.exercise_examples_tutorials VALUES ('cdc0eff5-8069-4814-a371-11bcd247f2d4', '2024-09-02 14:03:25.466809', '47f00a63-05df-4db7-b2c7-68000c72be9b', '2024-09-02 14:03:25.466809', 'Instruction', 'https://www.muscleandstrength.com/exercises/incline-dumbbell-bench-press.html', 'en', NULL, 'video');
+INSERT INTO public.exercise_examples_tutorials VALUES ('7a446694-8f21-44a3-b98b-388913d3fd96', '2024-09-02 14:05:57.431081', 'c0a055b2-daf6-4ecc-b97b-cfedfce6a42a', '2024-09-02 14:05:57.431081', 'Instruction', 'https://www.muscleandstrength.com/exercises/dumbbell-pullover.html', 'en', NULL, 'video');
+INSERT INTO public.exercise_examples_tutorials VALUES ('7b5076b9-7cf1-433b-81b4-3b3603926eb3', '2024-09-02 14:06:48.398345', '2bc37dec-7b06-404c-af63-99bf3f60fb68', '2024-09-02 14:06:48.398345', 'Instruction', 'https://www.muscleandstrength.com/exercises/dumbbell-pullover.html', 'en', NULL, 'video');
+INSERT INTO public.exercise_examples_tutorials VALUES ('c407b92f-d30c-418a-aa27-e1b76f4ecb9e', '2024-09-02 14:08:08.36724', '3488eaaa-a999-43c5-acd6-b177b8a3df8a', '2024-09-02 14:08:08.36724', 'Instruction', 'https://www.muscleandstrength.com/exercises/dumbbell-flys.html', 'en', NULL, 'video');
 
 
 --
@@ -1635,13 +1684,11 @@ INSERT INTO public.muscles VALUES ('1ddbb748-37a6-4d66-a7d4-4957bdbc647f', 'Obli
 INSERT INTO public.muscles VALUES ('9e69205f-6c6e-44a7-8ee6-89215e28a28e', 'Rectus Abdominis', 'e1f1e456-3f8d-46f6-b7ba-75bb4b8c3802', 'Пряма м''язи черева', 'Прямая мышца живота', '2023-11-12 00:49:49.921299', '2023-11-12 00:49:49.921299', 'rectus_abdominis', 48);
 INSERT INTO public.muscles VALUES ('57559b71-b757-468a-983d-a1b3cec4acef', 'Quadriceps', '255efc07-6c7e-42ab-97e5-01c06d60b5a3', 'Квадрицепси', 'Квадрицепсы', '2023-11-12 00:51:12.539967', '2023-11-12 00:51:12.539967', 'quadriceps', 48);
 INSERT INTO public.muscles VALUES ('831f39bd-80a8-4d11-9964-bde1788abae1', 'Latissimus Dorsi', '4289bf91-51d8-40b0-9aca-66780584a4eb', 'Широкі м''язи спини', 'Широчайшие мышцы спины', '2023-11-12 00:44:51.190921', '2023-11-12 00:44:51.190921', 'latissimus_dorsi', 48);
-INSERT INTO public.muscles VALUES ('c57aa60c-61ea-4498-b01f-fedcafe8a32a', 'Pectoralis Major', '5fd8ccc9-8630-4357-a234-c2f278d905db', 'Грудні великі м''язи', 'Грудные большие мышцы', '2023-11-12 00:44:51.190921', '2023-11-12 00:44:51.190921', 'pectoralis_major', 48);
 INSERT INTO public.muscles VALUES ('2da3d8f2-6a28-45ff-90a2-ea3a6bb2afe8', 'Lateral Deltoid', 'e1117068-06cd-4330-a4f9-93b485165805', 'Середня дельтовидна', 'Средний делтовидный ', '2023-11-13 21:03:29.671135', '2023-11-13 21:03:29.671135', 'lateral_deltoid', 48);
 INSERT INTO public.muscles VALUES ('d736a513-9d73-47a3-bffc-c14911662ea2', 'Anterior Deltoid', 'e1117068-06cd-4330-a4f9-93b485165805', 'Передня дельтовидна ', 'Передний делтовидный', '2023-11-13 21:03:29.671135', '2023-11-13 21:03:29.671135', 'anterior_deltoid', 48);
 INSERT INTO public.muscles VALUES ('97136fa7-622a-49d6-9d09-403a631d253d', 'Posterior Deltoid', 'e1117068-06cd-4330-a4f9-93b485165805', 'Задня дельтовидна', 'Задний делтовидный', '2023-11-13 21:03:29.671135', '2023-11-13 21:03:29.671135', 'posterior_deltoid', 48);
 INSERT INTO public.muscles VALUES ('bba5b66d-9a9c-4b44-8dd6-9574760038ee', 'Calf Muscles', '255efc07-6c7e-42ab-97e5-01c06d60b5a3', 'Задні стегнові м''язи', 'Мышцы голени', '2023-11-12 00:51:12.539967', '2023-11-12 00:51:12.539967', 'calf', 48);
 INSERT INTO public.muscles VALUES ('f6e65bfe-0746-4a8f-8210-0e9bf88d9886', 'Gluteal Muscles', '255efc07-6c7e-42ab-97e5-01c06d60b5a3', 'Сідничні м''язи', 'Ягодичные мышцы', '2023-11-15 21:31:45.933229', '2023-11-15 21:31:45.933229', 'gluteal', 48);
-INSERT INTO public.muscles VALUES ('b4658891-9713-48c4-864c-8dd907da19b0', 'Pectoralis Minor', '5fd8ccc9-8630-4357-a234-c2f278d905db', 'Грудні малі м''язи', 'Грудные малые мышцы', '2023-11-12 00:44:51.190921', '2023-11-12 00:44:51.190921', 'pectoralis_minor', 48);
 INSERT INTO public.muscles VALUES ('3eeaa9fa-0847-4780-9d01-185f91252794', 'Hamstrings', '255efc07-6c7e-42ab-97e5-01c06d60b5a3', 'Підколінні м''язи', 'Бедренные мышцы', '2023-11-12 00:51:12.539967', '2023-11-12 00:51:12.539967', 'hamstrings', 48);
 INSERT INTO public.muscles VALUES ('9a8024fe-c721-4bea-969c-db88674b5ece', 'Forearm Muscles', '2043a22c-c547-42c2-81bb-81f85693d9cd', 'М''язи передпліччя', 'Мышцы предплечья', '2023-11-13 21:01:37.624512', '2023-11-13 21:01:37.624512', 'forearm', 36);
 INSERT INTO public.muscles VALUES ('97a87b01-35e8-490a-94b9-9bdae9c2f965', 'Biceps Brachii', '2043a22c-c547-42c2-81bb-81f85693d9cd', 'Біцепси', 'Бицепсы', '2023-11-12 00:47:55.131334', '2023-11-12 00:47:55.131334', 'biceps', 36);
@@ -1649,6 +1696,9 @@ INSERT INTO public.muscles VALUES ('0fd0be35-f933-43b8-a0d7-a4b6adaa9c1a', 'Tric
 INSERT INTO public.muscles VALUES ('be38dcef-1bc8-487b-a44f-96df1ab9e68c', 'Teres Major', '4289bf91-51d8-40b0-9aca-66780584a4eb', 'Терес мажор', 'Терес мажор', '2024-07-30 19:46:35.870695', '2024-07-30 19:46:35.870695', 'teres_major', 36);
 INSERT INTO public.muscles VALUES ('fa8025e6-e106-475c-8b9d-77831132fb47', 'Adductors', '255efc07-6c7e-42ab-97e5-01c06d60b5a3', 'Приводні м’язи', 'Приводящие мышцы', '2024-08-31 13:39:50.77308', '2024-08-31 13:39:50.77308', 'adductors', 48);
 INSERT INTO public.muscles VALUES ('ab1dbd50-83a4-42c7-a3cd-da1784818ec8', 'Abductors', '255efc07-6c7e-42ab-97e5-01c06d60b5a3', 'Відводні м’язи', 'Отводящие мышцы', '2024-08-31 13:39:50.77308', '2024-08-31 13:39:50.77308', 'abductors', 48);
+INSERT INTO public.muscles VALUES ('b4658891-9713-48c4-864c-8dd907da19b0', 'Pectoralis (sternocostal)', '5fd8ccc9-8630-4357-a234-c2f278d905db', 'Грудні м''язи (грудинно-реберна)', 'Грудные мышцы (грудинно-рёберная)', '2023-11-12 00:44:51.190921', '2023-11-12 00:44:51.190921', 'pectoralis_major_sternocostal', 48);
+INSERT INTO public.muscles VALUES ('c57aa60c-61ea-4498-b01f-fedcafe8a32a', 'Pectoralis (clavicular)', '5fd8ccc9-8630-4357-a234-c2f278d905db', 'Грудні м''язи (ключична)', 'Грудные мышцы (клавикулярная)', '2023-11-12 00:44:51.190921', '2023-11-12 00:44:51.190921', 'pectoralis_major_clavicular', 48);
+INSERT INTO public.muscles VALUES ('a3a8eae0-6315-4435-8974-f2c07ec3567f', 'Pectoralis (abdominal)', '5fd8ccc9-8630-4357-a234-c2f278d905db', 'Грудні м''язи (черевна)', 'Грудные мышцы (брюшная)', '2024-09-02 11:45:52.106331', '2024-09-02 11:45:52.106331', 'pectoralis_major_abdominal', 48);
 
 
 --
