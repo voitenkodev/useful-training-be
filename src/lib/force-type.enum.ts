@@ -1,4 +1,5 @@
 export enum ForceTypeEnum {
     PUSH = "push",
-    PULL = "pull"
+    PULL = "pull",
+    HINGE = "hinge"
 }
