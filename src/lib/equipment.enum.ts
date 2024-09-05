@@ -8,6 +8,8 @@ export enum EquipmentEnum {
     ROPE = "rope",
     STRAIGHT_BAR = "straight_bar",
     CORD_HANDLES = "cord_handles",
+    WIDE_GRIP_HANDLE = "wide_grip_handle",
+    CLOSE_GRIP_HANDLE = "close_grip_handle",
 
     // Machine
     AB_MACHINES = "ab_machines",
